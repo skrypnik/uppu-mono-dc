@@ -1,0 +1,31 @@
+<RCC>
+    <qresource prefix="/SimDS">
+
+        <file>qmldir</file>
+
+        <file>qml/palettes/SimPalette.qml</file>
+        <file>qml/controls/SimControl.qml</file>
+
+        <file>qml/controls/SimGroupBox.qml</file>
+        <file>qml/controls/SimInputBox.qml</file>
+        <file>qml/controls/SimCheckBox.qml</file>
+        <file>qml/controls/SimButton.qml</file>
+        <file>qml/controls/SimInput.qml</file>
+        <file>qml/controls/SimLabel.qml</file>
+
+        <file>qml/panels/SimWindow.qml</file>
+        <file>qml/panels/SimPanel.qml</file>
+        <file>qml/panels/SimFrame.qml</file>
+
+        <file>qml/pages/SimPage.qml</file>
+
+        <file>svg/controls/Menu.svg</file>
+        <file>svg/controls/Hide.svg</file>
+        <file>svg/controls/Show.svg</file>
+        <file>svg/controls/Close.svg</file>
+        <file>svg/controls/Error.svg</file>
+        <file>svg/controls/CheckBoxChecked.svg</file>
+        <file>svg/controls/CheckBoxPartiallyChecked.svg</file>
+
+    </qresource>
+</RCC>
