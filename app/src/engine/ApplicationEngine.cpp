@@ -10,7 +10,7 @@
 #include <network/Module.h>
 #include <network/Searcher.h>
 
-#include "model/PacketModel.h"
+#include "model/DeviceModel.h"
 
 namespace Enercom
 {
@@ -21,8 +21,7 @@ namespace Enercom
         , networkModule_(new Network::Module(this))
         , networkSearcher_(new Network::Searcher(this))
     {
-        QObject::connect(networkModule_, &Network::Module::outgoingPacket, modelModule_->packetModel(), &Model::PacketModel::onOutgoingData);
-        QObject::connect(networkModule_, &Network::Module::incomingPacket, modelModule_->packetModel(), &Model::PacketModel::onIncomingData);
+        QObject::connect(networkModule_, &Network::Module::incomingPacket, modelModule_->deviceModel(), &Model::DeviceModel::onIncomingData);
     }
 
     void ApplicationEngine::initializeEngine()

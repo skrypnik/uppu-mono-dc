@@ -38,4 +38,5 @@ namespace Enercom::Model
 
         emit this->dataChanged(this->index(row, 0), this->index(row, 0));
     }
+
 }

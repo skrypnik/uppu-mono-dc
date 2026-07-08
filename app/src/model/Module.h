@@ -5,9 +5,9 @@
 namespace Enercom::Model
 {
     /**
-    * Protocol model
+    * Device model
     */
-    class PacketModel;
+    class DeviceModel;
 
     /**
      * Model collection
@@ -17,9 +17,9 @@ namespace Enercom::Model
         Q_OBJECT
 
         /**
-        * Packet model
+        * Device model
         */
-        Q_PROPERTY( QVariant packetModel READ packet CONSTANT )
+        Q_PROPERTY( QVariant deviceModel READ devices CONSTANT )
 
     public:
         /**
@@ -29,23 +29,23 @@ namespace Enercom::Model
         explicit Module(QObject* parent = nullptr);
 
         /**
-         * Packet model getter
-         * @return protocol model pointer
+         * Device model getter
+         * @return device model pointer
          */
-        [[nodiscard]] const PacketModel* packetModel() const;
+        [[nodiscard]] const DeviceModel* deviceModel() const;
 
     private:
         /**
-        * Packet model metaobject property getter
-        * @return protocol model pointer
+        * Device model metaobject property getter
+        * @return device model pointer
         */
-        [[nodiscard]] QVariant packet() const;
+        [[nodiscard]] QVariant devices() const;
 
     private:
         /**
-         * Packet model
+         * Device model
          */
-        PacketModel* packetModel_;
+        DeviceModel* deviceModel_;
     };
 
 }

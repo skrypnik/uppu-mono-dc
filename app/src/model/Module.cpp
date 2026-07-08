@@ -1,24 +1,24 @@
 #include "Module.h"
 
-#include "PacketModel.h"
+#include "DeviceModel.h"
 
 namespace Enercom::Model
 {
     Module::Module(QObject* parent)
         : QObject(parent)
-        , packetModel_(new PacketModel(this))
+        , deviceModel_(new DeviceModel(this))
     {
 
     }
 
-    const PacketModel* Module::packetModel() const
+    const DeviceModel* Module::deviceModel() const
     {
-        return packetModel_;
+        return deviceModel_;
     }
 
-    QVariant Module::packet() const
+    QVariant Module::devices() const
     {
-        return QVariant::fromValue(packetModel_);
+        return QVariant::fromValue(deviceModel_);
     }
 
 }
