@@ -7,5 +7,7 @@
 
         <file>qml/pages/views/DeviceView.qml</file>
 
+        <file>qml/pages/views/items/DeviceItem.qml</file>
+
     </qresource>
 </RCC>
