@@ -2,6 +2,8 @@
 
 #include <QAbstractListModel>
 
+#include <network/Packet.h>
+
 #include "DeviceItem.h"
 
 namespace Enercom::Model
@@ -36,7 +38,14 @@ namespace Enercom::Model
          */
         [[nodiscard]] QHash<int, QByteArray> roleNames() const override;
 
-    public:
+    public slots:
+        /**
+         * Outgoing data handler
+         * @param data response raw data
+         */
+        void onIncomingData(const Enercom::Network::Packet::Fields::Ptr& data);
+
+    private:
         /**
          * Model data, device items
          */
