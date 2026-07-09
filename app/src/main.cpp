@@ -9,7 +9,7 @@ int main( int argc, char* argv[] )
     QGuiApplication app(argc, argv);
 
     Q_INIT_RESOURCE( SimDS );
-    // Q_INIT_RESOURCE( UI );
+    Q_INIT_RESOURCE( AppUI );
 
     using namespace Enercom;
 

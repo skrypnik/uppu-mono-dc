@@ -4,8 +4,7 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 
 import SimDS 1.0
-
-import "pages"
+import AppUI 1.0
 
 ApplicationWindow
 {
@@ -20,6 +19,8 @@ ApplicationWindow
     StackLayout {
 
         id: applicationLayout
+
+        currentIndex: Page.Index.StartPage
 
         anchors {
 
@@ -42,10 +43,5 @@ ApplicationWindow
 
             applicationLayout.currentIndex = Page.Index.PrimaryPage
         }
-    }
-
-    Component.onCompleted: {
-
-        applicationLayout.currentIndex = Page.Index.StartPage
     }
 }

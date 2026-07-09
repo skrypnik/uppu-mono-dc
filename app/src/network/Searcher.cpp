@@ -18,9 +18,9 @@ namespace Enercom::Network
 
     void Searcher::startSearch(const uint16_t port) const
     {
-        socket_->bind(QHostAddress::Any, port);
+        socket_->bind(QHostAddress::AnyIPv4, port);
 
-        socket_->writeDatagram(Packet::generateRequest(0x00, Payload::deviceInfoRequest()), QHostAddress::Broadcast, port);
+        socket_->writeDatagram(Packet::generateRequest(0x00, Payload::deviceInfoRequest()), QHostAddress("192.168.138.255"), port);
     }
 
     void Searcher::onDataAvailable() const

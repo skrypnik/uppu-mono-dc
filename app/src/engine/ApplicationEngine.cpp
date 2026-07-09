@@ -26,6 +26,7 @@ namespace Enercom
 
     void ApplicationEngine::initializeEngine()
     {
+        /// \todo get port from config file
         networkSearcher_->startSearch( 57555 );
 
         /// Load config data
@@ -37,8 +38,8 @@ namespace Enercom
         /// Add resource import path
         this->addImportPath("qrc:/");
 
-        /// Load UI resources
-        this->load("qrc:/UI/qml/main.qml");
+        /// Load AppUI resources
+        this->load("qrc:/AppUI/qml/main.qml");
     }
 
     QVariant ApplicationEngine::modelModule() const
