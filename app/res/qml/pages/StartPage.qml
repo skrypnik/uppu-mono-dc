@@ -18,50 +18,52 @@ SimPage {
 
             Row {
 
-                spacing: SimControl.Spacing._14px
+                spacing: SimControl.Spacing._40px
 
-                SimGroupBox {
+                Column {
 
-                    title: "Доступные устройства"
+                    id: network
 
-                    Column {
+                    spacing: SimControl.Spacing._14px
 
-                        DeviceView {
+                    SimFrame {
 
+                        Column {
+
+                            spacing: SimControl.Spacing._08px
+
+                            SimInputBox {
+
+                                title.text: "Адрес устройства"
+
+                                input.text: engine.config.connectionHost
+                            }
+
+                            SimInputBox {
+
+                                title.text: "Сетевой порт"
+
+                                input.text: engine.config.connectionPort
+                            }
                         }
+                    }
+
+                    SimButton {
+
+                        width: network.width
+
+                        text: "Подключиться"
                     }
                 }
 
-                SimGroupBox {
+                SimFrame {
 
-                    title: "Ввести вручную"
+                    id: devices
 
-                    Column {
+                    width: 228.0; height: network.height
 
-                        spacing: SimControl.Spacing._08px
-
-                        SimInputBox {
-
-                            id: host
-
-                            title.text: "IP адрес устройства"
-                        }
-
-                        SimInputBox {
-
-                            id: port
-
-                            title.text: "Сетевой порт"
-                        }
-                    }
+                    SimSpinner { anchors.centerIn: parent }
                 }
-            }
-
-            SimButton {
-
-                anchors { right: parent.right; rightMargin: SimControl.Spacing._14px }
-
-                text: "Подключиться"
             }
         }
     }

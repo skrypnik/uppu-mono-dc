@@ -31,6 +31,8 @@ Item {
 
     enum Spacing {
 
+        _04px = 4.0,
+        _06px = 6.0,
         _08px = 8.0,
         _14px = 14.0,
         _40px = 40.0
@@ -38,6 +40,7 @@ Item {
 
     enum Margin {
 
+        _02px = 2.0,
         _08px = 8.0,
         _12px = 12.0
     }

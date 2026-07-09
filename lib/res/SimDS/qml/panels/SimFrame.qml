@@ -3,7 +3,7 @@ import QtQuick 2.7
 
 import SimDS 1.0
 
-Control {
+Frame {
 
     padding: SimControl.Padding._14px
 

@@ -13,7 +13,7 @@ GroupBox {
 
     label: Text {
 
-        font { pixelSize: SimControl.Font._19px; bold: true }
+        font { pixelSize: SimControl.Font._19px; weight: Font.Medium }
 
         color: SimPalette.colors.grey[0]
 

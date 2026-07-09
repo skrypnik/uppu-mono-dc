@@ -9,6 +9,7 @@
         <file>qml/controls/SimGroupBox.qml</file>
         <file>qml/controls/SimInputBox.qml</file>
         <file>qml/controls/SimCheckBox.qml</file>
+        <file>qml/controls/SimSpinner.qml</file>
         <file>qml/controls/SimButton.qml</file>
         <file>qml/controls/SimInput.qml</file>
         <file>qml/controls/SimLabel.qml</file>
@@ -24,6 +25,8 @@
         <file>svg/controls/Show.svg</file>
         <file>svg/controls/Close.svg</file>
         <file>svg/controls/Error.svg</file>
+        <file>svg/controls/Loader_4px.svg</file>
+        <file>svg/controls/Loader_8px.svg</file>
         <file>svg/controls/CheckBoxChecked.svg</file>
         <file>svg/controls/CheckBoxPartiallyChecked.svg</file>
 

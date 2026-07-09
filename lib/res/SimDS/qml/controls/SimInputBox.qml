@@ -9,11 +9,15 @@ Item {
     property alias input: input
     property alias about: about
 
-    width: 200.0; height: title.height + input.height + about.height
+    width: 200.0; height: column.height + about.height + SimControl.Spacing._08px
 
     Column {
 
+        id: column
+
         anchors { left: parent.left; right: parent.right }
+
+        spacing: SimControl.Spacing._08px
 
         SimLabel {
 
@@ -26,16 +30,18 @@ Item {
 
             id: input
         }
+    }
 
-        SimLabel {
+    SimLabel {
 
-            id: about
+        id: about
 
-            height: text.length ? font.pixelSize : 0.0
+        height: text.length ? font.pixelSize + SimControl.Margin._02px : 0.0
 
-            color: input.acceptableInput ? SimPalette.colors.grey[900] : SimPalette.colors.red[900]
+        anchors { left: column.left; top: column.bottom; topMargin: SimControl.Margin._02px }
 
-            font.pixelSize: SimControl.Font._16px
-        }
+        color: input.acceptableInput ? SimPalette.colors.grey[900] : SimPalette.colors.red[900]
+
+        font.pixelSize: SimControl.Font._16px
     }
 }
