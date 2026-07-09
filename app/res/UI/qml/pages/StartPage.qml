@@ -34,12 +34,16 @@ SimPage {
 
                             SimInputBox {
 
+                                id: host
+
                                 title.text: "Адрес устройства"
 
                                 input.text: engine.config.connectionHost
                             }
 
                             SimInputBox {
+
+                                id: port
 
                                 title.text: "Сетевой порт"
 
@@ -53,6 +57,12 @@ SimPage {
                         width: network.width
 
                         text: "Подключиться"
+
+                        onClicked: {
+
+                            engine.network.setConnectionParams(host.input.text, port.input.text)
+                            engine.network.connectToHost()
+                        }
                     }
                 }
 
@@ -66,5 +76,7 @@ SimPage {
                 }
             }
         }
+
+        onClose: Qt.quit()
     }
 }

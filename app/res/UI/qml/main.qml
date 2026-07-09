@@ -29,6 +29,10 @@ ApplicationWindow
         StartPage {
 
         }
+
+        PrimaryPage {
+
+        }
     }
 
     Connections {
@@ -36,12 +40,12 @@ ApplicationWindow
         target: engine.network
         function onDeviceConnected() {
 
-            applicationLayout.currentIndex = 0x01
+            applicationLayout.currentIndex = Page.Index.PrimaryPage
         }
     }
 
     Component.onCompleted: {
 
-        applicationLayout.currentIndex = 0x00
+        applicationLayout.currentIndex = Page.Index.StartPage
     }
 }

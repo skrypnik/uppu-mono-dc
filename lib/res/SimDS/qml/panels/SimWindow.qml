@@ -37,18 +37,13 @@ GroupBox {
             text: control.title
         }
 
-        Image {
+        SimMidgetButton {
 
             anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: SimControl.Margin._12px }
 
-            source: "qrc:/SimDS/svg/controls/Close.svg"
+            icon: "qrc:/SimDS/svg/controls/Close.svg"
 
-            MouseArea {
-
-                anchors.fill: parent
-
-                onClicked: close()
-            }
+            onClicked: close()
         }
     }
 }

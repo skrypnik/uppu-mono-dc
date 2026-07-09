@@ -6,6 +6,7 @@
         <file>qml/palettes/SimPalette.qml</file>
         <file>qml/controls/SimControl.qml</file>
 
+        <file>qml/controls/SimMidgetButton.qml</file>
         <file>qml/controls/SimGroupBox.qml</file>
         <file>qml/controls/SimInputBox.qml</file>
         <file>qml/controls/SimCheckBox.qml</file>

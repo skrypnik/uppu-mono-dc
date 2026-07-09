@@ -3,13 +3,14 @@ module SimDS
 singleton SimPalette  1.0 qml/palettes/SimPalette.qml
 singleton SimControl  1.0 qml/controls/SimControl.qml
 
-SimGroupBox 1.0 qml/controls/SimGroupBox.qml
-SimInputBox 1.0 qml/controls/SimInputBox.qml
-SimCheckBox 1.0 qml/controls/SimCheckBox.qml
-SimSpinner  1.0 qml/controls/SimSpinner.qml
-SimButton   1.0 qml/controls/SimButton.qml
-SimInput    1.0 qml/controls/SimInput.qml
-SimLabel    1.0 qml/controls/SimLabel.qml
+SimMidgetButton 1.0 qml/controls/SimMidgetButton.qml
+SimGroupBox     1.0 qml/controls/SimGroupBox.qml
+SimInputBox     1.0 qml/controls/SimInputBox.qml
+SimCheckBox     1.0 qml/controls/SimCheckBox.qml
+SimSpinner      1.0 qml/controls/SimSpinner.qml
+SimButton       1.0 qml/controls/SimButton.qml
+SimInput        1.0 qml/controls/SimInput.qml
+SimLabel        1.0 qml/controls/SimLabel.qml
 
 SimWindow 1.0 qml/panels/SimWindow.qml
 SimPanel  1.0 qml/panels/SimPanel.qml

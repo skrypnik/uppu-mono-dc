@@ -11,8 +11,7 @@ Label {
 
     font.pixelSize: SimControl.Font._17px
 
-    background: Rectangle {
+    background: Item {
 
-        color: "transparent"
     }
 }

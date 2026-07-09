@@ -18,7 +18,7 @@ namespace Enercom::Network
 
     void Searcher::startSearch(const uint16_t port) const
     {
-        socket_->bind(QHostAddress::AnyIPv4, port,QUdpSocket::ShareAddress | QUdpSocket::ReuseAddressHint);
+        socket_->bind(QHostAddress::Any, port);
 
         socket_->writeDatagram(Packet::generateRequest(0x00, Payload::deviceInfoRequest()), QHostAddress::Broadcast, port);
     }
