@@ -8,6 +8,11 @@ class QTimer;
 namespace Enercom
 {
     /**
+     * Packet dispatcher
+     */
+    class Dispatcher;
+
+    /**
     * Model module
     */
     namespace Model { class Module; }
@@ -20,7 +25,7 @@ namespace Enercom
     /**
     * Network module
     */
-    namespace Network { class Module; class Searcher; }
+    namespace Network { class Module; }
 
     /**
      * Application engine
@@ -77,6 +82,11 @@ namespace Enercom
 
     private:
         /**
+        * Packet dispatcher
+        */
+        Dispatcher* dispatcher_;
+
+        /**
          * Model module
          */
         Model::Module* modelModule_;
@@ -90,11 +100,6 @@ namespace Enercom
          * Network module
          */
         Network::Module* networkModule_;
-
-        /**
-         * Network searcher
-         */
-        Network::Searcher* networkSearcher_;
     };
 
 }

@@ -7,6 +7,7 @@
 #include <set>
 
 class QTcpSocket;
+class QUdpSocket;
 
 namespace Enercom::Network
 {
@@ -47,6 +48,11 @@ namespace Enercom::Network
         * Disconnects from remote host
         */
         Q_INVOKABLE void disconnectFromHost() const;
+
+        /**
+         * Sends broadcast device info request
+         */
+        Q_INVOKABLE void sendBroadcastDeviceInfoRequest() const;
 
         /**
          * Sets connection params
@@ -248,6 +254,11 @@ namespace Enercom::Network
         */
         void onReplyReceived();
 
+        /**
+        * Broadcast device info reply handler
+        */
+        void onBroadcastReplyReceived() const;
+
     private:
         /**
          * Available device serial number set
@@ -263,6 +274,11 @@ namespace Enercom::Network
         * TCP client socket to connect the device group
         */
         QTcpSocket* socket_;
+
+        /**
+        * TCP client socket to connect the device group
+        */
+        QUdpSocket* searcher_;
 
         /**
          * Incoming data buffer

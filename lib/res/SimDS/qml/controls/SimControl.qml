@@ -31,6 +31,7 @@ Item {
 
     enum Spacing {
 
+        _01px = 1.0,
         _04px = 4.0,
         _06px = 6.0,
         _08px = 8.0,

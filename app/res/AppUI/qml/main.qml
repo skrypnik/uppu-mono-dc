@@ -1,7 +1,7 @@
-import QtQuick 2.7
-import QtQuick.Window 2.0
-import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
+import QtQuick.Window 2.0
+import QtQuick 2.7
 
 import SimDS 1.0
 import AppUI 1.0
@@ -20,8 +20,6 @@ ApplicationWindow
 
         id: applicationLayout
 
-        currentIndex: Page.Index.StartPage
-
         anchors {
 
             fill: parent
@@ -39,9 +37,17 @@ ApplicationWindow
     Connections {
 
         target: engine.network
+
         function onDeviceConnected() {
 
-            applicationLayout.currentIndex = Page.Index.PrimaryPage
+            applicationLayout.currentIndex = Pages.Index.PrimaryPage
         }
+    }
+
+    Component.onCompleted: {
+
+        engine.network.sendBroadcastDeviceInfoRequest()
+
+        applicationLayout.currentIndex = Pages.Index.StartPage
     }
 }

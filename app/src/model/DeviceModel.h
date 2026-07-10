@@ -40,7 +40,7 @@ namespace Enercom::Model
 
     public slots:
         /**
-         * Outgoing data handler
+         * Incoming data handler
          * @param data response raw data
          */
         void onIncomingData(const Enercom::Network::Packet::Fields::Ptr& data);
@@ -49,7 +49,7 @@ namespace Enercom::Model
         /**
          * Model data, device items
          */
-        std::vector<DeviceItem::Ptr> items_;
+        std::map<uint16_t, DeviceItem::Ptr> items_;
     };
 
 }

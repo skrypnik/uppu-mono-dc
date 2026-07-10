@@ -15,6 +15,8 @@
         <file>qml/controls/SimInput.qml</file>
         <file>qml/controls/SimLabel.qml</file>
 
+        <file>qml/views/SimPropertyView.qml</file>
+
         <file>qml/panels/SimWindow.qml</file>
         <file>qml/panels/SimPanel.qml</file>
         <file>qml/panels/SimFrame.qml</file>

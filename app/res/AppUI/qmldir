@@ -1,6 +1,6 @@
 module AppUI
 
-singleton Page 1.0 qml/pages/Page.qml
+singleton Pages 1.0 qml/pages/Pages.qml
 
-StartPage 1.0 qml/pages/StartPage.qml
+StartPage   1.0 qml/pages/StartPage.qml
 PrimaryPage 1.0 qml/pages/PrimaryPage.qml

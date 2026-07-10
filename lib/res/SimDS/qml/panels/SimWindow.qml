@@ -30,7 +30,7 @@ GroupBox {
 
             anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: SimControl.Margin._12px }
 
-            font.pixelSize: SimControl.Font._19px
+            font { pixelSize: SimControl.Font._19px; weight: Font.Medium }
 
             color: SimPalette.colors.grey[0]
 

@@ -5,9 +5,6 @@ import SimDS 1.0
 
 import "items"
 
-ListView {
+Item {
 
-    delegate: DeviceItem {
-
-    }
 }

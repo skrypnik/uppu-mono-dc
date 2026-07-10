@@ -5,13 +5,11 @@
 
         <file>qml/main.qml</file>
 
-        <file>qml/pages/Page.qml</file>
+        <file>qml/pages/Pages.qml</file>
         <file>qml/pages/StartPage.qml</file>
         <file>qml/pages/PrimaryPage.qml</file>
 
-        <file>qml/pages/views/DeviceView.qml</file>
-
-        <file>qml/pages/views/items/DeviceItem.qml</file>
+        <file>qml/pages/views/DeviceInfoView.qml</file>
 
     </qresource>
 </RCC>

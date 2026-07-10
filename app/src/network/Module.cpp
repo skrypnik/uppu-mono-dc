@@ -3,11 +3,14 @@
 #include <config/Common.h>
 
 #include <QTcpSocket>
+#include <QUdpSocket>
 
 #include "Packet.h"
 
 namespace Enercom::Network
 {
+    constexpr uint16_t servicePort = 57555;
+
     class ConnectionParams
     {
         friend class Module;
@@ -25,12 +28,17 @@ namespace Enercom::Network
 
     Module::Module(QObject* parent)
         : QObject(parent)
-          , params_(new ConnectionParams)
-          , socket_(new QTcpSocket(this))
+        , params_(new ConnectionParams)
+        , socket_(new QTcpSocket(this))
+        , searcher_(new QUdpSocket(this))
     {
         QObject::connect(socket_, &QTcpSocket::connected,    this, &Module::onConnected);
         QObject::connect(socket_, &QTcpSocket::disconnected, this, &Module::onDisconnected);
         QObject::connect(socket_, &QTcpSocket::readyRead,    this, &Module::onReplyReceived);
+
+        searcher_->bind(QHostAddress::Any, servicePort);
+
+        QObject::connect(searcher_, &QUdpSocket::readyRead, this, &Module::onBroadcastReplyReceived);
 
         serials_.insert(0x00); /// bradcast serial number
     }
@@ -123,6 +131,11 @@ namespace Enercom::Network
         qDebug() << Q_FUNC_INFO;
 
         this->stop();
+    }
+
+    void Module::sendBroadcastDeviceInfoRequest() const
+    {
+        searcher_->writeDatagram(Packet::generateRequest(0x00, Payload::deviceInfoRequest()), QHostAddress::Broadcast, servicePort);
     }
 
     void Module::setConnectionParams(const QString& host, const QString& port) const
@@ -249,6 +262,17 @@ namespace Enercom::Network
         data_.append(socket_->readAll());
 
         this->handleIncomingData();
+    }
+
+    void Module::onBroadcastReplyReceived() const
+    {
+        QHostAddress sender;
+        QByteArray datagram;
+        datagram.resize(static_cast<int>(searcher_->pendingDatagramSize()));
+
+        searcher_->readDatagram(datagram.data(), datagram.size(), &sender);
+
+        qDebug() << Q_FUNC_INFO << datagram.toHex();
     }
 
 }

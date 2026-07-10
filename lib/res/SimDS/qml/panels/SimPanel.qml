@@ -11,6 +11,8 @@ GroupBox {
 
     background: Rectangle {
 
+        width: parent.contentWidth + parent.leftPadding + parent.rightPadding; height: parent.contentHeight + parent.topPadding + parent.bottomPadding
+
         color: SimPalette.colors.grey[1400]
 
         border.color: SimPalette.colors.grey[1300]
@@ -18,7 +20,7 @@ GroupBox {
 
     label: Rectangle {
 
-        width: parent.width; height: SimControl.Size._32px
+        width: parent.contentWidth + parent.leftPadding + parent.rightPadding; height: SimControl.Size._32px
 
         color: SimPalette.colors.grey[1600]
 
@@ -28,7 +30,7 @@ GroupBox {
 
             anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: SimControl.Margin._08px }
 
-            font.pixelSize: SimControl.Font._17px
+            font { pixelSize: SimControl.Font._17px; weight: Font.Medium }
 
             color: SimPalette.colors.grey[0]
 
