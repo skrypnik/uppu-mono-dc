@@ -10,6 +10,7 @@
 namespace Enercom::Network
 {
     constexpr uint16_t servicePort = 57555;
+    constexpr uint16_t broadcastSN = 0x00;
 
     class ConnectionParams
     {
@@ -23,7 +24,12 @@ namespace Enercom::Network
         /**
         * Device network port. Defaults: 63500 - common port (can be changed), 57555 - service port (constant)
         */
-        quint16 port = Enercom::Config::Common::get().root()["network"]["host"].toInt();
+        uint16_t port = Enercom::Config::Common::get().root()["network"]["host"].toInt();
+
+        /**
+         * Device serial number
+         */
+        uint16_t serial = 0x00;
     };
 
     Module::Module(QObject* parent)
@@ -36,11 +42,9 @@ namespace Enercom::Network
         QObject::connect(socket_, &QTcpSocket::disconnected, this, &Module::onDisconnected);
         QObject::connect(socket_, &QTcpSocket::readyRead,    this, &Module::onReplyReceived);
 
-        searcher_->bind(QHostAddress::Any, servicePort);
-
         QObject::connect(searcher_, &QUdpSocket::readyRead, this, &Module::onBroadcastReplyReceived);
 
-        serials_.insert(0x00); /// bradcast serial number
+        searcher_->bind(QHostAddress::Any, servicePort);
     }
 
     Module::~Module()
@@ -86,20 +90,14 @@ namespace Enercom::Network
 
         while (size >= data_.size())
         {
-            /// \todo
-            // if (serials_.find(data_.mid(0x00, 0x02).toShort()) == serials_.end())
-            // {
-            //     /// \todo trow exception
-            //
-            //     break;
-            // }
-
             if (data_[0x02] != static_cast<char>(Packet::Type::Response))
             {
                 /// \todo trow exception
 
                 break;
             }
+
+            if (params_->serial == 0x00) params_->serial = data_.mid(0x00, 0x02).toShort();
 
             const auto data = data_.mid(0x00, static_cast<int>(size));
 
@@ -135,7 +133,7 @@ namespace Enercom::Network
 
     void Module::sendBroadcastDeviceInfoRequest() const
     {
-        searcher_->writeDatagram(Packet::generateRequest(0x00, Payload::deviceInfoRequest()), QHostAddress::Broadcast, servicePort);
+        searcher_->writeDatagram(Packet::generateRequest(0x00, Payload::deviceInfoRequest()), QHostAddress("192.168.255.255"), servicePort);
     }
 
     void Module::setConnectionParams(const QString& host, const QString& port) const
@@ -148,91 +146,91 @@ namespace Enercom::Network
     {
         qDebug() << Q_FUNC_INFO;
 
-        this->send(Packet::generateRequest(0x00, Payload::deviceInfoRequest()));
+        this->send(Packet::generateRequest(broadcastSN, Payload::deviceInfoRequest()));
     }
 
     void Module::sendSetMetersInfoRequest(const int count, const int speed, const int type, const float voltage)
     {
         qDebug() << Q_FUNC_INFO;
 
-        this->send(Packet::generateRequest(0x3039, Payload::setMetersInfoRequest(count, speed, type, voltage)));
+        this->send(Packet::generateRequest(params_->serial, Payload::setMetersInfoRequest(count, speed, type, voltage)));
     }
 
     void Module::sendGetMetersInfoRequest()
     {
         qDebug() << Q_FUNC_INFO;
 
-        this->send(Packet::generateRequest(0x3039, Payload::getMetersInfoRequest()));
+        this->send(Packet::generateRequest(params_->serial, Payload::getMetersInfoRequest()));
     }
 
     void Module::sendSetGivenMeterRequest(const int index, const int address, const float current, const float voltage, const int constant, const int factor)
     {
-        this->send(Packet::generateRequest(0x3039, Payload::setGivenMeterRequest(index, address, current, voltage, constant, factor)));
+        this->send(Packet::generateRequest(params_->serial, Payload::setGivenMeterRequest(index, address, current, voltage, constant, factor)));
     }
 
     void Module::sendGetGivenMeterRequest(const int index)
     {
-        this->send(Packet::generateRequest(0x3039, Payload::getGivenMeterRequest(index)));
+        this->send(Packet::generateRequest(params_->serial, Payload::getGivenMeterRequest(index)));
     }
 
     void Module::sendAllowVoltageFlowRequest(const int allow)
     {
-        this->send(Packet::generateRequest(0x3039, Payload::allowVoltageFlow(allow)));
+        this->send(Packet::generateRequest(params_->serial, Payload::allowVoltageFlow(allow)));
     }
 
     void Module::sendGetMeterReadingsRequest(const int index)
     {
-        this->send(Packet::generateRequest(0x3039, Payload::getMeterReadingsRequest(index)));
+        this->send(Packet::generateRequest(params_->serial, Payload::getMeterReadingsRequest(index)));
     }
 
     void Module::sendGetCalibratorReadingsRequest(const int reserved)
     {
-        this->send(Packet::generateRequest(0x3039, Payload::getCalibratorReadingsRequest(reserved)));
+        this->send(Packet::generateRequest(params_->serial, Payload::getCalibratorReadingsRequest(reserved)));
     }
 
     void Module::sendSetCalibratorInfoRequest(const int type, const int constant, const float current, const float voltage)
     {
-        this->send(Packet::generateRequest(0x3039, Payload::setCalibratorInfoRequest(type, constant, current, voltage)));
+        this->send(Packet::generateRequest(params_->serial, Payload::setCalibratorInfoRequest(type, constant, current, voltage)));
     }
 
     void Module::sendGetCalibratorInfoRequest(const int reserved)
     {
-        this->send(Packet::generateRequest(0x3039, Payload::getCalibratorInfoRequest(reserved)));
+        this->send(Packet::generateRequest(params_->serial, Payload::getCalibratorInfoRequest(reserved)));
     }
 
     void Module::sendSetHiVoltageInfoRequest(const int mode, const float volREG, const float volDAC)
     {
-        this->send(Packet::generateRequest(0x3039, Payload::setHiVoltageInfoRequest(mode, volREG, volDAC)));
+        this->send(Packet::generateRequest(params_->serial, Payload::setHiVoltageInfoRequest(mode, volREG, volDAC)));
     }
 
     void Module::sendGetHiVoltageInfoRequest(const int reserved)
     {
-        this->send(Packet::generateRequest(0x3039, Payload::getHiVoltageInfoRequest(reserved)));
+        this->send(Packet::generateRequest(params_->serial, Payload::getHiVoltageInfoRequest(reserved)));
     }
 
     void Module::sendSetLoVoltageInfoRequest(const int mode, const float volREG, const float volDAC)
     {
-        this->send(Packet::generateRequest(0x3039, Payload::setLoVoltageInfoRequest(mode, volREG, volDAC)));
+        this->send(Packet::generateRequest(params_->serial, Payload::setLoVoltageInfoRequest(mode, volREG, volDAC)));
     }
 
     void Module::sendGetLoVoltageInfoRequest(const int reserved)
     {
-        this->send(Packet::generateRequest(0x3039, Payload::getLoVoltageInfoRequest(reserved)));
+        this->send(Packet::generateRequest(params_->serial, Payload::getLoVoltageInfoRequest(reserved)));
     }
 
     void Module::sendGetStatusRequest(const int reserved)
     {
-        this->send(Packet::generateRequest(0x3039, Payload::getStatus(reserved)));
+        this->send(Packet::generateRequest(params_->serial, Payload::getStatus(reserved)));
     }
 
     void Module::sendAllowVoltageGenerationRequest(const int hiVoltage, const int loVoltage)
     {
-        this->send(Packet::generateRequest(0x3039, Payload::allowVoltageGenerationRequest(hiVoltage, loVoltage)));
+        this->send(Packet::generateRequest(params_->serial, Payload::allowVoltageGenerationRequest(hiVoltage, loVoltage)));
     }
 
     void Module::sendSetNetworkInfoRequest(const int host, const int port, const int mask)
     {
-        this->send(Packet::generateRequest(0x3039, Payload::setNetworkInfoRequest(host, port, mask)));
+        this->send(Packet::generateRequest(params_->serial, Payload::setNetworkInfoRequest(host, port, mask)));
     }
 
     void Module::onConnected()
@@ -244,6 +242,8 @@ namespace Enercom::Network
         obj["port"] = params_->port;
 
         Config::Common::get().setConfigObject("network", obj);
+
+        this->sendDeviceInfoRequest();
 
         emit this->deviceConnected();
     }

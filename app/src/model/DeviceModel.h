@@ -38,12 +38,19 @@ namespace Enercom::Model
          */
         [[nodiscard]] QHash<int, QByteArray> roleNames() const override;
 
+    signals:
+        /**
+         * Emits, when current device info changed
+         * @param info
+         */
+        void deviceInfoChanged(const Enercom::Model::DeviceItem::Ptr& info);
+
     public slots:
         /**
          * Incoming data handler
          * @param data response raw data
          */
-        void onIncomingData(const Enercom::Network::Packet::Fields::Ptr& data);
+        void onDeviceInfoChanged(const Enercom::Network::Packet::Fields::Ptr& data);
 
     private:
         /**

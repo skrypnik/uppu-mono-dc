@@ -10,13 +10,12 @@ SimPage {
 
     SimPanel {
 
-        // width: 400.0; height: 400.0
-
         anchors { centerIn: parent }
 
         title: "Информация об устройстве"
 
         Column {
+
             SimPropertyView {
 
                 id: table
@@ -33,23 +32,56 @@ SimPage {
                         display: "value"
                     }
 
-                    rows: [
+                    rows: engine.device.info === null ? [] : [
 
                         {
                             "title": "Серийный номер",
-                            "value": "123"
+                            "value": engine.device.info.serial
                         },
+
                         {
-                            "title": "Сетевой адрес",
-                            "value": "192.168.138.11"
+                            "title": "Сетевой адрес (с)",
+                            "value": engine.device.info.address0
                         },
+
                         {
-                            "title": "Сетевая маска",
-                            "value": "255.255.0.0"
+                            "title": "Сетевая маска (с)",
+                            "value": engine.device.info.netmask0
                         },
+
                         {
-                            "title": "Сетевой порт",
-                            "value": "63500"
+                            "title": "Сетевой порт (с)",
+                            "value": engine.device.info.port0
+                        },
+
+                        {
+                            "title": "Сетевой адрес (о)",
+                            "value": engine.device.info.address1
+                        },
+
+                        {
+                            "title": "Сетевая маска (о)",
+                            "value": engine.device.info.netmask1
+                        },
+
+                        {
+                            "title": "Сетевой порт (о)",
+                            "value": engine.device.info.port1
+                        },
+
+                        {
+                            "title": "Версия протокола",
+                            "value": engine.device.info.protocol
+                        },
+
+                        {
+                            "title": "Версия прошивки",
+                            "value": engine.device.info.version
+                        },
+
+                        {
+                            "title": "Дата сборки",
+                            "value": engine.device.info.date
                         }
                     ]
                 }

@@ -8,6 +8,11 @@ class QTimer;
 namespace Enercom
 {
     /**
+     * Current device
+     */
+    class CurrentDevice;
+
+    /**
      * Packet dispatcher
      */
     class Dispatcher;
@@ -33,6 +38,11 @@ namespace Enercom
     class ApplicationEngine final : public QQmlApplicationEngine
     {
         Q_OBJECT
+
+        /**
+         * Current device
+        */
+        Q_PROPERTY( QVariant device READ device CONSTANT )
 
         /**
          * Model module
@@ -63,6 +73,11 @@ namespace Enercom
 
     private:
         /**
+        * Current device
+        */
+        [[nodiscard]] QVariant device() const;
+
+        /**
         * Model module metaobject property getter
         * @return module module pointer
         */
@@ -81,6 +96,11 @@ namespace Enercom
         [[nodiscard]] QVariant networkModule() const;
 
     private:
+        /**
+        * Current device
+        */
+        CurrentDevice* device_;
+
         /**
         * Packet dispatcher
         */

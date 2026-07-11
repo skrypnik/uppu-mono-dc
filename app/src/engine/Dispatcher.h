@@ -29,10 +29,10 @@ namespace Enercom
 
     public slots:
         /**
-        * Incoming data handler
-        * @param data response raw data
+        * Incoming packet handler
+        * @param packet response data
         */
-        void onIncomingData(const Enercom::Network::Packet::Fields::Ptr& data);
+        void onIncomingPacket(const Enercom::Network::Packet::Fields::Ptr& packet);
     };
 
 }

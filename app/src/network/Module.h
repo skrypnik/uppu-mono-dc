@@ -4,8 +4,6 @@
 
 #include "Packet.h"
 
-#include <set>
-
 class QTcpSocket;
 class QUdpSocket;
 
@@ -22,9 +20,6 @@ namespace Enercom::Network
     class Module final : public QObject
     {
         Q_OBJECT
-
-    public:
-        using AvailableSerials = std::set<uint16_t>;
 
     public:
         /**
@@ -260,11 +255,6 @@ namespace Enercom::Network
         void onBroadcastReplyReceived() const;
 
     private:
-        /**
-         * Available device serial number set
-         */
-        AvailableSerials serials_;
-
         /**
         * Server connection params
         */

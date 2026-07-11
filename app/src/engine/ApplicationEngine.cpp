@@ -11,34 +11,39 @@
 #include <network/Module.h>
 
 #include "Dispatcher.h"
+#include "CurrentDevice.h"
 
 namespace Enercom
 {
     ApplicationEngine::ApplicationEngine(QObject* parent)
         : QQmlApplicationEngine(parent)
+        , device_(new CurrentDevice(this))
         , dispatcher_(new Dispatcher(this))
         , modelModule_(new Model::Module(this))
         , configModule_(new Config::Module(this))
         , networkModule_(new Network::Module(this))
     {
-        QObject::connect(networkModule_, &Network::Module::incomingPacket, dispatcher_, &Dispatcher::onIncomingData);
+        QObject::connect(networkModule_, &Network::Module::incomingPacket, dispatcher_, &Dispatcher::onIncomingPacket);
 
-        QObject::connect(dispatcher_, &Dispatcher::deviceInfoReceived, modelModule_->deviceModel(), &Model::DeviceModel::onIncomingData);
+        QObject::connect(dispatcher_, &Dispatcher::deviceInfoReceived, modelModule_->deviceModel(), &Model::DeviceModel::onDeviceInfoChanged);
+
+        QObject::connect(modelModule_->deviceModel(), &Model::DeviceModel::deviceInfoChanged, device_, &CurrentDevice::onDeviceInfoChanged);
     }
 
     void ApplicationEngine::initializeEngine()
     {
-        /// Load config data
         Config::Common::get().load();
 
-        /// Set root context property name
         this->rootContext()->setContextProperty("engine", this);
 
-        /// Add resource import path
         this->addImportPath("qrc:/");
 
-        /// Load AppUI resources
         this->load("qrc:/AppUI/qml/main.qml");
+    }
+
+    QVariant ApplicationEngine::device() const
+    {
+        return QVariant::fromValue( device_ );
     }
 
     QVariant ApplicationEngine::modelModule() const

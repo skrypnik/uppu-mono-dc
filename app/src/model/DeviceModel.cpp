@@ -1,5 +1,7 @@
 #include "DeviceModel.h"
 
+#include <QDebug>
+
 namespace Enercom::Model
 {
     DeviceModel::DeviceModel(QObject* parent)
@@ -29,14 +31,18 @@ namespace Enercom::Model
         return roles;
     }
 
-    void DeviceModel::onIncomingData(const Enercom::Network::Packet::Fields::Ptr& data)
+    void DeviceModel::onDeviceInfoChanged(const Enercom::Network::Packet::Fields::Ptr& data)
     {
         const auto row = static_cast<int>(items_.size());
+
         this->beginInsertRows(QModelIndex(), row, row);
-        items_.emplace(data->sn(), DeviceItem::fromRawData(data->data()->bytes()));
+        auto item = DeviceItem::fromRawData(data->data()->data());
+        items_.emplace(data->sn(), item);
         this->endInsertRows();
 
         emit this->dataChanged(this->index(row, 0), this->index(row, 0));
+
+        emit this->deviceInfoChanged(item);
     }
 
 }

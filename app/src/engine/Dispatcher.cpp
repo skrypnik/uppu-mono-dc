@@ -1,5 +1,7 @@
 #include "Dispatcher.h"
 
+#include <QDebug>
+
 namespace Enercom
 {
     Dispatcher::Dispatcher(QObject* parent)
@@ -8,11 +10,11 @@ namespace Enercom
 
     }
 
-    void Dispatcher::onIncomingData(const Enercom::Network::Packet::Fields::Ptr& data)
+    void Dispatcher::onIncomingPacket(const Enercom::Network::Packet::Fields::Ptr& packet)
     {
-        if (data->type() == static_cast<uint8_t>(Network::Payload::Request::GetDeviceInfo))
+        if (packet->data()->type() == static_cast<uint8_t>(Network::Payload::Request::GetDeviceInfo))
         {
-            emit this->deviceInfoReceived(data);
+            emit this->deviceInfoReceived(packet);
         }
     }
 }

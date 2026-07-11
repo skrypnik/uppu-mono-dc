@@ -20,14 +20,13 @@ namespace Enercom::Model
         {
             QString value;
 
-            int counter = 0x04;
+            int quarter = 0x04;
 
-            while ( counter )
+            while ( quarter )
             {
-                auto suffix = (counter > 0x01) ? QString(".") : QString();
-                value.append(QString::number(addr & 0x000000FF) + suffix);
-                addr >>= 0x08;
-                counter--;
+                auto suffix = (quarter > 0x01) ? QString(".") : QString();
+                value.append(QString::number((addr >> (quarter - 0x01) * 0x08) & 0xFF) + suffix);
+                quarter--;
             }
 
             return value;
@@ -43,10 +42,10 @@ namespace Enercom::Model
 
         item->serial_ = Network::Packet::valueFromBytes<uint16_t>(data, 0x15);
 
-        item->version_.append(QString::number(data[0x17]) + QString("."));
-        item->version_.append(QString::number(data[0x18]) + QString("."));
-        item->version_.append(QString::number(data[0x19]) + QString("."));
-        item->version_.append(QString::number(data[0x1A]));
+        item->version_.append(QString::number(static_cast<uint8_t>(data[0x1A])) + QString("."));
+        item->version_.append(QString::number(static_cast<uint8_t>(data[0x19])) + QString("."));
+        item->version_.append(QString::number(static_cast<uint8_t>(data[0x18])) + QString("."));
+        item->version_.append(QString::number(static_cast<uint8_t>(data[0x17])));
 
         item->date_.setDate(Network::Packet::valueFromBytes<uint16_t>(data, 0x1B), Network::Packet::valueFromBytes<uint8_t>(data, 0x1D), Network::Packet::valueFromBytes<uint8_t>(data, 0x1E));
         item->protocol_.append(QString::number(data[0x1F]) + QString("."));
