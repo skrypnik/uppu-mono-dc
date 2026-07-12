@@ -17,10 +17,14 @@ namespace Enercom::Config
 
         QJsonObject network;
         network["host"] = "192.168.1.1";
-        network["port"] = 23;
+        network["port"] = 63500;
+
+        QJsonObject service;
+        service["port"] = 57555;
 
         root_["application"] = application;
         root_["network"] = network;
+        root_["service"] = service;
     }
 
     /*static*/ Common& Common::get()

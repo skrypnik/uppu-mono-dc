@@ -22,6 +22,14 @@ namespace Enercom::Model
          */
         explicit DeviceModel(QObject* parent = nullptr);
 
+    private:
+        /**
+         * Appends or changes device info model data
+         * @param data response packet data
+         * @return model item
+         */
+        DeviceItem::Ptr incomingDeviceInfo(const Enercom::Network::Packet::Fields::Ptr& data);
+
     protected:
         /**
          * Reimplemented QAbstractItemModel::data(const QModelIndex &index, int role) function
@@ -47,16 +55,22 @@ namespace Enercom::Model
 
     public slots:
         /**
-         * Incoming data handler
-         * @param data response raw data
+         * Incoming device info handler (from TCP request)
+         * @param data response packet data
          */
         void onDeviceInfoChanged(const Enercom::Network::Packet::Fields::Ptr& data);
+
+        /**
+         * Incoming device info handler  (from broadcast UDP request)
+         * @param data response packet data
+         */
+        void onIncomingDeviceInfo(const Enercom::Network::Packet::Fields::Ptr& data);
 
     private:
         /**
          * Model data, device items
          */
-        std::map<uint16_t, DeviceItem::Ptr> items_;
+        std::vector<DeviceItem::Ptr> items_;
     };
 
 }

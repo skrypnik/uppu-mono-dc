@@ -10,6 +10,7 @@
         <file>qml/pages/PrimaryPage.qml</file>
 
         <file>qml/pages/views/DeviceInfoView.qml</file>
+        <file>qml/pages/views/ObservedDeviceView.qml</file>
 
     </qresource>
 </RCC>

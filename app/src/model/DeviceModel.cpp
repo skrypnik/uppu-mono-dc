@@ -10,6 +10,35 @@ namespace Enercom::Model
 
     }
 
+    DeviceItem::Ptr DeviceModel::incomingDeviceInfo(const Enercom::Network::Packet::Fields::Ptr& data)
+    {
+        auto item = DeviceItem::fromRawData(data->data()->data());
+
+        for (int row=0x00; row<items_.size(); ++row)
+        {
+            if (items_[row]->serial_ == item->serial_)
+            {
+                items_[row] = item;
+
+                emit this->dataChanged(this->index(row, 0), this->index(row, 0));
+
+                return item;
+            }
+
+            row++;
+        }
+
+        const auto row = static_cast<int>(items_.size());
+
+        this->beginInsertRows(QModelIndex(), row, row);
+        items_.emplace_back(item);
+        this->endInsertRows();
+
+        emit this->dataChanged(this->index(row, 0), this->index(row, 0));
+
+        return item;
+    }
+
     QVariant DeviceModel::data(const QModelIndex& index, const int role) const
     {
         if (!index.isValid()) return {};
@@ -33,16 +62,14 @@ namespace Enercom::Model
 
     void DeviceModel::onDeviceInfoChanged(const Enercom::Network::Packet::Fields::Ptr& data)
     {
-        const auto row = static_cast<int>(items_.size());
-
-        this->beginInsertRows(QModelIndex(), row, row);
-        auto item = DeviceItem::fromRawData(data->data()->data());
-        items_.emplace(data->sn(), item);
-        this->endInsertRows();
-
-        emit this->dataChanged(this->index(row, 0), this->index(row, 0));
+        const auto& item = this->incomingDeviceInfo(data);
 
         emit this->deviceInfoChanged(item);
+    }
+
+    void DeviceModel::onIncomingDeviceInfo(const Enercom::Network::Packet::Fields::Ptr& data)
+    {
+        this->incomingDeviceInfo(data);
     }
 
 }

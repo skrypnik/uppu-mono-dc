@@ -18,13 +18,15 @@ TableView {
 
         implicitWidth: column === 0x00 ? 200.0 : 160.0; implicitHeight: SimControl.Size._32px
 
-        color: column === 0x00 ? SimPalette.colors.grey[1500] : SimPalette.colors.grey[1400]
+        color: column === 0x00 ? SimPalette.colors.grey[1500] : ( row % 0x02 ? SimPalette.colors.grey[1400] : SimPalette.colors.grey[1300] )
 
         border { color: SimPalette.colors.grey[1300] }
 
         SimLabel {
 
             anchors { left: parent.left; leftMargin: SimControl.Margin._08px; verticalCenter: parent.verticalCenter }
+
+            font { weight: column === 0x00 ?  Font.Medium : Font.Normal }
 
             text: display
         }

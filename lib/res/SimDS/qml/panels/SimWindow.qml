@@ -37,7 +37,7 @@ GroupBox {
             text: control.title
         }
 
-        SimMidgetButton {
+        SimMiniature {
 
             anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: SimControl.Margin._12px }
 

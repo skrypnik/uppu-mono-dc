@@ -71,6 +71,11 @@ namespace Enercom::Model
 
     public:
         /**
+         * For easy usage
+         */
+        friend class DeviceModel;
+
+        /**
         * Alias for shared_ptr
         */
         using Ptr = std::shared_ptr<DeviceItem>;

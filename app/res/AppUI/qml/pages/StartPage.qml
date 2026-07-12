@@ -1,5 +1,6 @@
 import QtQuick 2.7
 
+import AppUI 1.0
 import SimDS 1.0
 
 SimPage {
@@ -29,6 +30,9 @@ SimPage {
                         Column {
 
                             spacing: SimControl.Spacing._08px
+
+                            property alias hostInput: host.input
+                            property alias portInput: port.input
 
                             SimInputBox {
 
@@ -64,13 +68,17 @@ SimPage {
                     }
                 }
 
-                SimFrame {
+                ObservedDeviceView {
 
                     id: devices
 
-                    width: 228.0; height: network.height
+                    onSelectedChanged: {
 
-                    SimSpinner { anchors.centerIn: parent }
+                        host.input.text = item.address0
+                        port.input.text = item.port0
+                    }
+
+                    width: 228.0; height: network.height
                 }
             }
         }

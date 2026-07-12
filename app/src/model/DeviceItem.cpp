@@ -94,7 +94,7 @@ namespace Enercom::Model
 
     QVariant DeviceItem::date() const
     {
-        return date_.toString();
+        return date_.toString("dd.MM.yyyy");
     }
 
     QVariant DeviceItem::version() const

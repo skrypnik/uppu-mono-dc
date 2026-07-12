@@ -10,9 +10,9 @@ class QUdpSocket;
 namespace Enercom::Network
 {
     /**
-     * Connection params private implementation
+     * Network params private implementation
      */
-    class ConnectionParams;
+    class NetworkSettings;
 
     /**
      * Network module class
@@ -32,6 +32,11 @@ namespace Enercom::Network
         * Destroys network object
         */
         ~Module() override;
+
+        /**
+         * Initializes necessary data
+         */
+        void initialize();
 
     public:
         /**
@@ -233,6 +238,12 @@ namespace Enercom::Network
          */
         void incomingPacket(const Enercom::Network::Packet::Fields::Ptr& packet);
 
+        /**
+         * Emits, when module receives response on broadcast request
+         * @param packet response packet data
+         */
+        void incomingBroadcastPacket(const Enercom::Network::Packet::Fields::Ptr& packet);
+
     private slots:
         /**
         * TCP client socket connect handler
@@ -252,13 +263,13 @@ namespace Enercom::Network
         /**
         * Broadcast device info reply handler
         */
-        void onBroadcastReplyReceived() const;
+        void onBroadcastReplyReceived();
 
     private:
         /**
-        * Server connection params
+        * Device network params
         */
-        ConnectionParams* params_;
+        NetworkSettings* params_;
 
         /**
         * TCP client socket to connect the device group

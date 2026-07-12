@@ -23,7 +23,9 @@ namespace Enercom
         , configModule_(new Config::Module(this))
         , networkModule_(new Network::Module(this))
     {
-        QObject::connect(networkModule_, &Network::Module::incomingPacket, dispatcher_, &Dispatcher::onIncomingPacket);
+        QObject::connect(networkModule_, &Network::Module::incomingPacket, modelModule_->deviceModel(), &Model::DeviceModel::onIncomingDeviceInfo);
+
+        QObject::connect(networkModule_, &Network::Module::incomingBroadcastPacket, dispatcher_, &Dispatcher::onIncomingPacket);
 
         QObject::connect(dispatcher_, &Dispatcher::deviceInfoReceived, modelModule_->deviceModel(), &Model::DeviceModel::onDeviceInfoChanged);
 
@@ -33,6 +35,8 @@ namespace Enercom
     void ApplicationEngine::initializeEngine()
     {
         Config::Common::get().load();
+
+        networkModule_->initialize();
 
         this->rootContext()->setContextProperty("engine", this);
 
