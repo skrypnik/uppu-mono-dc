@@ -10,7 +10,7 @@ namespace Enercom
     /**
      * Current device
      */
-    class CurrentDevice;
+    class Device;
 
     /**
      * Packet dispatcher
@@ -99,7 +99,7 @@ namespace Enercom
         /**
         * Current device
         */
-        CurrentDevice* device_;
+        Device* device_;
 
         /**
         * Packet dispatcher

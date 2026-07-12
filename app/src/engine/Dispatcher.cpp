@@ -16,5 +16,11 @@ namespace Enercom
         {
             emit this->deviceInfoReceived(packet);
         }
+
+        if (packet->data()->type() == static_cast<uint8_t>(Network::Payload::Request::GetHiVoltageInfo))
+        {
+            emit this->deviceHiVoltageInfoReceived(packet);
+        }
     }
+
 }

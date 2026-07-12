@@ -27,6 +27,12 @@ namespace Enercom
          */
         void deviceInfoReceived(const Enercom::Network::Packet::Fields::Ptr& data);
 
+        /**
+         * Emits, when device info received
+         * @param data packet data
+         */
+        void deviceHiVoltageInfoReceived(const Enercom::Network::Packet::Fields::Ptr& data);
+
     public slots:
         /**
         * Incoming packet handler

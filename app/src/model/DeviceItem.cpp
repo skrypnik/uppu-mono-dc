@@ -14,9 +14,11 @@ namespace Enercom::Model
 
     DeviceItem::Ptr DeviceItem::fromRawData(const QByteArray& data)
     {
+        /// \todo check response code
+
         auto item = std::make_shared<DeviceItem>();
 
-        auto addressFromBytes = [] (uint32_t addr)
+        auto addressFromBytes = [] (const uint32_t addr)
         {
             QString value;
 

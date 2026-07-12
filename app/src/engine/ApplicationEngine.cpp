@@ -11,13 +11,13 @@
 #include <network/Module.h>
 
 #include "Dispatcher.h"
-#include "CurrentDevice.h"
+#include "device/Device.h"
 
 namespace Enercom
 {
     ApplicationEngine::ApplicationEngine(QObject* parent)
         : QQmlApplicationEngine(parent)
-        , device_(new CurrentDevice(this))
+        , device_(new Device(this))
         , dispatcher_(new Dispatcher(this))
         , modelModule_(new Model::Module(this))
         , configModule_(new Config::Module(this))
@@ -29,7 +29,7 @@ namespace Enercom
 
         QObject::connect(dispatcher_, &Dispatcher::deviceInfoReceived, modelModule_->deviceModel(), &Model::DeviceModel::onDeviceInfoChanged);
 
-        QObject::connect(modelModule_->deviceModel(), &Model::DeviceModel::deviceInfoChanged, device_, &CurrentDevice::onDeviceInfoChanged);
+        QObject::connect(modelModule_->deviceModel(), &Model::DeviceModel::deviceInfoChanged, device_, &Device::onDeviceInfoChanged);
     }
 
     void ApplicationEngine::initializeEngine()

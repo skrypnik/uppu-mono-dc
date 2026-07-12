@@ -4,9 +4,21 @@
 
 #include <model/DeviceItem.h>
 
+#include <network/Packet.h>
+
+#include "HiVoltageInfo.h"
+
 namespace Enercom
 {
-    class CurrentDevice final : public QObject
+    /**
+    * Current device high voltage params
+    */
+    class HiVoltageInfo;
+
+    /**
+     * Current device params
+     */
+    class Device final : public QObject
     {
         Q_OBJECT
 
@@ -15,11 +27,16 @@ namespace Enercom
          */
         Q_PROPERTY( QVariant info READ info NOTIFY changed )
 
+        /**
+         * Device high voltage info
+         */
+        Q_PROPERTY( QVariant hiVoltageInfo READ hiVoltageInfo NOTIFY changed )
+
     public:
         /**
          * Constructs current device info object
          */
-        explicit CurrentDevice(QObject* parent = nullptr);
+        explicit Device(QObject* parent = nullptr);
 
         /**
          * Device info getter
@@ -28,9 +45,14 @@ namespace Enercom
 
     private:
         /**
-         * Device info getter for metaobject property
+         * Device info metaobject getter
          */
         [[nodiscard]] QVariant info() const;
+
+        /**
+         * Device high voltage info metaobject getter
+         */
+        [[nodiscard]] QVariant hiVoltageInfo() const;
 
     signals:
         /**
@@ -45,11 +67,22 @@ namespace Enercom
          */
         void onDeviceInfoChanged(const Enercom::Model::DeviceItem::Ptr& info);
 
+        /**
+         * Device high voltage info changed handler
+         * @param packet device high voltage info packet
+         */
+        void onDeviceHiVoltageInfoChanged(const Enercom::Network::Packet::Fields::Ptr& packet);
+
     private:
         /**
          * Device info
          */
         Model::DeviceItem::Ptr info_;
+
+        /**
+        * Device high voltage info
+        */
+        HiVoltageInfo::Ptr hiVoltageInfo_;
     };
 
 }
