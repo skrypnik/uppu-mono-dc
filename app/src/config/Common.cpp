@@ -20,6 +20,9 @@ namespace Enercom::Config
         network["port"] = 63500;
 
         QJsonObject service;
+        service["interval"] = 3000;
+        service["subnet"] = "192.168.255.255";
+        service["serial"] = 0;
         service["port"] = 57555;
 
         root_["application"] = application;

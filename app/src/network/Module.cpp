@@ -3,14 +3,14 @@
 #include <config/Common.h>
 
 #include <QTcpSocket>
-#include <QUdpSocket>
 
-#include "Packet.h"
+#include "Searcher.h"
 
 namespace Enercom::Network
 {
-    constexpr uint16_t broadcastSN = 0x00;
-
+    /**
+     * Network settings
+     */
     class NetworkSettings
     {
         friend class Module;
@@ -18,35 +18,36 @@ namespace Enercom::Network
         /**
         * Device address or hostname
         */
-        QString address = Enercom::Config::Common::get().root()["network"]["host"].toString();
+        QString address = Config::Common::get().root()["network"]["host"].toString();
 
         /**
         * Device network port. Defaults: 63500
         */
-        uint16_t networkPort = Enercom::Config::Common::get().root()["network"]["host"].toInt();
-
-        /**
-        * Device service port. Defaults: 57555
-        */
-        uint16_t servicePort = Enercom::Config::Common::get().root()["service"]["port"].toInt();
+        uint16_t networkPort = Config::Common::get().root()["network"]["host"].toInt();
 
         /**
          * Current device serial number
          */
-        uint16_t serialNumber = 0x00;
+        uint16_t serialNumber = Config::Common::get().root()["service"]["serial"].toInt();
+
+        /**
+        * Device service port. Defaults: 57555
+        */
+        uint16_t servicePort = Config::Common::get().root()["service"]["port"].toInt();
+
     };
 
     Module::Module(QObject* parent)
         : QObject(parent)
         , params_(nullptr)
         , socket_(new QTcpSocket(this))
-        , searcher_(new QUdpSocket(this))
+        , searcher_(new Searcher(this))
     {
         QObject::connect(socket_, &QTcpSocket::connected,    this, &Module::onConnected);
         QObject::connect(socket_, &QTcpSocket::disconnected, this, &Module::onDisconnected);
         QObject::connect(socket_, &QTcpSocket::readyRead,    this, &Module::onReplyReceived);
 
-        QObject::connect(searcher_, &QUdpSocket::readyRead, this, &Module::onBroadcastReplyReceived);
+        QObject::connect(searcher_, &Searcher::incomingBroadcastPacket, this, &Module::incomingBroadcastPacket);
     }
 
     Module::~Module()
@@ -58,7 +59,8 @@ namespace Enercom::Network
     {
         params_ = new NetworkSettings();
 
-        searcher_->bind(QHostAddress::Any, params_->servicePort);
+        searcher_->initialize();
+        searcher_->start();
     }
 
     void Module::start(const QString& host, const uint16_t port) const
@@ -145,13 +147,6 @@ namespace Enercom::Network
         this->stop();
     }
 
-    void Module::sendBroadcastDeviceInfoRequest() const
-    {
-        qDebug() << Q_FUNC_INFO << params_->servicePort;
-
-        searcher_->writeDatagram(Packet::generateRequest(0x00, Payload::deviceInfoRequest()), QHostAddress("192.168.255.255"), params_->servicePort);
-    }
-
     void Module::setConnectionParams(const QString& host, const QString& port) const
     {
         params_->address = host;
@@ -162,7 +157,7 @@ namespace Enercom::Network
     {
         qDebug() << Q_FUNC_INFO;
 
-        this->send(Packet::generateRequest(broadcastSN, Payload::deviceInfoRequest()));
+        this->send(Packet::generateRequest(params_->serialNumber, Payload::deviceInfoRequest()));
     }
 
     void Module::sendSetMetersInfoRequest(const int count, const int speed, const int type, const float voltage)
@@ -253,8 +248,9 @@ namespace Enercom::Network
     {
         params_->serialNumber = data->sn();
 
-        this->sendGetHiVoltageInfoRequest();
-        this->sendGetLoVoltageInfoRequest();
+        /// \note WORKAROUND!!! Refactor it, when Alexander fixed his transport
+        QTimer::singleShot(0, this, [this] () { this->sendGetHiVoltageInfoRequest(); });
+        QTimer::singleShot(50, this, [this] () { this->sendGetLoVoltageInfoRequest(); });
     }
 
     void Module::onConnected()
@@ -286,37 +282,6 @@ namespace Enercom::Network
         data_.append(socket_->readAll());
 
         this->handleIncomingData();
-    }
-
-    void Module::onBroadcastReplyReceived()
-    {
-        QHostAddress sender;
-        QByteArray datagram;
-        datagram.resize(static_cast<int>(searcher_->pendingDatagramSize()));
-
-        searcher_->readDatagram(datagram.data(), datagram.size(), &sender);
-
-        if (const auto size = datagram[0x03] + sizeof(uint32_t); size >= datagram.size())
-        {
-            if (datagram[0x02] != static_cast<char>(Packet::Type::Response))
-            {
-                /// \todo trow exception
-
-                return;;
-            }
-
-            const auto data = datagram.mid(0x00, static_cast<int>(size));
-
-            qDebug() << "[SOCKET] <<<" << data.toHex();
-
-            const auto packet = Packet::fromRawData(data);
-
-            if (packet == nullptr) return;
-
-            qDebug() << Q_FUNC_INFO << datagram.toHex();
-
-            emit this->incomingBroadcastPacket(packet);
-        }
     }
 
 }

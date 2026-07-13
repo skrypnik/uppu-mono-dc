@@ -39,52 +39,52 @@ namespace Enercom
 
     QVariant LoVoltageInfo::regulatorVoltage() const
     {
-        return QString::number(regulatorVoltage_, 'f', 6);
+        return QString::number(regulatorVoltage_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
     }
 
     QVariant LoVoltageInfo::regulatorVoltageMin() const
     {
-        return QString::number(regulatorVoltageMin_, 'f', 6);
+        return QString::number(regulatorVoltageMin_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
     }
 
     QVariant LoVoltageInfo::regulatorVoltageMax() const
     {
-        return QString::number(regulatorVoltageMax_, 'f', 6);
+        return QString::number(regulatorVoltageMax_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
     }
 
     QVariant LoVoltageInfo::dacVoltage() const
     {
-        return QString::number(dacVoltage_, 'f', 6);
+        return QString::number(dacVoltage_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
     }
 
     QVariant LoVoltageInfo::dacVoltageMin() const
     {
-        return QString::number(dacVoltageMin_, 'f', 6);
+        return QString::number(dacVoltageMin_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
     }
 
     QVariant LoVoltageInfo::dacVoltageMax() const
     {
-        return QString::number(dacVoltageMax_, 'f', 6);
+        return QString::number(dacVoltageMax_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
     }
 
     QVariant LoVoltageInfo::calibrationFactor() const
     {
-        return QString::number(calibrationFactor_, 'f', 6);
+        return QString::number(calibrationFactor_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
     }
 
     QVariant LoVoltageInfo::calibrationOffset() const
     {
-        return QString::number(calibrationOffset_, 'f', 6);
+        return QString::number(calibrationOffset_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
     }
 
     QVariant LoVoltageInfo::amplifierRatio() const
     {
-        return QString::number(amplifierRatio_, 'f', 6);
+        return QString::number(amplifierRatio_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
     }
 
     QVariant LoVoltageInfo::regulatorRatio() const
     {
-        return QString::number(regulatorRatio_, 'f', 6);
+        return QString::number(regulatorRatio_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
     }
 
     QVariant LoVoltageInfo::attenuator() const
@@ -94,7 +94,7 @@ namespace Enercom
 
     QVariant LoVoltageInfo::accuracy() const
     {
-        return QString::number(accuracy_, 'f', 6);
+        return QString::number(accuracy_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
     }
 
 }

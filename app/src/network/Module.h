@@ -5,7 +5,6 @@
 #include "Packet.h"
 
 class QTcpSocket;
-class QUdpSocket;
 
 namespace Enercom::Network
 {
@@ -13,6 +12,11 @@ namespace Enercom::Network
      * Network params private implementation
      */
     class NetworkSettings;
+
+    /**
+     * Network searcher
+     */
+    class Searcher;
 
     /**
      * Network module class
@@ -48,11 +52,6 @@ namespace Enercom::Network
         * Disconnects from remote host
         */
         Q_INVOKABLE void disconnectFromHost() const;
-
-        /**
-         * Sends broadcast device info request
-         */
-        Q_INVOKABLE void sendBroadcastDeviceInfoRequest() const;
 
         /**
          * Sets connection params
@@ -267,11 +266,6 @@ namespace Enercom::Network
         */
         void onReplyReceived();
 
-        /**
-        * Broadcast device info reply handler
-        */
-        void onBroadcastReplyReceived();
-
     private:
         /**
         * Device network params
@@ -284,9 +278,9 @@ namespace Enercom::Network
         QTcpSocket* socket_;
 
         /**
-        * TCP client socket to connect the device group
+        * Network searcher
         */
-        QUdpSocket* searcher_;
+        Searcher* searcher_;
 
         /**
          * Incoming data buffer

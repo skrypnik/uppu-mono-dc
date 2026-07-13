@@ -41,47 +41,47 @@ namespace Enercom
 
     QVariant HiVoltageInfo::regulatorVoltage() const
     {
-        return QString::number(regulatorVoltage_, 'f', 6);
+        return QString::number(regulatorVoltage_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
     }
 
     QVariant HiVoltageInfo::regulatorVoltageMin() const
     {
-        return QString::number(regulatorVoltageMin_, 'f', 6);
+        return QString::number(regulatorVoltageMin_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
     }
 
     QVariant HiVoltageInfo::regulatorVoltageMax() const
     {
-        return QString::number(regulatorVoltageMax_, 'f', 6);
+        return QString::number(regulatorVoltageMax_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
     }
 
     QVariant HiVoltageInfo::dacVoltage() const
     {
-        return QString::number(dacVoltage_, 'f', 6);
+        return QString::number(dacVoltage_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
     }
 
     QVariant HiVoltageInfo::dacVoltageMin() const
     {
-        return QString::number(dacVoltageMin_, 'f', 6);
+        return QString::number(dacVoltageMin_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
     }
 
     QVariant HiVoltageInfo::dacVoltageMax() const
     {
-        return QString::number(dacVoltageMax_, 'f', 6);
+        return QString::number(dacVoltageMax_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
     }
 
     QVariant HiVoltageInfo::calibrationFactor() const
     {
-        return QString::number(calibrationFactor_, 'f', 6);
+        return QString::number(calibrationFactor_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
     }
 
     QVariant HiVoltageInfo::calibrationOffset() const
     {
-        return QString::number(calibrationOffset_, 'f', 6);
+        return QString::number(calibrationOffset_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
     }
 
     QVariant HiVoltageInfo::dividerRatio() const
     {
-        return QString::number(dividerRatio_, 'f', 6);
+        return QString::number(dividerRatio_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
     }
 
     QVariant HiVoltageInfo::regulatorRatio() const
@@ -91,7 +91,7 @@ namespace Enercom
 
     QVariant HiVoltageInfo::accuracy() const
     {
-        return QString::number(accuracy_, 'f', 6);
+        return QString::number(accuracy_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
     }
 
 }

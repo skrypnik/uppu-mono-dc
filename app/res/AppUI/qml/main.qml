@@ -46,8 +46,6 @@ ApplicationWindow
 
     Component.onCompleted: {
 
-        engine.network.sendBroadcastDeviceInfoRequest()
-
         applicationLayout.currentIndex = Pages.Index.StartPage
     }
 }
