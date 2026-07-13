@@ -254,7 +254,7 @@ namespace Enercom::Network
         params_->serialNumber = data->sn();
 
         this->sendGetHiVoltageInfoRequest();
-        // this->sendGetLoVoltageInfoRequest();
+        this->sendGetLoVoltageInfoRequest();
     }
 
     void Module::onConnected()

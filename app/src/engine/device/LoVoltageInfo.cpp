@@ -18,16 +18,16 @@ namespace Enercom
 
         regulatorMode_ = Network::Packet::valueFromBytes<uint8_t>(data, 0x01);
         regulatorVoltage_ = *reinterpret_cast<float*>(data.mid(0x02, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x02);
-        dacVoltage_ = *reinterpret_cast<float*>(data.mid(0x02, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x06);
-        regulatorVoltageMin_ = *reinterpret_cast<float*>(data.mid(0x02, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x0A);
-        regulatorVoltageMax_ = *reinterpret_cast<float*>(data.mid(0x02, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x0E);
-        dacVoltageMin_ = *reinterpret_cast<float*>(data.mid(0x02, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x12);
-        dacVoltageMax_ = *reinterpret_cast<float*>(data.mid(0x02, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x16);
+        dacVoltage_ = *reinterpret_cast<float*>(data.mid(0x06, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x06);
+        regulatorVoltageMin_ = *reinterpret_cast<float*>(data.mid(0x0A, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x0A);
+        regulatorVoltageMax_ = *reinterpret_cast<float*>(data.mid(0x0E, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x0E);
+        dacVoltageMin_ = *reinterpret_cast<float*>(data.mid(0x12, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x12);
+        dacVoltageMax_ = *reinterpret_cast<float*>(data.mid(0x16, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x16);
         attenuator_ = Network::Packet::valueFromBytes<uint8_t>(data, 0x1A);
-        accuracy_ = *reinterpret_cast<float*>(data.mid(0x02, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x1E);
-        regulatorRatio_ = *reinterpret_cast<float*>(data.mid(0x02, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x22);
-        calibrationFactor_ = *reinterpret_cast<float*>(data.mid(0x02, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x26);
-        calibrationOffset_ = *reinterpret_cast<float*>(data.mid(0x02, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x2A);
+        accuracy_ = *reinterpret_cast<float*>(data.mid(0x1E, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x1E);
+        regulatorRatio_ = *reinterpret_cast<float*>(data.mid(0x22, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x22);
+        calibrationFactor_ = *reinterpret_cast<float*>(data.mid(0x26, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x26);
+        calibrationOffset_ = *reinterpret_cast<float*>(data.mid(0x2A, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x2A);
 
         emit this->changed();
     }
@@ -39,52 +39,52 @@ namespace Enercom
 
     QVariant LoVoltageInfo::regulatorVoltage() const
     {
-        return regulatorVoltage_;
+        return QString::number(regulatorVoltage_, 'f', 6);
     }
 
     QVariant LoVoltageInfo::regulatorVoltageMin() const
     {
-        return regulatorVoltageMin_;
+        return QString::number(regulatorVoltageMin_, 'f', 6);
     }
 
     QVariant LoVoltageInfo::regulatorVoltageMax() const
     {
-        return regulatorVoltageMax_;
+        return QString::number(regulatorVoltageMax_, 'f', 6);
     }
 
     QVariant LoVoltageInfo::dacVoltage() const
     {
-        return dacVoltage_;
+        return QString::number(dacVoltage_, 'f', 6);
     }
 
     QVariant LoVoltageInfo::dacVoltageMin() const
     {
-        return dacVoltageMin_;
+        return QString::number(dacVoltageMin_, 'f', 6);
     }
 
     QVariant LoVoltageInfo::dacVoltageMax() const
     {
-        return dacVoltageMax_;
+        return QString::number(dacVoltageMax_, 'f', 6);
     }
 
     QVariant LoVoltageInfo::calibrationFactor() const
     {
-        return calibrationFactor_;
+        return QString::number(calibrationFactor_, 'f', 6);
     }
 
     QVariant LoVoltageInfo::calibrationOffset() const
     {
-        return calibrationOffset_;
+        return QString::number(calibrationOffset_, 'f', 6);
     }
 
     QVariant LoVoltageInfo::amplifierRatio() const
     {
-        return amplifierRatio_;
+        return QString::number(amplifierRatio_, 'f', 6);
     }
 
     QVariant LoVoltageInfo::regulatorRatio() const
     {
-        return regulatorRatio_;
+        return QString::number(regulatorRatio_, 'f', 6);
     }
 
     QVariant LoVoltageInfo::attenuator() const
@@ -94,7 +94,7 @@ namespace Enercom
 
     QVariant LoVoltageInfo::accuracy() const
     {
-        return accuracy_;
+        return QString::number(accuracy_, 'f', 6);
     }
 
 }

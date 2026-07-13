@@ -41,47 +41,47 @@ namespace Enercom
 
     QVariant HiVoltageInfo::regulatorVoltage() const
     {
-        return regulatorVoltage_;
+        return QString::number(regulatorVoltage_, 'f', 6);
     }
 
     QVariant HiVoltageInfo::regulatorVoltageMin() const
     {
-        return regulatorVoltageMin_;
+        return QString::number(regulatorVoltageMin_, 'f', 6);
     }
 
     QVariant HiVoltageInfo::regulatorVoltageMax() const
     {
-        return regulatorVoltageMax_;
+        return QString::number(regulatorVoltageMax_, 'f', 6);
     }
 
     QVariant HiVoltageInfo::dacVoltage() const
     {
-        return dacVoltage_;
+        return QString::number(dacVoltage_, 'f', 6);
     }
 
     QVariant HiVoltageInfo::dacVoltageMin() const
     {
-        return dacVoltageMin_;
+        return QString::number(dacVoltageMin_, 'f', 6);
     }
 
     QVariant HiVoltageInfo::dacVoltageMax() const
     {
-        return dacVoltageMax_;
+        return QString::number(dacVoltageMax_, 'f', 6);
     }
 
     QVariant HiVoltageInfo::calibrationFactor() const
     {
-        return calibrationFactor_;
+        return QString::number(calibrationFactor_, 'f', 6);
     }
 
     QVariant HiVoltageInfo::calibrationOffset() const
     {
-        return calibrationOffset_;
+        return QString::number(calibrationOffset_, 'f', 6);
     }
 
     QVariant HiVoltageInfo::dividerRatio() const
     {
-        return dividerRatio_;
+        return QString::number(dividerRatio_, 'f', 6);
     }
 
     QVariant HiVoltageInfo::regulatorRatio() const
@@ -91,7 +91,7 @@ namespace Enercom
 
     QVariant HiVoltageInfo::accuracy() const
     {
-        return accuracy_;
+        return QString::number(accuracy_, 'f', 6);
     }
 
 }
