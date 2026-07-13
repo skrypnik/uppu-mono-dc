@@ -44,12 +44,13 @@ namespace Enercom::Model
 
         item->serial_ = Network::Packet::valueFromBytes<uint16_t>(data, 0x15);
 
-        item->version_.append(QString::number(static_cast<uint8_t>(data[0x1A])) + QString("."));
-        item->version_.append(QString::number(static_cast<uint8_t>(data[0x19])) + QString("."));
+        item->version_.append(QString::number(static_cast<uint8_t>(data[0x17])) + QString("."));
         item->version_.append(QString::number(static_cast<uint8_t>(data[0x18])) + QString("."));
-        item->version_.append(QString::number(static_cast<uint8_t>(data[0x17])));
+        item->version_.append(QString::number(static_cast<uint8_t>(data[0x19])) + QString("."));
+        item->version_.append(QString::number(static_cast<uint8_t>(data[0x1A])));
 
         item->date_.setDate(Network::Packet::valueFromBytes<uint16_t>(data, 0x1B), Network::Packet::valueFromBytes<uint8_t>(data, 0x1D), Network::Packet::valueFromBytes<uint8_t>(data, 0x1E));
+
         item->protocol_.append(QString::number(data[0x1F]) + QString("."));
         item->protocol_.append(QString::number(data[0x20]) + QString("."));
         item->protocol_.append(QString::number(data[0x21]));

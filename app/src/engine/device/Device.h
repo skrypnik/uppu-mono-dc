@@ -1,7 +1,5 @@
 #pragma once
 
-#include <QObject>
-
 #include <model/DeviceItem.h>
 
 #include <network/Packet.h>
