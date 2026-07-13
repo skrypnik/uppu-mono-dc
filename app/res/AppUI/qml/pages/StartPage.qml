@@ -41,6 +41,11 @@ SimPage {
                                 title.text: "Адрес устройства"
 
                                 input.text: engine.config.connectionHost
+
+                                input.validator: RegExpValidator {
+
+                                    regExp: /[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/
+                                }
                             }
 
                             SimInputBox {
@@ -50,6 +55,11 @@ SimPage {
                                 title.text: "Сетевой порт"
 
                                 input.text: engine.config.connectionPort
+
+                                input.validator: IntValidator {
+
+                                    bottom: 0; top: 65535
+                                }
                             }
                         }
                     }
