@@ -135,7 +135,7 @@ namespace Enercom::Network
     {
         qDebug() << Q_FUNC_INFO;
 
-        this->start(params_->address, params_->networkPort);
+        this->start(params_->address, params_->servicePort);
     }
 
     void Module::disconnectFromHost() const
