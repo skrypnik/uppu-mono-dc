@@ -19,16 +19,17 @@ namespace Enercom
         qDebug() << "HiVoltageInfo::fromRawData";
 
         regulatorMode_ = Network::Packet::valueFromBytes<uint8_t>(data, 0x01);
-        regulatorVoltage_ = Network::Packet::valueFromBytes<uint32_t>(data, 0x02);
-        dacVoltage_ = Network::Packet::valueFromBytes<uint32_t>(data, 0x06);
-        regulatorVoltageMin_ = Network::Packet::valueFromBytes<uint32_t>(data, 0x0A);
-        regulatorVoltageMax_ = Network::Packet::valueFromBytes<uint32_t>(data, 0x0E);
-        dacVoltageMin_ = Network::Packet::valueFromBytes<uint32_t>(data, 0x12);
-        dacVoltageMax_ = Network::Packet::valueFromBytes<uint32_t>(data, 0x16);
-        accuracy_ = Network::Packet::valueFromBytes<uint32_t>(data, 0x1E);
+        regulatorVoltage_ = *reinterpret_cast<float*>(data.mid(0x02, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x02);
+        dacVoltage_ = *reinterpret_cast<float*>(data.mid(0x06, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x06);
+        regulatorVoltageMin_ = *reinterpret_cast<float*>(data.mid(0x0A, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x0A);
+        regulatorVoltageMax_ = *reinterpret_cast<float*>(data.mid(0x0E, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x0E);
+        dacVoltageMin_ = *reinterpret_cast<float*>(data.mid(0x12, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x12);
+        dacVoltageMax_ = *reinterpret_cast<float*>(data.mid(0x16, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x16);
+        dividerRatio_ = *reinterpret_cast<float*>(data.mid(0x1A, sizeof(float)).data());
+        accuracy_ = *reinterpret_cast<float*>(data.mid(0x1E, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x1E);
         regulatorRatio_ = Network::Packet::valueFromBytes<uint32_t>(data, 0x22);
-        calibrationFactor_ = Network::Packet::valueFromBytes<uint32_t>(data, 0x26);
-        calibrationOffset_ = Network::Packet::valueFromBytes<uint32_t>(data, 0x2A);
+        calibrationFactor_ = *reinterpret_cast<float*>(data.mid(0x26, sizeof(float)).data());  // Network::Packet::valueFromBytes<float>(data, 0x26);
+        calibrationOffset_ = *reinterpret_cast<float*>(data.mid(0x2A, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x2A);
 
         emit this->changed();
     }

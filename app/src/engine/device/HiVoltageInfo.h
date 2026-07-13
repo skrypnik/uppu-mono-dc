@@ -166,47 +166,47 @@ namespace Enercom
         /**
          * Regulator voltage
          */
-        uint32_t regulatorVoltage_{};
+        float regulatorVoltage_{};
 
         /**
          * Minimal regulator voltage
          */
-        uint32_t regulatorVoltageMin_{};
+        float regulatorVoltageMin_{};
 
         /**
          * Maximal regulator voltage
          */
-        uint32_t regulatorVoltageMax_{};
+        float regulatorVoltageMax_{};
 
         /**
          * DAC voltage
          */
-        uint32_t dacVoltage_{};
+        float dacVoltage_{};
 
         /**
          * Minimal DAC voltage
          */
-        uint32_t dacVoltageMin_{};
+        float dacVoltageMin_{};
 
         /**
          * Maximal DAC voltage
          */
-        uint32_t dacVoltageMax_{};
+        float dacVoltageMax_{};
 
         /**
          * Calibration factor
          */
-        uint32_t calibrationFactor_{};
+        float calibrationFactor_{};
 
         /**
          * Calibration offset
          */
-        uint32_t calibrationOffset_{};
+        float calibrationOffset_{};
 
         /**
          * High voltage divider ratio
          */
-        uint32_t dividerRatio_{};
+        float dividerRatio_{};
 
         /**
          * Regulator proportionality coefficient
@@ -216,7 +216,7 @@ namespace Enercom
         /**
          * Required high voltage setting accuracy
          */
-        uint32_t accuracy_{};
+        float accuracy_{};
     };
 
 }
