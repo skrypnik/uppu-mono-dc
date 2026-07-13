@@ -24,62 +24,67 @@ SimPropertyView {
 
             {
                 "title": "Авторегулятор напряжения",
-                "value": engine.device.hiVoltageInfo.regulatorMode ? "Включен" : "Выключен"
+                "value": engine.device.loVoltageInfo.regulatorMode ? "Включен" : "Выключен"
             },
 
             {
                 "title": "Задание регулятору, В",
-                "value": engine.device.hiVoltageInfo.regulatorVoltage
+                "value": engine.device.loVoltageInfo.regulatorVoltage
             },
 
             {
                 "title": "Задание ЦАП, В",
-                "value": engine.device.hiVoltageInfo.dacVoltage
+                "value": engine.device.loVoltageInfo.dacVoltage
             },
 
             {
                 "title": "Мин. напряжение установки, В",
-                "value": engine.device.hiVoltageInfo.regulatorVoltageMin
+                "value": engine.device.loVoltageInfo.regulatorVoltageMin
             },
 
             {
                 "title": "Макс. напряжение, В",
-                "value": engine.device.hiVoltageInfo.regulatorVoltageMax
+                "value": engine.device.loVoltageInfo.regulatorVoltageMax
             },
 
             {
                 "title": "Мин. напряжение ЦАП, В",
-                "value": engine.device.hiVoltageInfo.dacVoltageMin
+                "value": engine.device.loVoltageInfo.dacVoltageMin
             },
 
             {
                 "title": "Макс. напряжение ЦАП, В",
-                "value": engine.device.hiVoltageInfo.dacVoltageMax
+                "value": engine.device.loVoltageInfo.dacVoltageMax
             },
 
             {
-                "title": "Коэффициент деления",
-                "value": engine.device.hiVoltageInfo.dividerRatio
+                "title": "Коэффициент усилителя",
+                "value": engine.device.loVoltageInfo.amplifierRatio
+            },
+
+            {
+                "title": "Аттенюатор усилителя",
+                "value": engine.device.loVoltageInfo.attenuator ? "Включен" : "Выключен"
             },
 
             {
                 "title": "Требуемая точность, %",
-                "value": engine.device.hiVoltageInfo.accuracy
+                "value": engine.device.loVoltageInfo.accuracy
             },
 
             {
                 "title": "Коэффициент пропорциональности",
-                "value": engine.device.hiVoltageInfo.regulatorRatio
+                "value": engine.device.loVoltageInfo.regulatorRatio
             },
 
             {
                 "title": "Калибровка регулятора (множитель)",
-                "value": engine.device.hiVoltageInfo.calibrationFactor
+                "value": engine.device.loVoltageInfo.calibrationFactor
             },
 
             {
                 "title": "Калибровка регулятора (смещение)",
-                "value": engine.device.hiVoltageInfo.calibrationOffset
+                "value": engine.device.loVoltageInfo.calibrationOffset
             }
         ]
     }

@@ -25,13 +25,29 @@ SimPage {
 
         id: deviceHiVoltageInfo
 
-        anchors { left: parent.left; top: deviceInfo.bottom; leftMargin: SimControl.Margin._12px; topMargin: SimControl.Margin._12px }
+        anchors { right: parent.right; top: parent.top; rightMargin: SimControl.Margin._12px; topMargin: SimControl.Margin._12px }
 
         title: "Параметры высокого напряжения"
 
         Column {
 
             DeviceHiVoltageInfoView {
+
+            }
+        }
+    }
+
+    SimPanel {
+
+        id: deviceLoVoltageInfo
+
+        anchors { right: parent.right; top: deviceHiVoltageInfo.bottom; rightMargin: SimControl.Margin._12px; topMargin: SimControl.Margin._12px }
+
+        title: "Параметры низкого напряжения"
+
+        Column {
+
+            DeviceLoVoltageInfoView {
 
             }
         }

@@ -7,14 +7,10 @@
 #include <network/Packet.h>
 
 #include "HiVoltageInfo.h"
+#include "LoVoltageInfo.h"
 
 namespace Enercom
 {
-    /**
-    * Current device high voltage params
-    */
-    class HiVoltageInfo;
-
     /**
      * Current device params
      */
@@ -31,6 +27,11 @@ namespace Enercom
          * Device high voltage info
          */
         Q_PROPERTY( QVariant hiVoltageInfo READ hiVoltageInfo NOTIFY changed )
+
+        /**
+         * Device low voltage info
+         */
+        Q_PROPERTY( QVariant loVoltageInfo READ loVoltageInfo NOTIFY changed )
 
     public:
         /**
@@ -54,6 +55,11 @@ namespace Enercom
          */
         [[nodiscard]] QVariant hiVoltageInfo() const;
 
+        /**
+         * Device low voltage info metaobject getter
+         */
+        [[nodiscard]] QVariant loVoltageInfo() const;
+
     signals:
         /**
          * Emit, when device info changed, used for metaobject property
@@ -73,6 +79,12 @@ namespace Enercom
          */
         void onDeviceHiVoltageInfoChanged(const Enercom::Network::Packet::Fields::Ptr& packet);
 
+        /**
+         * Device low voltage info changed handler
+         * @param packet device low voltage info packet
+         */
+        void onDeviceLoVoltageInfoChanged(const Enercom::Network::Packet::Fields::Ptr& packet);
+
     private:
         /**
          * Device info
@@ -83,6 +95,11 @@ namespace Enercom
         * Device high voltage info
         */
         HiVoltageInfo::Ptr hiVoltageInfo_;
+
+        /**
+        * Device high voltage info
+        */
+        LoVoltageInfo::Ptr loVoltageInfo_;
     };
 
 }

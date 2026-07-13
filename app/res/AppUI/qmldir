@@ -8,3 +8,4 @@ PrimaryPage 1.0 qml/pages/PrimaryPage.qml
 DeviceInfoView          1.0 qml/pages/views/DeviceInfoView.qml
 ObservedDeviceView      1.0 qml/pages/views/ObservedDeviceView.qml
 DeviceHiVoltageInfoView 1.0 qml/pages/views/DeviceHiVoltageInfoView.qml
+DeviceLoVoltageInfoView 1.0 qml/pages/views/DeviceLoVoltageInfoView.qml

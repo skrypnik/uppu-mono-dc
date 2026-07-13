@@ -34,10 +34,16 @@ namespace Enercom
         void deviceBroadcastInfoReceived(const Enercom::Network::Packet::Fields::Ptr& data);
 
         /**
-         * Emits, when device info received
+         * Emits, when device high voltage info received
          * @param data packet data
          */
         void deviceHiVoltageInfoReceived(const Enercom::Network::Packet::Fields::Ptr& data);
+
+        /**
+         * Emits, when device low voltage info received
+         * @param data packet data
+         */
+        void deviceLoVoltageInfoReceived(const Enercom::Network::Packet::Fields::Ptr& data);
 
     public slots:
         /**

@@ -9,6 +9,7 @@ namespace Enercom
     Device::Device(QObject* parent)
         : QObject(parent)
         , hiVoltageInfo_(std::make_shared<HiVoltageInfo>())
+        , loVoltageInfo_(std::make_shared<LoVoltageInfo>())
     {
 
     }
@@ -28,6 +29,11 @@ namespace Enercom
         return QVariant::fromValue(hiVoltageInfo_.get());
     }
 
+    QVariant Device::loVoltageInfo() const
+    {
+        return QVariant::fromValue(loVoltageInfo_.get());
+    }
+
     void Device::onDeviceInfoChanged(const Enercom::Model::DeviceItem::Ptr& info)
     {
         info_ = info;
@@ -38,6 +44,13 @@ namespace Enercom
     void Device::onDeviceHiVoltageInfoChanged(const Enercom::Network::Packet::Fields::Ptr& packet)
     {
         hiVoltageInfo_->fromRawData(packet->data()->data());
+
+        emit this->changed();
+    }
+
+    void Device::onDeviceLoVoltageInfoChanged(const Enercom::Network::Packet::Fields::Ptr& packet)
+    {
+        loVoltageInfo_->fromRawData(packet->data()->data());
 
         emit this->changed();
     }

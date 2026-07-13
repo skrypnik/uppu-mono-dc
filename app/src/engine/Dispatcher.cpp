@@ -21,6 +21,11 @@ namespace Enercom
         {
             emit this->deviceHiVoltageInfoReceived(packet);
         }
+
+        if (packet->data()->type() == static_cast<uint8_t>(Network::Payload::Request::GetLoVoltageInfo))
+        {
+            emit this->deviceLoVoltageInfoReceived(packet);
+        }
     }
 
     void Dispatcher::onIncomingBroadcastPacket(const Enercom::Network::Packet::Fields::Ptr& packet)
