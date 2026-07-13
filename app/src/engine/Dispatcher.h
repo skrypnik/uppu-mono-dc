@@ -31,6 +31,12 @@ namespace Enercom
          * Emits, when device info received
          * @param data packet data
          */
+        void deviceBroadcastInfoReceived(const Enercom::Network::Packet::Fields::Ptr& data);
+
+        /**
+         * Emits, when device info received
+         * @param data packet data
+         */
         void deviceHiVoltageInfoReceived(const Enercom::Network::Packet::Fields::Ptr& data);
 
     public slots:
@@ -39,6 +45,12 @@ namespace Enercom
         * @param packet response data
         */
         void onIncomingPacket(const Enercom::Network::Packet::Fields::Ptr& packet);
+
+        /**
+        * Incoming broadcast packet handler
+        * @param packet response data
+        */
+        void onIncomingBroadcastPacket(const Enercom::Network::Packet::Fields::Ptr& packet);
     };
 
 }

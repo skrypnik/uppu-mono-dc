@@ -7,6 +7,8 @@ SimPage {
 
     SimPanel {
 
+        id: deviceInfo
+
         anchors { left: parent.left; top: parent.top; leftMargin: SimControl.Margin._12px; topMargin: SimControl.Margin._12px }
 
         title: "Информация об устройстве"
@@ -14,6 +16,22 @@ SimPage {
         Column {
 
             DeviceInfoView {
+
+            }
+        }
+    }
+
+    SimPanel {
+
+        id: deviceHiVoltageInfo
+
+        anchors { left: parent.left; top: deviceInfo.bottom; leftMargin: SimControl.Margin._12px; topMargin: SimControl.Margin._12px }
+
+        title: "Параметры высокого напряжения"
+
+        Column {
+
+            DeviceHiVoltageInfoView {
 
             }
         }

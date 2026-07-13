@@ -106,7 +106,12 @@ namespace Enercom::Network
                 break;
             }
 
-            if (params_->serialNumber == 0x00) params_->serialNumber = data_.mid(0x00, 0x02).toShort();
+            // if (params_->serialNumber == 0x00)
+            // {
+            //     params_->serialNumber = Network::Packet::valueFromBytes<uint16_t>(data_, 0x00);
+            //
+            //     qDebug() << Q_FUNC_INFO << "Served device SN:" << params_->serialNumber;
+            // }
 
             const auto data = data_.mid(0x00, static_cast<int>(size));
 
@@ -242,6 +247,13 @@ namespace Enercom::Network
         this->send(Packet::generateRequest(params_->serialNumber, Payload::setNetworkInfoRequest(host, port, mask)));
     }
 
+    void Module::onDeviceInfoReceived(const Enercom::Network::Packet::Fields::Ptr& data)
+    {
+        params_->serialNumber = data->sn();
+
+        this->sendGetHiVoltageInfoRequest();
+    }
+
     void Module::onConnected()
     {
         qDebug() << Q_FUNC_INFO;
@@ -289,8 +301,6 @@ namespace Enercom::Network
 
                 return;;
             }
-
-            if (params_->serialNumber == 0x00) params_->serialNumber = datagram.mid(0x00, 0x02).toShort();
 
             const auto data = datagram.mid(0x00, static_cast<int>(size));
 

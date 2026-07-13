@@ -244,6 +244,13 @@ namespace Enercom::Network
          */
         void incomingBroadcastPacket(const Enercom::Network::Packet::Fields::Ptr& packet);
 
+    public slots:
+        /**
+         * Device info received handler
+         * @param data packet data
+         */
+        void onDeviceInfoReceived(const Enercom::Network::Packet::Fields::Ptr& data);
+
     private slots:
         /**
         * TCP client socket connect handler

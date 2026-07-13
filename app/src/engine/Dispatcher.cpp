@@ -23,4 +23,11 @@ namespace Enercom
         }
     }
 
+    void Dispatcher::onIncomingBroadcastPacket(const Enercom::Network::Packet::Fields::Ptr& packet)
+    {
+        if (packet->data()->type() != static_cast<uint8_t>(Network::Payload::Request::GetDeviceInfo)) return;
+
+        emit this->deviceBroadcastInfoReceived(packet);
+    }
+
 }

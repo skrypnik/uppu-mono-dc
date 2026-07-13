@@ -68,6 +68,8 @@ namespace Enercom::Network
         const auto checksum = QByteArray::fromRawData(reinterpret_cast<const char*>(&crc32), sizeof(uint32_t));
         bytes.append(Payload::pack(static_cast<uint8_t>(Type::Request), data + checksum));
 
+        qDebug() << Q_FUNC_INFO << bytes.toHex();
+
         return bytes;
     }
 

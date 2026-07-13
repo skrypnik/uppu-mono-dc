@@ -8,7 +8,7 @@ TableView {
 
     id: table
 
-    width: 360.0 + SimControl.Spacing._01px; height: rows * SimControl.Size._32px + rows * rowSpacing
+    width: 480.0 + SimControl.Spacing._01px; height: rows * SimControl.Size._32px + rows * rowSpacing
 
     columnSpacing: SimControl.Spacing._01px; rowSpacing: SimControl.Spacing._01px
 
@@ -16,7 +16,7 @@ TableView {
 
     delegate: Rectangle {
 
-        implicitWidth: column === 0x00 ? 200.0 : 160.0; implicitHeight: SimControl.Size._32px
+        implicitWidth: column === 0x00 ? 320.0 : 160.0; implicitHeight: SimControl.Size._32px
 
         color: column === 0x00 ? SimPalette.colors.grey[1500] : ( row % 0x02 ? SimPalette.colors.grey[1400] : SimPalette.colors.grey[1300] )
 

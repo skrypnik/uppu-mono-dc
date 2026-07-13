@@ -11,6 +11,7 @@
 
         <file>qml/pages/views/DeviceInfoView.qml</file>
         <file>qml/pages/views/ObservedDeviceView.qml</file>
+        <file>qml/pages/views/DeviceHiVoltageInfoView.qml</file>
 
     </qresource>
 </RCC>

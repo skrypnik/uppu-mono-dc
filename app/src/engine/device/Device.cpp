@@ -8,6 +8,7 @@ namespace Enercom
 {
     Device::Device(QObject* parent)
         : QObject(parent)
+        , hiVoltageInfo_(std::make_shared<HiVoltageInfo>())
     {
 
     }

@@ -2,6 +2,8 @@
 
 #include <network/Packet.h>
 
+#include <QDebug>
+
 namespace Enercom
 {
     HiVoltageInfo::HiVoltageInfo(QObject* parent)
@@ -13,6 +15,8 @@ namespace Enercom
     void HiVoltageInfo::fromRawData(const QByteArray& data)
     {
         /// \todo check response code
+
+        qDebug() << "HiVoltageInfo::fromRawData";
 
         regulatorMode_ = Network::Packet::valueFromBytes<uint8_t>(data, 0x01);
         regulatorVoltage_ = Network::Packet::valueFromBytes<uint32_t>(data, 0x02);
