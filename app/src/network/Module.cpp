@@ -147,7 +147,9 @@ namespace Enercom::Network
 
     void Module::sendBroadcastDeviceInfoRequest() const
     {
-        searcher_->writeDatagram(Packet::generateRequest(0x00, Payload::deviceInfoRequest()), QHostAddress("192.168.255.255"), params_->servicePort);
+        qDebug() << Q_FUNC_INFO << params_->servicePort;
+
+        searcher_->writeDatagram(Packet::generateRequest(0x00, Payload::deviceInfoRequest()), QHostAddress::Broadcast/*("192.168.255.255")*/, params_->servicePort);
     }
 
     void Module::setConnectionParams(const QString& host, const QString& port) const
