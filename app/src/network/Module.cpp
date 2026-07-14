@@ -34,18 +34,20 @@ namespace Enercom::Network
         * Device service port. Defaults: 57555
         */
         uint16_t servicePort = Config::Common::get().root()["service"]["port"].toInt();
-
     };
 
     Module::Module(QObject* parent)
         : QObject(parent)
         , params_(nullptr)
         , socket_(new QTcpSocket(this))
+        , requester_(new QTimer(this))
         , searcher_(new Searcher(this))
     {
         QObject::connect(socket_, &QTcpSocket::connected,    this, &Module::onConnected);
         QObject::connect(socket_, &QTcpSocket::disconnected, this, &Module::onDisconnected);
         QObject::connect(socket_, &QTcpSocket::readyRead,    this, &Module::onReplyReceived);
+
+        QObject::connect(requester_, &QTimer::timeout, this, &Module::onSendDeviceInfoRequest);
 
         QObject::connect(searcher_, &Searcher::incomingBroadcastPacket, this, &Module::incomingBroadcastPacket);
     }
@@ -249,8 +251,10 @@ namespace Enercom::Network
         params_->serialNumber = data->sn();
 
         /// \note WORKAROUND!!! Refactor it, when Alexander fixed his transport
-        QTimer::singleShot(0, this, [this] () { this->sendGetHiVoltageInfoRequest(); });
-        QTimer::singleShot(50, this, [this] () { this->sendGetLoVoltageInfoRequest(); });
+        QTimer::singleShot(0,   this, [ this ] () { this->sendGetStatusRequest(); });
+        QTimer::singleShot(50,  this, [ this ] () { this->sendGetHiVoltageInfoRequest(); });
+        QTimer::singleShot(100, this, [ this ] () { this->sendGetLoVoltageInfoRequest(); });
+        QTimer::singleShot(150, this, [ this ] () { this->sendGetCalibratorInfoRequest(); });
     }
 
     void Module::onConnected()
@@ -266,6 +270,11 @@ namespace Enercom::Network
         this->sendDeviceInfoRequest();
 
         emit this->deviceConnected();
+
+        requester_->setInterval(Config::Common::get().root()["service"]["interval"].toInt());
+        requester_->start();
+
+        searcher_->stop();
     }
 
     void Module::onDisconnected()
@@ -273,6 +282,10 @@ namespace Enercom::Network
         qDebug() << Q_FUNC_INFO;
 
         emit this->deviceDisconnected();
+
+        requester_->stop();
+
+        searcher_->start();
     }
 
     void Module::onReplyReceived()
@@ -284,4 +297,8 @@ namespace Enercom::Network
         this->handleIncomingData();
     }
 
+    void Module::onSendDeviceInfoRequest()
+    {
+        this->sendDeviceInfoRequest();
+    }
 }

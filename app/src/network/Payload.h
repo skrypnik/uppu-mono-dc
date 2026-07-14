@@ -28,7 +28,7 @@ namespace Enercom::Network
             GetMeterReadings       = 0x90,
             GetCalibratorReadings  = 0x91,
             SetCalibratorInfo      = 0xA0,
-            GetCalibratorInfo      = 0xA1,
+            GetCalibratorInfo      = 0x91,
             SetHiVoltageInfo       = 0xA4,
             GetHiVoltageInfo       = 0xA5,
             SetLoVoltageInfo       = 0xA6,
@@ -116,7 +116,7 @@ namespace Enercom::Network
          * Generates TLV formated byte sequence for device info request
          * @return TLV formated request
          */
-        static QByteArray deviceInfoRequest();
+        static QByteArray deviceInfoRequest(uint8_t reserved = 0x00);
 
         /**
          * Generates TLV formated byte sequence for set meters info request

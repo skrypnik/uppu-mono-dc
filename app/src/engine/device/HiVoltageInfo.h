@@ -1,8 +1,9 @@
 #pragma once
 
-#include <memory>
 #include <QVariant>
 #include <QObject>
+
+#include <memory>
 
 namespace Enercom
 {
@@ -161,62 +162,62 @@ namespace Enercom
         /**
          * Regulator mode (0 - off, 1 - on)
          */
-        uint8_t regulatorMode_{};
+        uint8_t regulatorMode_ {};
 
         /**
          * Regulator voltage
          */
-        float regulatorVoltage_{};
+        float regulatorVoltage_ {};
 
         /**
          * Minimal regulator voltage
          */
-        float regulatorVoltageMin_{};
+        float regulatorVoltageMin_ {};
 
         /**
          * Maximal regulator voltage
          */
-        float regulatorVoltageMax_{};
+        float regulatorVoltageMax_ {};
 
         /**
          * DAC voltage
          */
-        float dacVoltage_{};
+        float dacVoltage_ {};
 
         /**
          * Minimal DAC voltage
          */
-        float dacVoltageMin_{};
+        float dacVoltageMin_ {};
 
         /**
          * Maximal DAC voltage
          */
-        float dacVoltageMax_{};
+        float dacVoltageMax_ {};
 
         /**
          * Calibration factor
          */
-        float calibrationFactor_{};
+        float calibrationFactor_ {};
 
         /**
          * Calibration offset
          */
-        float calibrationOffset_{};
+        float calibrationOffset_ {};
 
         /**
          * High voltage divider ratio
          */
-        float dividerRatio_{};
+        float dividerRatio_ {};
 
         /**
          * Regulator proportionality coefficient
          */
-        uint32_t regulatorRatio_{};
+        uint32_t regulatorRatio_ {};
 
         /**
          * Required high voltage setting accuracy
          */
-        float accuracy_{};
+        float accuracy_ {};
     };
 
 }

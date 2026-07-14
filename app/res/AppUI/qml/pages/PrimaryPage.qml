@@ -23,6 +23,22 @@ SimPage {
 
     SimPanel {
 
+        id: deviceStatusInfo
+
+        anchors { left: deviceInfo.right; top: parent.top; leftMargin: SimControl.Margin._12px; topMargin: SimControl.Margin._12px }
+
+        title: "Статус устройства"
+
+        Column {
+
+            DeviceStatusInfoView {
+
+            }
+        }
+    }
+
+    SimPanel {
+
         id: deviceHiVoltageInfo
 
         anchors { right: parent.right; top: parent.top; rightMargin: SimControl.Margin._12px; topMargin: SimControl.Margin._12px }
@@ -52,4 +68,21 @@ SimPage {
             }
         }
     }
+
+    SimPanel {
+
+        id: deviceCalibratorInfo
+
+        anchors { left: parent.left; top: deviceInfo.bottom; leftMargin: SimControl.Margin._12px; topMargin: SimControl.Margin._12px }
+
+        title: "Параметры калибратора"
+
+        Column {
+
+            DeviceCalibratorInfoView {
+
+            }
+        }
+    }
+
 }

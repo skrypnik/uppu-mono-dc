@@ -2,6 +2,9 @@
 
 #include <network/Packet.h>
 
+#include <helper/Data.h>
+#include <helper/View.h>
+
 #include <QDebug>
 
 namespace Enercom
@@ -16,18 +19,18 @@ namespace Enercom
     {
         /// \todo check response code
 
-        regulatorMode_ = Network::Packet::valueFromBytes<uint8_t>(data, 0x01);
-        regulatorVoltage_ = *reinterpret_cast<float*>(data.mid(0x02, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x02);
-        dacVoltage_ = *reinterpret_cast<float*>(data.mid(0x06, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x06);
-        regulatorVoltageMin_ = *reinterpret_cast<float*>(data.mid(0x0A, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x0A);
-        regulatorVoltageMax_ = *reinterpret_cast<float*>(data.mid(0x0E, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x0E);
-        dacVoltageMin_ = *reinterpret_cast<float*>(data.mid(0x12, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x12);
-        dacVoltageMax_ = *reinterpret_cast<float*>(data.mid(0x16, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x16);
-        attenuator_ = Network::Packet::valueFromBytes<uint8_t>(data, 0x1A);
-        accuracy_ = *reinterpret_cast<float*>(data.mid(0x1E, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x1E);
-        regulatorRatio_ = *reinterpret_cast<float*>(data.mid(0x22, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x22);
-        calibrationFactor_ = *reinterpret_cast<float*>(data.mid(0x26, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x26);
-        calibrationOffset_ = *reinterpret_cast<float*>(data.mid(0x2A, sizeof(float)).data()); // Network::Packet::valueFromBytes<uint32_t>(data, 0x2A);
+        regulatorMode_ = Helper::Data::valueFromBytes<uint8_t>(data, 0x01);
+        regulatorVoltage_ = Helper::Data::valueFromBytes<float>(data, 0x02);
+        dacVoltage_ = Helper::Data::valueFromBytes<float>(data, 0x06);
+        regulatorVoltageMin_ = Helper::Data::valueFromBytes<float>(data, 0x0A);
+        regulatorVoltageMax_ = Helper::Data::valueFromBytes<float>(data, 0x0E);
+        dacVoltageMin_ = Helper::Data::valueFromBytes<float>(data, 0x12);
+        dacVoltageMax_ = Helper::Data::valueFromBytes<float>(data, 0x16);
+        attenuator_ = Helper::Data::valueFromBytes<uint8_t>(data, 0x1A);
+        accuracy_ = Helper::Data::valueFromBytes<float>(data, 0x1E);
+        regulatorRatio_ = Helper::Data::valueFromBytes<float>(data, 0x22);
+        calibrationFactor_ = Helper::Data::valueFromBytes<float>(data, 0x26);
+        calibrationOffset_ = Helper::Data::valueFromBytes<float>(data, 0x2A);
 
         emit this->changed();
     }
@@ -39,52 +42,52 @@ namespace Enercom
 
     QVariant LoVoltageInfo::regulatorVoltage() const
     {
-        return QString::number(regulatorVoltage_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
+        return Helper::View::normalizedFloat(regulatorVoltage_);
     }
 
     QVariant LoVoltageInfo::regulatorVoltageMin() const
     {
-        return QString::number(regulatorVoltageMin_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
+        return Helper::View::normalizedFloat(regulatorVoltageMin_);
     }
 
     QVariant LoVoltageInfo::regulatorVoltageMax() const
     {
-        return QString::number(regulatorVoltageMax_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
+        return Helper::View::normalizedFloat(regulatorVoltageMax_);
     }
 
     QVariant LoVoltageInfo::dacVoltage() const
     {
-        return QString::number(dacVoltage_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
+        return Helper::View::normalizedFloat(dacVoltage_);
     }
 
     QVariant LoVoltageInfo::dacVoltageMin() const
     {
-        return QString::number(dacVoltageMin_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
+        return Helper::View::normalizedFloat(dacVoltageMin_);
     }
 
     QVariant LoVoltageInfo::dacVoltageMax() const
     {
-        return QString::number(dacVoltageMax_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
+        return Helper::View::normalizedFloat(dacVoltageMax_);
     }
 
     QVariant LoVoltageInfo::calibrationFactor() const
     {
-        return QString::number(calibrationFactor_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
+        return Helper::View::normalizedFloat(calibrationFactor_);
     }
 
     QVariant LoVoltageInfo::calibrationOffset() const
     {
-        return QString::number(calibrationOffset_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
+        return Helper::View::normalizedFloat(calibrationOffset_);
     }
 
     QVariant LoVoltageInfo::amplifierRatio() const
     {
-        return QString::number(amplifierRatio_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
+        return Helper::View::normalizedFloat(amplifierRatio_);
     }
 
     QVariant LoVoltageInfo::regulatorRatio() const
     {
-        return QString::number(regulatorRatio_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
+        return Helper::View::normalizedFloat(regulatorRatio_);
     }
 
     QVariant LoVoltageInfo::attenuator() const
@@ -94,7 +97,7 @@ namespace Enercom
 
     QVariant LoVoltageInfo::accuracy() const
     {
-        return QString::number(accuracy_, 'f', 6).remove( QRegExp("0+$") ).remove( QRegExp("\\.$") );
+        return Helper::View::normalizedFloat(accuracy_);
     }
 
 }

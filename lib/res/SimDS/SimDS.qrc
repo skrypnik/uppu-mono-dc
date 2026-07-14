@@ -26,10 +26,11 @@
         <file>svg/controls/Menu.svg</file>
         <file>svg/controls/Hide.svg</file>
         <file>svg/controls/Show.svg</file>
+        <file>svg/controls/Plus.svg</file>
+        <file>svg/controls/Minus.svg</file>
         <file>svg/controls/Close.svg</file>
         <file>svg/controls/Error.svg</file>
-        <file>svg/controls/Loader_4px.svg</file>
-        <file>svg/controls/Loader_8px.svg</file>
+        <file>svg/controls/Question.svg</file>
         <file>svg/controls/CheckBoxChecked.svg</file>
         <file>svg/controls/CheckBoxPartiallyChecked.svg</file>
 

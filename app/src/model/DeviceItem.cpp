@@ -4,6 +4,8 @@
 
 #include <network/Packet.h>
 
+#include <helper/Data.h>
+
 namespace Enercom::Model
 {
     DeviceItem::DeviceItem(QObject* parent)
@@ -34,22 +36,22 @@ namespace Enercom::Model
             return value;
         };
 
-        item->address0_ = addressFromBytes(Network::Packet::valueFromBytes<uint32_t>(data, 0x01));
-        item->port0_ = Network::Packet::valueFromBytes<uint16_t>(data, 0x05);
-        item->netmask0_ = addressFromBytes(Network::Packet::valueFromBytes<uint32_t>(data, 0x07));
+        item->address0_ = addressFromBytes(Helper::Data::valueFromBytes<uint32_t>(data, 0x01));
+        item->port0_ = Helper::Data::valueFromBytes<uint16_t>(data, 0x05);
+        item->netmask0_ = addressFromBytes(Helper::Data::valueFromBytes<uint32_t>(data, 0x07));
 
-        item->address1_ = addressFromBytes(Network::Packet::valueFromBytes<uint32_t>(data, 0x0B));
-        item->port1_ = Network::Packet::valueFromBytes<uint16_t>(data, 0x0F);
-        item->netmask1_ = addressFromBytes(Network::Packet::valueFromBytes<uint32_t>(data, 0x11));
+        item->address1_ = addressFromBytes(Helper::Data::valueFromBytes<uint32_t>(data, 0x0B));
+        item->port1_ = Helper::Data::valueFromBytes<uint16_t>(data, 0x0F);
+        item->netmask1_ = addressFromBytes(Helper::Data::valueFromBytes<uint32_t>(data, 0x11));
 
-        item->serial_ = Network::Packet::valueFromBytes<uint16_t>(data, 0x15);
+        item->serial_ = Helper::Data::valueFromBytes<uint16_t>(data, 0x15);
 
         item->version_.append(QString::number(static_cast<uint8_t>(data[0x17])) + QString("."));
         item->version_.append(QString::number(static_cast<uint8_t>(data[0x18])) + QString("."));
         item->version_.append(QString::number(static_cast<uint8_t>(data[0x19])) + QString("."));
         item->version_.append(QString::number(static_cast<uint8_t>(data[0x1A])));
 
-        item->date_.setDate(Network::Packet::valueFromBytes<uint16_t>(data, 0x1B), Network::Packet::valueFromBytes<uint8_t>(data, 0x1D), Network::Packet::valueFromBytes<uint8_t>(data, 0x1E));
+        item->date_.setDate(Helper::Data::valueFromBytes<uint16_t>(data, 0x1B), Helper::Data::valueFromBytes<uint8_t>(data, 0x1D), Helper::Data::valueFromBytes<uint8_t>(data, 0x1E));
 
         item->protocol_.append(QString::number(data[0x1F]) + QString("."));
         item->protocol_.append(QString::number(data[0x20]) + QString("."));

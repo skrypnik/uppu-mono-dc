@@ -5,6 +5,7 @@
 #include "Packet.h"
 
 class QTcpSocket;
+class QTimer;
 
 namespace Enercom::Network
 {
@@ -266,9 +267,14 @@ namespace Enercom::Network
         */
         void onReplyReceived();
 
+        /**
+         * Sends device info request (periodic)
+         */
+        void onSendDeviceInfoRequest();
+
     private:
         /**
-        * Device network params
+        * Device network settings
         */
         NetworkSettings* params_;
 
@@ -276,6 +282,11 @@ namespace Enercom::Network
         * TCP client socket to connect the device group
         */
         QTcpSocket* socket_;
+
+        /**
+         * Device data request timer
+         */
+        QTimer* requester_;
 
         /**
         * Network searcher

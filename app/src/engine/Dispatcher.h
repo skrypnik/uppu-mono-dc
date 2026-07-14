@@ -28,6 +28,12 @@ namespace Enercom
         void deviceInfoReceived(const Enercom::Network::Packet::Fields::Ptr& data);
 
         /**
+         * Emits, when status info received
+         * @param data packet data
+         */
+        void deviceStatusInfoReceived(const Enercom::Network::Packet::Fields::Ptr& data);
+
+        /**
          * Emits, when device info received
          * @param data packet data
          */
@@ -44,6 +50,12 @@ namespace Enercom
          * @param data packet data
          */
         void deviceLoVoltageInfoReceived(const Enercom::Network::Packet::Fields::Ptr& data);
+
+        /**
+         * Emits, when calibrator voltage info received
+         * @param data packet data
+         */
+        void deviceCalibratorInfoReceived(const Enercom::Network::Packet::Fields::Ptr& data);
 
     public slots:
         /**

@@ -24,11 +24,25 @@ TableView {
 
         SimLabel {
 
+            id: label
+
+            property bool hovered: false
+
             anchors { left: parent.left; leftMargin: SimControl.Margin._08px; verticalCenter: parent.verticalCenter }
 
-            font { weight: column === 0x00 ?  Font.Medium : Font.Normal }
+            font { weight: column === 0x00 ? Font.DemiBold : (hovered ? Font.DemiBold : Font.Normal) }
 
             text: display
+        }
+
+        MouseArea {
+
+            anchors.fill: parent
+
+            hoverEnabled: true
+
+            onEntered: label.hovered = true
+            onExited: label.hovered = false
         }
     }
 }

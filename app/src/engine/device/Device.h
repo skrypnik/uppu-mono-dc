@@ -4,8 +4,10 @@
 
 #include <network/Packet.h>
 
+#include "StatusInfo.h"
 #include "HiVoltageInfo.h"
 #include "LoVoltageInfo.h"
+#include "CalibratorInfo.h"
 
 namespace Enercom
 {
@@ -22,6 +24,11 @@ namespace Enercom
         Q_PROPERTY( QVariant info READ info NOTIFY changed )
 
         /**
+         * Device status info
+         */
+        Q_PROPERTY( QVariant statusInfo READ statusInfo NOTIFY changed )
+
+        /**
          * Device high voltage info
          */
         Q_PROPERTY( QVariant hiVoltageInfo READ hiVoltageInfo NOTIFY changed )
@@ -30,6 +37,11 @@ namespace Enercom
          * Device low voltage info
          */
         Q_PROPERTY( QVariant loVoltageInfo READ loVoltageInfo NOTIFY changed )
+
+        /**
+         * Device calibrator info
+         */
+        Q_PROPERTY( QVariant calibratorInfo READ calibratorInfo NOTIFY changed )
 
     public:
         /**
@@ -49,6 +61,11 @@ namespace Enercom
         [[nodiscard]] QVariant info() const;
 
         /**
+         * Device status info metaobject getter
+         */
+        [[nodiscard]] QVariant statusInfo() const;
+
+        /**
          * Device high voltage info metaobject getter
          */
         [[nodiscard]] QVariant hiVoltageInfo() const;
@@ -57,6 +74,11 @@ namespace Enercom
          * Device low voltage info metaobject getter
          */
         [[nodiscard]] QVariant loVoltageInfo() const;
+
+        /**
+         * Device calibrator info metaobject getter
+         */
+        [[nodiscard]] QVariant calibratorInfo() const;
 
     signals:
         /**
@@ -72,6 +94,12 @@ namespace Enercom
         void onDeviceInfoChanged(const Enercom::Model::DeviceItem::Ptr& info);
 
         /**
+         * Device info changed handler
+         * @param packet device status info packet
+         */
+        void onDeviceStatusInfoChanged(const Enercom::Network::Packet::Fields::Ptr& packet);
+
+        /**
          * Device high voltage info changed handler
          * @param packet device high voltage info packet
          */
@@ -83,11 +111,22 @@ namespace Enercom
          */
         void onDeviceLoVoltageInfoChanged(const Enercom::Network::Packet::Fields::Ptr& packet);
 
+        /**
+         * Device calibrator info changed handler
+         * @param packet device calibrator info packet
+         */
+        void onDeviceCalibratorInfoChanged(const Enercom::Network::Packet::Fields::Ptr& packet);
+
     private:
         /**
          * Device info
          */
         Model::DeviceItem::Ptr info_;
+
+        /**
+         * Device status info
+         */
+        StatusInfo::Ptr statusInfo_;
 
         /**
         * Device high voltage info
@@ -98,6 +137,11 @@ namespace Enercom
         * Device high voltage info
         */
         LoVoltageInfo::Ptr loVoltageInfo_;
+
+        /**
+         * Device calibrator info
+         */
+        CalibratorInfo::Ptr calibratorInfo_;
     };
 
 }

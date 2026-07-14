@@ -20,7 +20,7 @@ SimPropertyView {
             display: "value"
         }
 
-        rows: engine.device.hiVoltageInfo === null ? [] : [
+        rows: engine.device.loVoltageInfo === null ? [] : [
 
             {
                 "title": "Авторегулятор напряжения",

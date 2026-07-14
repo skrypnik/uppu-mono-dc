@@ -17,6 +17,11 @@ namespace Enercom
             emit this->deviceInfoReceived(packet);
         }
 
+        if (packet->data()->type() == static_cast<uint8_t>(Network::Payload::Request::GetStatus))
+        {
+            emit this->deviceStatusInfoReceived(packet);
+        }
+
         if (packet->data()->type() == static_cast<uint8_t>(Network::Payload::Request::GetHiVoltageInfo))
         {
             emit this->deviceHiVoltageInfoReceived(packet);
@@ -25,6 +30,11 @@ namespace Enercom
         if (packet->data()->type() == static_cast<uint8_t>(Network::Payload::Request::GetLoVoltageInfo))
         {
             emit this->deviceLoVoltageInfoReceived(packet);
+        }
+
+        if (packet->data()->type() == static_cast<uint8_t>(Network::Payload::Request::GetCalibratorInfo))
+        {
+            emit this->deviceCalibratorInfoReceived(packet);
         }
     }
 

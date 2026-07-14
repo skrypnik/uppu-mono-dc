@@ -38,9 +38,12 @@ namespace Enercom::Network
         return ptr;
     }
 
-    /*static*/ QByteArray Payload::deviceInfoRequest()
+    /*static*/ QByteArray Payload::deviceInfoRequest(uint8_t reserved)
     {
-        return pack(static_cast<uint8_t>(Request::GetDeviceInfo), {});
+        QByteArray value;
+        value.append(QByteArray::fromRawData(reinterpret_cast<char*>(&reserved), sizeof(uint8_t)));
+
+        return pack(static_cast<uint8_t>(Request::GetDeviceInfo), value);
     }
 
     QByteArray Payload::setMetersInfoRequest(uint8_t count, uint32_t speed, uint8_t type, float voltage)

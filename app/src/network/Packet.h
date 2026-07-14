@@ -12,11 +12,6 @@ namespace Enercom::Network
     class Packet
     {
         /**
-         * Polynomial table to fast checksum calculation
-         */
-        static const std::vector<uint32_t> polynomial;
-
-        /**
         * Construction is deprecated
         */
         Packet() = default;
@@ -131,17 +126,6 @@ namespace Enercom::Network
         * @return request packet raw data
         */
         static QByteArray generateRequest(uint16_t sn, const QByteArray& data);
-
-    public:
-        /**
-         * \todo move it into helper
-         * Template helper function for give value from raw data
-         * @tparam T (integer or floating point data type)
-         * @param data byte array
-         * @param offset offset from start of array
-         * @return bytes from data converted to T type
-         */
-        template<class T> static T valueFromBytes(const QByteArray& data, int offset = 0x00);
 
     public:
         /**

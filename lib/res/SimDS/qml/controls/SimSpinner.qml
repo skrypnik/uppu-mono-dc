@@ -4,6 +4,10 @@ import SimDS 1.0
 
 ListView {
 
+    id: view
+
+    property color color: SimPalette.colors.blue[700]
+
     width: SimControl.Size._32px + SimControl.Spacing._04px * 3.0; height: SimControl.Size._32px
 
     spacing: SimControl.Spacing._04px
@@ -16,11 +20,15 @@ ListView {
 
         width: 8.0; height: 8.0
 
-        Image {
+        Rectangle {
+
+            readonly property real size: index === currentIndex ? 8.0 : 4.0
+
+            width: size; height: size
 
             anchors.centerIn: parent
 
-            source: index === currentIndex ? "qrc:/SimDS/svg/controls/Loader_8px.svg" : "qrc:/SimDS/svg/controls/Loader_4px.svg"
+            color: view.color
         }
     }
 
