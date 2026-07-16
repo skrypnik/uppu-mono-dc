@@ -21,13 +21,16 @@ namespace Enercom
         hiVoltageGeneration_ = Helper::Data::valueFromBytes<uint8_t>(data, 0x02);
         hiVoltage_ = Helper::Data::valueFromBytes<float>(data, 0x03);
         hiVoltageDAC_ = Helper::Data::valueFromBytes<float>(data, 0x07);
-        hiVoltageADC_ = Helper::Data::valueFromBytes<float>(data, 0x1B);
+        hiVoltageADC_ = Helper::Data::valueFromBytes<float>(data, 0x0B);
 
-        loVoltageReady_ = Helper::Data::valueFromBytes<uint8_t>(data, 0x01);
-        loVoltageGeneration_ = Helper::Data::valueFromBytes<uint8_t>(data, 0x02);
-        loVoltage_ = Helper::Data::valueFromBytes<float>(data, 0x03);
-        loVoltageDAC_ = Helper::Data::valueFromBytes<float>(data, 0x07);
-        loVoltageADC_ = Helper::Data::valueFromBytes<float>(data, 0x1B);
+        loVoltageReady_ = Helper::Data::valueFromBytes<uint8_t>(data, 0x0F);
+        loVoltageGeneration_ = Helper::Data::valueFromBytes<uint8_t>(data, 0x10);
+        loVoltage_ = Helper::Data::valueFromBytes<float>(data, 0x11);
+        loVoltageDAC_ = Helper::Data::valueFromBytes<float>(data, 0x15);
+        loVoltageADC_ = Helper::Data::valueFromBytes<float>(data, 0x19);
+
+        metersPowerStatus_ = Helper::Data::valueFromBytes<uint8_t>(data, 0x1D);
+        outputVoltage_ = Helper::Data::valueFromBytes<float>(data, 0x1E);
 
         emit this->changed();
     }
@@ -82,4 +85,13 @@ namespace Enercom
         return Helper::View::normalizedFloat(loVoltageADC_);
     }
 
+    QVariant StatusInfo::metersPowerStatus() const
+    {
+        return metersPowerStatus_;
+    }
+
+    QVariant StatusInfo::outputVoltage() const
+    {
+        return Helper::View::normalizedFloat(outputVoltage_);
+    }
 }

@@ -15,54 +15,64 @@ namespace Enercom
         Q_OBJECT
 
         /**
-         * High voltage metaobject property
+         * High voltage metaobject property metaobject property
          */
         Q_PROPERTY( QVariant hiVoltageReady READ hiVoltageReady NOTIFY changed )
 
         /**
-        * High voltage generation flag
+        * High voltage generation flag metaobject property
         */
         Q_PROPERTY( QVariant hiVoltageGeneration READ hiVoltageGeneration NOTIFY changed )
 
         /**
-        * High voltage
+        * High voltage metaobject property
         */
         Q_PROPERTY( QVariant hiVoltage READ hiVoltage NOTIFY changed )
 
         /**
-        * High voltage DAC
+        * High voltage DAC metaobject property
         */
         Q_PROPERTY( QVariant hiVoltageDAC READ hiVoltageDAC NOTIFY changed )
 
         /**
-        * High voltage ADC
+        * High voltage ADC metaobject property
         */
         Q_PROPERTY( QVariant hiVoltageADC READ hiVoltageADC NOTIFY changed )
 
         /**
-         * Low voltage ready flag
+         * Low voltage ready flag metaobject property
          */
         Q_PROPERTY( QVariant loVoltageReady READ loVoltageReady NOTIFY changed )
 
         /**
-        * Low voltage generation flag
+        * Low voltage generation flag metaobject property
         */
         Q_PROPERTY( QVariant loVoltageGeneration READ loVoltageGeneration NOTIFY changed )
 
         /**
-        * Low voltage
+        * Low voltage metaobject property
         */
         Q_PROPERTY( QVariant loVoltage READ loVoltage NOTIFY changed )
 
         /**
-        * Low voltage DAC
+        * Low voltage DAC metaobject property
         */
         Q_PROPERTY( QVariant loVoltageDAC READ loVoltageDAC NOTIFY changed )
 
         /**
-        * Low voltage ADC
+        * Low voltage ADC metaobject property
         */
         Q_PROPERTY( QVariant loVoltageADC READ loVoltageADC NOTIFY changed )
+
+        /**
+        * Meters power status metaobject property
+        */
+        Q_PROPERTY( QVariant metersPowerStatus READ metersPowerStatus NOTIFY changed )
+
+        /**
+        * Output voltage metaobject property
+        */
+        Q_PROPERTY( QVariant outputVoltage READ outputVoltage NOTIFY changed )
 
     public:
         /**
@@ -83,54 +93,64 @@ namespace Enercom
 
     private:
         /**
-         * High voltage ready flag
+         * High voltage ready flag metaobject getter
          */
         [[nodiscard]] QVariant hiVoltageReady() const;
 
         /**
-        * High voltage generation flag
+        * High voltage generation flag metaobject getter
         */
         [[nodiscard]] QVariant hiVoltageGeneration() const;
 
         /**
-        * High voltage
+        * High voltage metaobject getter
         */
         [[nodiscard]] QVariant hiVoltage() const;
 
         /**
-        * High voltage DAC
+        * High voltage DAC metaobject getter
         */
         [[nodiscard]] QVariant hiVoltageDAC() const;
 
         /**
-        * High voltage ADC
+        * High voltage ADC metaobject getter
         */
         [[nodiscard]] QVariant hiVoltageADC() const;
 
         /**
-         * Low voltage ready flag
+         * Low voltage ready flag metaobject getter
          */
         [[nodiscard]] QVariant loVoltageReady() const;
 
         /**
-        * Low voltage generation flag
+        * Low voltage generation flag metaobject getter
         */
         [[nodiscard]] QVariant loVoltageGeneration() const;
 
         /**
-        * Low voltage
+        * Low voltage metaobject getter
         */
         [[nodiscard]] QVariant loVoltage() const;
 
         /**
-        * Low voltage DAC
+        * Low voltage DAC metaobject getter
         */
         [[nodiscard]] QVariant loVoltageDAC() const;
 
         /**
-        * Low voltage ADC
+        * Low voltage ADC metaobject getter
         */
         [[nodiscard]] QVariant loVoltageADC() const;
+
+        /**
+        * Low voltage ADC metaobject getter
+        */
+        [[nodiscard]] QVariant metersPowerStatus() const;
+
+        /**
+         * Output voltage metaobject getter
+         */
+        [[nodiscard]] QVariant outputVoltage() const;
 
     signals:
         /**
@@ -188,6 +208,16 @@ namespace Enercom
         * Low voltage ADC
         */
         float loVoltageADC_ {};
+
+        /**
+         * Meters power status
+         */
+        uint8_t metersPowerStatus_ {};
+
+        /**
+         * Output voltage
+         */
+        float outputVoltage_ {};
     };
 
 }

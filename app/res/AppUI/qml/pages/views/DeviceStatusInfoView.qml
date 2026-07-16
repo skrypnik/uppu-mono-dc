@@ -70,6 +70,16 @@ SimPropertyView {
             {
                 "title": "Напряжение на входе АЦП (НН), В",
                 "value": engine.device.statusInfo.loVoltageADC
+            },
+
+            {
+                "title": "Статус питания счетчиков",
+                "value": engine.device.statusInfo.metersPowerStatus
+            },
+
+            {
+                "title": "Выходное напряжение питания, В",
+                "value": engine.device.statusInfo.outputVoltage
             }
         ]
     }
