@@ -41,6 +41,8 @@ SimPage {
 
         anchors { left: parent.left; top: panel.bottom; leftMargin: SimControl.Margin._12px; topMargin: SimControl.Margin._12px }
 
+        controls: SimPanel.Controls.Edit
+
         title: "Информация об устройстве"
 
         Column {
@@ -48,6 +50,11 @@ SimPage {
             DeviceInfoView {
 
             }
+        }
+
+        onEdit: {
+
+            networkInfoDialog.visible = true
         }
     }
 
@@ -134,13 +141,22 @@ SimPage {
 
         onEdit: {
 
-            deviceMetersDialog.visible = true
+            metersInfoDialog.visible = true
         }
     }
 
     MetersInfoDialog {
 
-        id: deviceMetersDialog
+        id: metersInfoDialog
+
+        x: (parent.width - width) / 2.0; y: (parent.height - height) / 2.0
+
+        visible: false
+    }
+
+    NetworkInfoDialog {
+
+        id: networkInfoDialog
 
         x: (parent.width - width) / 2.0; y: (parent.height - height) / 2.0
 

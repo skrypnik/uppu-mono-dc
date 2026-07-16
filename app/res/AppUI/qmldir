@@ -13,4 +13,5 @@ DeviceHiVoltageInfoView  1.0 qml/pages/views/DeviceHiVoltageInfoView.qml
 DeviceLoVoltageInfoView  1.0 qml/pages/views/DeviceLoVoltageInfoView.qml
 DeviceCalibratorInfoView 1.0 qml/pages/views/DeviceCalibratorInfoView.qml
 
-MetersInfoDialog 1.0 qml/pages/dialogs/MetersInfoDialog.qml
+MetersInfoDialog  1.0 qml/pages/dialogs/MetersInfoDialog.qml
+NetworkInfoDialog 1.0 qml/pages/dialogs/NetworkInfoDialog.qml

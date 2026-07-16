@@ -71,14 +71,14 @@ SimDialog {
 
     onAccept: {
 
-        let fCount = parseFloat(metersCount.input.text)
+        if (!(metersCount.input.acceptableInput && inputVoltage.input.acceptableInput)) return
+
+        let nCount = parseInt(metersCount.input.text)
         let fVoltage = parseFloat(inputVoltage.input.text)
-        let iBaudRate = parseFloat(baudRate.combo.currentValue)
-        let iInputKind = parseFloat(inputKind.combo.currentIndex)
+        let nBaudRate = parseInt(baudRate.combo.currentValue)
+        let nInputKind = parseInt(inputKind.combo.currentIndex)
 
-        console.log(fCount, iBaudRate, iInputKind, fVoltage)
-
-        engine.network.sendSetMetersInfoRequest(fCount, iBaudRate, iInputKind, fVoltage)
+        engine.network.sendSetMetersInfoRequest(nCount, nBaudRate, nInputKind, fVoltage)
     }
 
     onVisibleChanged: {

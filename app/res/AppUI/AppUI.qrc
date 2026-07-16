@@ -18,6 +18,7 @@
         <file>qml/pages/views/DeviceCalibratorInfoView.qml</file>
 
         <file>qml/pages/dialogs/MetersInfoDialog.qml</file>
+        <file>qml/pages/dialogs/NetworkInfoDialog.qml</file>
 
     </qresource>
 </RCC>
