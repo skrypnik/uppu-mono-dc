@@ -15,11 +15,22 @@ SimPage {
 
         SimLabel {
 
+            id: title
+
             anchors { left: parent.left; verticalCenter: parent.verticalCenter }
 
             font { pixelSize: SimControl.Size._24px; weight: Font.DemiBold }
 
             text: "УППУ МОНО DC"
+        }
+
+        SimLabel {
+
+            anchors { left: title.right; bottom: title.bottom; leftMargin: SimControl.Margin._08px }
+
+            font { pixelSize: SimControl.Font._16px; weight: Font.DemiBold }
+
+            text: engine.device.info ? engine.device.info.address0 : ""
         }
 
         SimMiniature {

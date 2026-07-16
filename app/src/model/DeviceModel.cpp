@@ -16,7 +16,7 @@ namespace Enercom::Model
 
         for (int row=0x00; row<items_.size(); ++row)
         {
-            if (items_[row]->serial_ == item->serial_)
+            if (item->serial_ == items_[row]->serial_)
             {
                 items_[row] = item;
 
@@ -24,8 +24,6 @@ namespace Enercom::Model
 
                 return item;
             }
-
-            row++;
         }
 
         const auto row = static_cast<int>(items_.size());

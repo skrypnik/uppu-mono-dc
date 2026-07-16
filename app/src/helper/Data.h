@@ -18,6 +18,13 @@ namespace Enercom::Helper
 
     public:
         /**
+         * Converts network address to uint32_t representation
+         * @param address network address
+         * @return network address to uint32_t representation
+         */
+        static uint32_t networkAddressToUInt32(const QString& address);
+
+        /**
         * Returns CRC32‑IEEE802.3 checksum
         * @param data given data
         * @return CRC32‑IEEE802.3 checksum

@@ -2,6 +2,8 @@
 
 #include <config/Common.h>
 
+#include <helper/Data.h>
+
 #include <QTcpSocket>
 
 #include "Searcher.h"
@@ -242,9 +244,14 @@ namespace Enercom::Network
         this->send(Packet::generateRequest(params_->serialNumber, Payload::allowVoltageGenerationRequest(hiVoltage, loVoltage)));
     }
 
-    void Module::sendSetNetworkInfoRequest(const int host, const int port, const int mask)
+    void Module::sendSetNetworkInfoRequest(const QString& host, const QString& mask, const int port)
     {
-        this->send(Packet::generateRequest(params_->serialNumber, Payload::setNetworkInfoRequest(host, port, mask)));
+        const auto nHost = Helper::Data::networkAddressToUInt32(host);
+        const auto nMask = Helper::Data::networkAddressToUInt32(mask);
+
+        qDebug() << "!!!!!" << nHost << nMask;
+
+        // this->send(Packet::generateRequest(params_->serialNumber, Payload::setNetworkInfoRequest(nHost, port, nMask)));
     }
 
     void Module::onDeviceInfoReceived(const Enercom::Network::Packet::Fields::Ptr& data)

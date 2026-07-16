@@ -185,11 +185,11 @@ namespace Enercom::Network
         /**
          * Sends set network info request
          * @param host network address
-         * @param port network port
          * @param mask network mask
+         * @param port network port
          * @return TLV formated request
          */
-        Q_INVOKABLE void sendSetNetworkInfoRequest(int host, int port, int mask);
+        Q_INVOKABLE void sendSetNetworkInfoRequest(const QString& host, const QString& mask, int port);
 
     private:
         /**

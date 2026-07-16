@@ -51,11 +51,13 @@ SimDialog {
 
     onAccept: {
 
+        if (!(host.input.acceptableInput && mask.input.acceptableInput && port.input.acceptableInput)) return
+
         let sHost = host.input.text
         let sMask = mask.input.text
-        let nPort = port.input.text
+        let nPort = parseInt(port.input.text)
 
-        engine.network.sendSetMetersInfoRequest(fCount, iBaudRate, iInputKind, fVoltage)
+        engine.network.sendSetNetworkInfoRequest(sHost, sMask, nPort)
     }
 
     onVisibleChanged: {
