@@ -249,9 +249,7 @@ namespace Enercom::Network
         const auto nHost = Helper::Data::networkAddressToUInt32(host);
         const auto nMask = Helper::Data::networkAddressToUInt32(mask);
 
-        qDebug() << "!!!!!" << nHost << nMask;
-
-        // this->send(Packet::generateRequest(params_->serialNumber, Payload::setNetworkInfoRequest(nHost, port, nMask)));
+        this->send(Packet::generateRequest(params_->serialNumber, Payload::setNetworkInfoRequest(nHost, port, nMask)));
     }
 
     void Module::onDeviceInfoReceived(const Enercom::Network::Packet::Fields::Ptr& data)

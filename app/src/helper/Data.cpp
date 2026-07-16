@@ -30,10 +30,10 @@ namespace Enercom::Helper
 
         uint32_t result = 0x00;
 
-        for(auto it = quarters.rbegin(); it != quarters.rend(); ++it)
+        for(auto it = quarters.begin(); it != quarters.end(); ++it)
         {
             result |= static_cast<uint8_t>(it->toInt());
-            if (it + 0x01 != quarters.rend()) result <<= 0x08;
+            if (it + 0x01 != quarters.end()) result <<= 0x08;
         }
 
         return result;
