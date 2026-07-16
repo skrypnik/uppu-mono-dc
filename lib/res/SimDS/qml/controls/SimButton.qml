@@ -15,7 +15,7 @@ Button {
 
     leftPadding: buttonPadding; rightPadding: buttonPadding
 
-    font.pixelSize: SimControl.Font._17px
+    font { pixelSize: SimControl.Font._17px; weight: Font.Medium }
 
     palette {
 
@@ -42,9 +42,7 @@ Button {
 
         border {
 
-            width: 2.0
-
-            color: parent.hovered ? palette.highlight : palette.button
+            width: 2.0; color: parent.hovered ? palette.highlight : palette.button
         }
 
         color: parent.down ? palette.highlight : palette.button

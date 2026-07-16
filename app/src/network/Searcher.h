@@ -26,6 +26,11 @@ namespace Enercom::Network
          */
         void initialize();
 
+        /**
+         * Sends broadcast request
+         */
+        void sendBroadcastRequest() const;
+
     signals:
         /**
          * Emits, when module receives response on broadcast request

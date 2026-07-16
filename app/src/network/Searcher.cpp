@@ -24,13 +24,18 @@ namespace Enercom::Network
         QObject::connect(socket_, &QUdpSocket::readyRead, this, &Searcher::onReceiveBroadcastRequest);
     }
 
-    void Searcher::onSendBroadcastRequest() const
+    void Searcher::sendBroadcastRequest() const
     {
         const auto subnet = Config::Common::get().root()["service"]["subnet"].toString();
         const auto serial = Config::Common::get().root()["service"]["serial"].toInt();
         const auto port = Config::Common::get().root()["service"]["port"].toInt();
 
         socket_->writeDatagram(Packet::generateRequest(serial, Payload::deviceInfoRequest()), QHostAddress(subnet), port);
+    }
+
+    void Searcher::onSendBroadcastRequest() const
+    {
+        this->sendBroadcastRequest();
     }
 
     void Searcher::onReceiveBroadcastRequest()

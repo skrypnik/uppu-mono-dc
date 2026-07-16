@@ -167,7 +167,7 @@ namespace Enercom::Network
         QByteArray value;
         value.append(QByteArray::fromRawData(reinterpret_cast<char*>(&reserved), sizeof(uint8_t)));
 
-        return pack(static_cast<uint8_t>(Request::GetStatus), value);
+        return pack(static_cast<uint8_t>(Request::GetStatusInfo), value);
     }
 
     QByteArray Payload::allowVoltageGenerationRequest(uint8_t hiVoltage, uint8_t loVoltage)

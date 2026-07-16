@@ -38,6 +38,7 @@ namespace Enercom
 
         /// Dispacher -> device signal connections
         QObject::connect(dispatcher_, &Dispatcher::deviceStatusInfoReceived,     device_, &Device::onDeviceStatusInfoChanged);
+        QObject::connect(dispatcher_, &Dispatcher::deviceMetersInfoReceived,     device_, &Device::onDeviceMetersInfoChanged);
         QObject::connect(dispatcher_, &Dispatcher::deviceHiVoltageInfoReceived,  device_, &Device::onDeviceHiVoltageInfoChanged);
         QObject::connect(dispatcher_, &Dispatcher::deviceLoVoltageInfoReceived,  device_, &Device::onDeviceLoVoltageInfoChanged);
         QObject::connect(dispatcher_, &Dispatcher::deviceCalibratorInfoReceived, device_, &Device::onDeviceCalibratorInfoChanged);

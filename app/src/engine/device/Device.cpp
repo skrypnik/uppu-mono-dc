@@ -1,7 +1,5 @@
 #include "Device.h"
 
-#include "HiVoltageInfo.h"
-
 #include <QDebug>
 
 namespace Enercom
@@ -9,6 +7,7 @@ namespace Enercom
     Device::Device(QObject* parent)
         : QObject(parent)
         , statusInfo_(std::make_shared<StatusInfo>())
+        , metersInfo_(std::make_shared<MetersInfo>())
         , hiVoltageInfo_(std::make_shared<HiVoltageInfo>())
         , loVoltageInfo_(std::make_shared<LoVoltageInfo>())
         , calibratorInfo_(std::make_shared<CalibratorInfo>())
@@ -29,6 +28,11 @@ namespace Enercom
     QVariant Device::statusInfo() const
     {
         return QVariant::fromValue(statusInfo_.get());
+    }
+
+    QVariant Device::metersInfo() const
+    {
+        return QVariant::fromValue(metersInfo_.get());
     }
 
     QVariant Device::hiVoltageInfo() const
@@ -56,6 +60,13 @@ namespace Enercom
     void Device::onDeviceStatusInfoChanged(const Enercom::Network::Packet::Fields::Ptr& packet)
     {
         statusInfo_->fromRawData(packet->data()->data());
+
+        emit this->changed();
+    }
+
+    void Device::onDeviceMetersInfoChanged(const Enercom::Network::Packet::Fields::Ptr& packet)
+    {
+        metersInfo_->fromRawData(packet->data()->data());
 
         emit this->changed();
     }

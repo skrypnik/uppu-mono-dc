@@ -7,7 +7,7 @@ SimPage {
 
     SimWindow {
 
-        anchors.centerIn: parent
+        x: (parent.width - width) / 2.0; y: (parent.height - height) / 2.0
 
         title: "Подключение к устройству"
 

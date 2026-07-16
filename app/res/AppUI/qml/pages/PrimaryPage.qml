@@ -5,11 +5,41 @@ import SimDS 1.0
 
 SimPage {
 
+    SimFrame {
+
+        id: panel
+
+        height: SimControl.Size._40px
+
+        anchors { left: parent.left; top: parent.top; right: parent.right; margins: SimControl.Margin._12px }
+
+        SimLabel {
+
+            anchors { left: parent.left; verticalCenter: parent.verticalCenter }
+
+            font { pixelSize: SimControl.Size._24px; weight: Font.DemiBold }
+
+            text: "УППУ МОНО DC"
+        }
+
+        SimMiniature {
+
+            anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: SimControl.Margin._02px }
+
+            icon: "qrc:/SimDS/svg/controls/Close.svg"
+
+            onClicked: {
+
+                /// \todo
+            }
+        }
+    }
+
     SimPanel {
 
         id: deviceInfo
 
-        anchors { left: parent.left; top: parent.top; leftMargin: SimControl.Margin._12px; topMargin: SimControl.Margin._12px }
+        anchors { left: parent.left; top: panel.bottom; leftMargin: SimControl.Margin._12px; topMargin: SimControl.Margin._12px }
 
         title: "Информация об устройстве"
 
@@ -25,7 +55,7 @@ SimPage {
 
         id: deviceStatusInfo
 
-        anchors { left: deviceInfo.right; top: parent.top; leftMargin: SimControl.Margin._12px; topMargin: SimControl.Margin._12px }
+        anchors { left: deviceInfo.right; top: panel.bottom; leftMargin: SimControl.Margin._12px; topMargin: SimControl.Margin._12px }
 
         title: "Статус устройства"
 
@@ -41,7 +71,7 @@ SimPage {
 
         id: deviceHiVoltageInfo
 
-        anchors { right: parent.right; top: parent.top; rightMargin: SimControl.Margin._12px; topMargin: SimControl.Margin._12px }
+        anchors { right: parent.right; top: panel.bottom; rightMargin: SimControl.Margin._12px; topMargin: SimControl.Margin._12px }
 
         title: "Параметры высокого напряжения"
 
@@ -83,6 +113,38 @@ SimPage {
 
             }
         }
+    }
+
+    SimPanel {
+
+        id: deviceMetersInfo
+
+        anchors { left: parent.left; top: deviceCalibratorInfo.bottom; leftMargin: SimControl.Margin._12px; topMargin: SimControl.Margin._12px }
+
+        controls: SimPanel.Controls.Edit
+
+        title: "Параметры счетчиков"
+
+        Column {
+
+            DeviceMetersInfoView {
+
+            }
+        }
+
+        onEdit: {
+
+            deviceMetersDialog.visible = true
+        }
+    }
+
+    MetersInfoDialog {
+
+        id: deviceMetersDialog
+
+        x: (parent.width - width) / 2.0; y: (parent.height - height) / 2.0
+
+        visible: false
     }
 
 }

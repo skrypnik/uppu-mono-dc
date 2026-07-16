@@ -17,9 +17,14 @@ namespace Enercom
             emit this->deviceInfoReceived(packet);
         }
 
-        if (packet->data()->type() == static_cast<uint8_t>(Network::Payload::Request::GetStatus))
+        if (packet->data()->type() == static_cast<uint8_t>(Network::Payload::Request::GetStatusInfo))
         {
             emit this->deviceStatusInfoReceived(packet);
+        }
+
+        if (packet->data()->type() == static_cast<uint8_t>(Network::Payload::Request::GetMetersInfo))
+        {
+            emit this->deviceMetersInfoReceived(packet);
         }
 
         if (packet->data()->type() == static_cast<uint8_t>(Network::Payload::Request::GetHiVoltageInfo))

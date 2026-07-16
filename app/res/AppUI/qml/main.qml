@@ -18,12 +18,9 @@ ApplicationWindow
 
     StackLayout {
 
-        id: applicationLayout
+        id: layout
 
-        anchors {
-
-            fill: parent
-        }
+        anchors { fill: parent }
 
         StartPage {
 
@@ -40,12 +37,12 @@ ApplicationWindow
 
         function onDeviceConnected() {
 
-            applicationLayout.currentIndex = Pages.Index.PrimaryPage
+            layout.currentIndex = Pages.Index.PrimaryPage
         }
     }
 
     Component.onCompleted: {
 
-        applicationLayout.currentIndex = Pages.Index.StartPage
+        layout.currentIndex = Pages.Index.StartPage
     }
 }

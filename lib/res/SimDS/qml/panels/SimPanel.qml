@@ -7,6 +7,16 @@ GroupBox {
 
     id: control
 
+    signal edit()
+
+    enum Controls {
+
+        None = 0x00,
+        Edit = 0x01
+    }
+
+    property int controls: SimPanel.Controls.None
+
     leftPadding: SimControl.Padding._14px; topPadding: SimControl.Padding._14px + label.height; rightPadding: SimControl.Padding._14px; bottomPadding: SimControl.Padding._14px
 
     background: Rectangle {
@@ -35,6 +45,22 @@ GroupBox {
             color: SimPalette.colors.grey[0]
 
             text: control.title
+        }
+
+        Row {
+
+            spacing: SimControl.Spacing._08px
+
+            anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: SimControl.Margin._08px }
+
+            SimMiniature {
+
+                visible: control.controls & SimPanel.Controls.Edit
+
+                icon: "qrc:/SimDS/svg/controls/Edit.svg"
+
+                onClicked: edit()
+            }
         }
     }
 }

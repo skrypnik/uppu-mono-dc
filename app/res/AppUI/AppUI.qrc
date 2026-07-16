@@ -12,9 +12,12 @@
         <file>qml/pages/views/DeviceInfoView.qml</file>
         <file>qml/pages/views/ObservedDeviceView.qml</file>
         <file>qml/pages/views/DeviceStatusInfoView.qml</file>
+        <file>qml/pages/views/DeviceMetersInfoView.qml</file>
         <file>qml/pages/views/DeviceHiVoltageInfoView.qml</file>
         <file>qml/pages/views/DeviceLoVoltageInfoView.qml</file>
         <file>qml/pages/views/DeviceCalibratorInfoView.qml</file>
+
+        <file>qml/pages/dialogs/MetersInfoDialog.qml</file>
 
     </qresource>
 </RCC>

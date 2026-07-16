@@ -8,6 +8,9 @@ PrimaryPage 1.0 qml/pages/PrimaryPage.qml
 DeviceInfoView           1.0 qml/pages/views/DeviceInfoView.qml
 ObservedDeviceView       1.0 qml/pages/views/ObservedDeviceView.qml
 DeviceStatusInfoView     1.0 qml/pages/views/DeviceStatusInfoView.qml
+DeviceMetersInfoView     1.0 qml/pages/views/DeviceMetersInfoView.qml
 DeviceHiVoltageInfoView  1.0 qml/pages/views/DeviceHiVoltageInfoView.qml
 DeviceLoVoltageInfoView  1.0 qml/pages/views/DeviceLoVoltageInfoView.qml
 DeviceCalibratorInfoView 1.0 qml/pages/views/DeviceCalibratorInfoView.qml
+
+MetersInfoDialog 1.0 qml/pages/dialogs/MetersInfoDialog.qml

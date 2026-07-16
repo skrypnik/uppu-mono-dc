@@ -9,6 +9,10 @@ GroupBox {
 
     signal close()
 
+    Drag.active: dragArea.drag.active
+    Drag.hotSpot.x: 10.0
+    Drag.hotSpot.y: 10.0
+
     leftPadding: SimControl.Padding._14px; topPadding: SimControl.Padding._14px + label.height; rightPadding: SimControl.Padding._14px; bottomPadding: SimControl.Padding._14px
 
     background: Rectangle {
@@ -25,6 +29,15 @@ GroupBox {
         color: SimPalette.colors.grey[1600]
 
         border.color: SimPalette.colors.grey[1300]
+
+        MouseArea {
+
+            id: dragArea
+
+            anchors { fill: parent }
+
+            drag.target: control
+        }
 
         Text {
 

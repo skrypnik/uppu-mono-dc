@@ -33,7 +33,7 @@ namespace Enercom::Network
             GetHiVoltageInfo       = 0xA5,
             SetLoVoltageInfo       = 0xA6,
             GetLoVoltageInfo       = 0xA7,
-            GetStatus              = 0xA8,
+            GetStatusInfo          = 0xA8,
             AllowVoltageGeneration = 0xA9,
             SetNetworkInfo         = 0xB0
         };

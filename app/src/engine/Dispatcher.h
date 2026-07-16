@@ -34,6 +34,12 @@ namespace Enercom
         void deviceStatusInfoReceived(const Enercom::Network::Packet::Fields::Ptr& data);
 
         /**
+         * Emits, when meters info received
+         * @param data packet data
+         */
+        void deviceMetersInfoReceived(const Enercom::Network::Packet::Fields::Ptr& data);
+
+        /**
          * Emits, when device info received
          * @param data packet data
          */

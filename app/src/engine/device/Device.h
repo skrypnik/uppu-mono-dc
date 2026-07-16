@@ -5,6 +5,7 @@
 #include <network/Packet.h>
 
 #include "StatusInfo.h"
+#include "MetersInfo.h"
 #include "HiVoltageInfo.h"
 #include "LoVoltageInfo.h"
 #include "CalibratorInfo.h"
@@ -27,6 +28,11 @@ namespace Enercom
          * Device status info
          */
         Q_PROPERTY( QVariant statusInfo READ statusInfo NOTIFY changed )
+
+        /**
+         * Meters info
+         */
+        Q_PROPERTY( QVariant metersInfo READ metersInfo NOTIFY changed )
 
         /**
          * Device high voltage info
@@ -66,6 +72,11 @@ namespace Enercom
         [[nodiscard]] QVariant statusInfo() const;
 
         /**
+         * Meters info metaobject getter
+         */
+        [[nodiscard]] QVariant metersInfo() const;
+
+        /**
          * Device high voltage info metaobject getter
          */
         [[nodiscard]] QVariant hiVoltageInfo() const;
@@ -94,10 +105,16 @@ namespace Enercom
         void onDeviceInfoChanged(const Enercom::Model::DeviceItem::Ptr& info);
 
         /**
-         * Device info changed handler
+         * Device status info changed handler
          * @param packet device status info packet
          */
         void onDeviceStatusInfoChanged(const Enercom::Network::Packet::Fields::Ptr& packet);
+
+        /**
+         * Device meters info changed handler
+         * @param packet device meters info packet
+         */
+        void onDeviceMetersInfoChanged(const Enercom::Network::Packet::Fields::Ptr& packet);
 
         /**
          * Device high voltage info changed handler
@@ -127,6 +144,11 @@ namespace Enercom
          * Device status info
          */
         StatusInfo::Ptr statusInfo_;
+
+        /**
+         * Meters info
+         */
+        MetersInfo::Ptr metersInfo_;
 
         /**
         * Device high voltage info

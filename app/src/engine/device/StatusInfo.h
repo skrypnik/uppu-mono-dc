@@ -8,7 +8,7 @@
 namespace Enercom
 {
     /**
-    * Current device calibrator params
+    * Current device status info
     */
     class StatusInfo final : public QObject
     {
@@ -72,12 +72,12 @@ namespace Enercom
 
     public:
         /**
-         * Constructs current device calibrator params object
+         * Constructs current device status info object
          */
         explicit StatusInfo(QObject* parent = nullptr);
 
         /**
-         * Creates params from calibrator info response raw data
+         * Creates params from status info response raw data
          */
         void fromRawData(const QByteArray& data);
 

@@ -4,6 +4,13 @@ import SimDS 1.0
 
 Item {
 
+    DropArea {
+
+        id: dropArea
+
+        anchors { fill: parent; margins: SimControl.Margin._12px }
+    }
+
     Rectangle {
 
         anchors {
@@ -11,6 +18,6 @@ Item {
             fill: parent
         }
 
-        color: SimPalette.colors.grey[1500]
+        color: dropArea.containsDrag ? SimPalette.colors.grey[1600] : SimPalette.colors.grey[1500]
     }
 }
