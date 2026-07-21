@@ -5,13 +5,17 @@ singleton Pages 1.0 qml/pages/Pages.qml
 StartPage   1.0 qml/pages/StartPage.qml
 PrimaryPage 1.0 qml/pages/PrimaryPage.qml
 
-DeviceInfoView           1.0 qml/pages/views/DeviceInfoView.qml
-ObservedDeviceView       1.0 qml/pages/views/ObservedDeviceView.qml
-DeviceStatusInfoView     1.0 qml/pages/views/DeviceStatusInfoView.qml
-DeviceMetersInfoView     1.0 qml/pages/views/DeviceMetersInfoView.qml
-DeviceHiVoltageInfoView  1.0 qml/pages/views/DeviceHiVoltageInfoView.qml
-DeviceLoVoltageInfoView  1.0 qml/pages/views/DeviceLoVoltageInfoView.qml
-DeviceCalibratorInfoView 1.0 qml/pages/views/DeviceCalibratorInfoView.qml
+DeviceInfoView          1.0 qml/pages/views/DeviceInfoView.qml
+StatusInfoView          1.0 qml/pages/views/StatusInfoView.qml
+MetersInfoView          1.0 qml/pages/views/MetersInfoView.qml
+HiVoltageInfoView       1.0 qml/pages/views/HiVoltageInfoView.qml
+LoVoltageInfoView       1.0 qml/pages/views/LoVoltageInfoView.qml
+ObservedDeviceView      1.0 qml/pages/views/ObservedDeviceView.qml
+CalibratorReadingsView  1.0 qml/pages/views/CalibratorReadingsView.qml
 
 MetersInfoDialog  1.0 qml/pages/dialogs/MetersInfoDialog.qml
 NetworkInfoDialog 1.0 qml/pages/dialogs/NetworkInfoDialog.qml
+VoltageInfoDialog 1.0 qml/pages/dialogs/VoltageInfoDialog.qml
+
+TopPanel  1.0 qml/pages/panels/TopPanel.qml
+InfoPanel 1.0 qml/pages/panels/InfoPanel.qml

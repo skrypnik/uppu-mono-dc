@@ -1,4 +1,4 @@
-#include "CalibratorInfo.h"
+#include "CalibratorReadings.h"
 
 #include <helper/Data.h>
 #include <helper/View.h>
@@ -7,13 +7,13 @@
 
 namespace Enercom
 {
-    CalibratorInfo::CalibratorInfo(QObject* parent)
+    CalibratorReadings::CalibratorReadings(QObject* parent)
         : QObject(parent)
     {
 
     }
 
-    void CalibratorInfo::fromRawData(const QByteArray& data)
+    void CalibratorReadings::fromRawData(const QByteArray& data)
     {
         /// \todo check response code
 
@@ -27,32 +27,32 @@ namespace Enercom
         emit this->changed();
     }
 
-    QVariant CalibratorInfo::voltage() const
+    QVariant CalibratorReadings::voltage() const
     {
         return Helper::View::normalizedFloat(voltage_);
     }
 
-    QVariant CalibratorInfo::current() const
+    QVariant CalibratorReadings::current() const
     {
         return Helper::View::normalizedFloat(current_);
     }
 
-    QVariant CalibratorInfo::power() const
+    QVariant CalibratorReadings::power() const
     {
         return Helper::View::normalizedFloat(power_);
     }
 
-    QVariant CalibratorInfo::energy() const
+    QVariant CalibratorReadings::energy() const
     {
         return Helper::View::normalizedFloat(energy_);
     }
 
-    QVariant CalibratorInfo::pulsePeriod() const
+    QVariant CalibratorReadings::pulsePeriod() const
     {
         return Helper::View::normalizedFloat(pulsePeriod_);
     }
 
-    QVariant CalibratorInfo::pulseCount() const
+    QVariant CalibratorReadings::pulseCount() const
     {
         return pulseCount_;
     }

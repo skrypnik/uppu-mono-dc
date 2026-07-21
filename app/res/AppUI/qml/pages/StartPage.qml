@@ -13,7 +13,7 @@ SimPage {
 
         Column {
 
-            spacing: SimControl.Spacing._40px
+            spacing: SimControl.Spacing._14px
 
             Row {
 
@@ -22,8 +22,6 @@ SimPage {
                 Column {
 
                     id: network
-
-                    spacing: SimControl.Spacing._14px
 
                     SimFrame {
 
@@ -63,19 +61,6 @@ SimPage {
                             }
                         }
                     }
-
-                    SimButton {
-
-                        width: network.width
-
-                        text: "Подключиться"
-
-                        onClicked: {
-
-                            engine.network.setConnectionParams(host.input.text, port.input.text)
-                            engine.network.connectToHost()
-                        }
-                    }
                 }
 
                 ObservedDeviceView {
@@ -89,6 +74,19 @@ SimPage {
                     }
 
                     width: 228.0; height: network.height
+                }
+            }
+
+            SimButton {
+
+                width: network.width
+
+                text: "Подключиться"
+
+                onClicked: {
+
+                    engine.network.setConnectionParams(host.input.text, port.input.text)
+                    engine.network.connectToHost()
                 }
             }
         }

@@ -15,6 +15,9 @@ SimInput     1.0 qml/controls/SimInput.qml
 SimLabel     1.0 qml/controls/SimLabel.qml
 
 SimPropertyView 1.0 qml/views/SimPropertyView.qml
+SimRowScaleView 1.0 qml/views/SimRowScaleView.qml
+
+SimRowScale 1.0 qml/sim/SimRowScale.qml
 
 SimWindow 1.0 qml/panels/SimWindow.qml
 SimDialog 1.0 qml/panels/SimDialog.qml

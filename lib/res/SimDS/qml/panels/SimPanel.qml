@@ -55,6 +55,8 @@ GroupBox {
 
             SimMiniature {
 
+                width: SimControl.Size._20px; height: SimControl.Size._20px
+
                 visible: control.controls & SimPanel.Controls.Edit
 
                 icon: "qrc:/SimDS/svg/controls/Edit.svg"

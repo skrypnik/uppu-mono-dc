@@ -5,156 +5,50 @@ import SimDS 1.0
 
 SimPage {
 
-    SimFrame {
+    TopPanel {
 
-        id: panel
-
-        height: SimControl.Size._40px
+        id: topPanel
 
         anchors { left: parent.left; top: parent.top; right: parent.right; margins: SimControl.Margin._12px }
-
-        SimLabel {
-
-            id: title
-
-            anchors { left: parent.left; verticalCenter: parent.verticalCenter }
-
-            font { pixelSize: SimControl.Size._24px; weight: Font.DemiBold }
-
-            text: "УППУ МОНО DC"
-        }
-
-        SimLabel {
-
-            anchors { left: title.right; bottom: title.bottom; leftMargin: SimControl.Margin._08px }
-
-            font { pixelSize: SimControl.Font._16px; weight: Font.DemiBold }
-
-            text: engine.device.info ? engine.device.info.address0 : ""
-        }
-
-        SimMiniature {
-
-            anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: SimControl.Margin._02px }
-
-            icon: "qrc:/SimDS/svg/controls/Close.svg"
-
-            onClicked: {
-
-                /// \todo
-            }
-        }
     }
 
-    SimPanel {
+    SimRowScale {
 
-        id: deviceInfo
+        id: hiOutputVolage
 
-        anchors { left: parent.left; top: panel.bottom; leftMargin: SimControl.Margin._12px; topMargin: SimControl.Margin._12px }
+        anchors { left: topPanel.left; top: topPanel.bottom; topMargin: SimControl.Margin._12px }
 
-        controls: SimPanel.Controls.Edit
+        scale.min: 0.0; scale.max: 1500.0
 
-        title: "Информация об устройстве"
+        scale.value: engine.device.statusInfo.hiVoltage
 
-        Column {
+        value.text: engine.device.statusInfo.hiVoltage + " В"
 
-            DeviceInfoView {
-
-            }
-        }
-
-        onEdit: {
-
-            networkInfoDialog.visible = true
-        }
+        title.text: "Выходное напряжение (в)"
     }
 
-    SimPanel {
+    SimRowScale {
 
-        id: deviceStatusInfo
+        id: loOutputVolage
 
-        anchors { left: deviceInfo.right; top: panel.bottom; leftMargin: SimControl.Margin._12px; topMargin: SimControl.Margin._12px }
+        anchors { left: hiOutputVolage.right; top: topPanel.bottom; margins: SimControl.Margin._12px }
 
-        title: "Статус устройства"
+        scale.min: 0.0; scale.max: 0.2
 
-        Column {
+        scale.value: engine.device.statusInfo.loVoltage
 
-            DeviceStatusInfoView {
+        value.text: engine.device.statusInfo.loVoltage + " В"
 
-            }
-        }
+        title.text: "Выходное напряжение (н)"
     }
 
-    SimPanel {
+    InfoPanel {
 
-        id: deviceHiVoltageInfo
+        anchors { right: topPanel.right; top: topPanel.bottom; bottom: parent.bottom; topMargin: SimControl.Margin._12px; bottomMargin: SimControl.Margin._12px }
 
-        anchors { right: parent.right; top: panel.bottom; rightMargin: SimControl.Margin._12px; topMargin: SimControl.Margin._12px }
-
-        title: "Параметры высокого напряжения"
-
-        Column {
-
-            DeviceHiVoltageInfoView {
-
-            }
-        }
+        panelIndex: topPanel.buttonIndex
     }
 
-    SimPanel {
-
-        id: deviceLoVoltageInfo
-
-        anchors { right: parent.right; top: deviceHiVoltageInfo.bottom; rightMargin: SimControl.Margin._12px; topMargin: SimControl.Margin._12px }
-
-        title: "Параметры низкого напряжения"
-
-        Column {
-
-            DeviceLoVoltageInfoView {
-
-            }
-        }
-    }
-
-    SimPanel {
-
-        id: deviceCalibratorInfo
-
-        anchors { left: parent.left; top: deviceInfo.bottom; leftMargin: SimControl.Margin._12px; topMargin: SimControl.Margin._12px }
-
-        title: "Параметры калибратора"
-
-        Column {
-
-            DeviceCalibratorInfoView {
-
-            }
-        }
-    }
-
-    SimPanel {
-
-        id: deviceMetersInfo
-
-        anchors { left: parent.left; top: deviceCalibratorInfo.bottom; leftMargin: SimControl.Margin._12px; topMargin: SimControl.Margin._12px }
-
-        controls: SimPanel.Controls.Edit
-
-        title: "Параметры счетчиков"
-
-        Column {
-
-            DeviceMetersInfoView {
-
-            }
-        }
-
-        onEdit: {
-
-            metersInfoDialog.visible = true
-        }
-    }
 
     MetersInfoDialog {
 
@@ -174,4 +68,25 @@ SimPage {
         visible: false
     }
 
+    VoltageInfoDialog {
+
+        id: hiVoltageInfoDialog
+
+        voltageKind: VoltageInfoDialog.VoltageKind.High
+
+        x: (parent.width - width) / 2.0; y: (parent.height - height) / 2.0
+
+        visible: false
+    }
+
+    VoltageInfoDialog {
+
+        id: loVoltageInfoDialog
+
+        voltageKind: VoltageInfoDialog.VoltageKind.Low
+
+        x: (parent.width - width) / 2.0; y: (parent.height - height) / 2.0
+
+        visible: false
+    }
 }

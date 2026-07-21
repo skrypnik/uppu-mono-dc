@@ -7,13 +7,23 @@ Item {
 
     signal clicked()
 
+    /**
+     * Miniature icon source alias
+     */
     property alias icon: icon.source
 
-    width: SimControl.Size._20px; height: SimControl.Size._20px
+    /**
+     * Selected property for flat miniature
+     */
+    property bool selected: false
+
+    width: SimControl.Size._24px; height: SimControl.Size._24px
 
     Image {
 
         id: icon
+
+        width: parent.width; height: parent.height
 
         anchors.centerIn: parent
     }
@@ -24,11 +34,11 @@ Item {
 
         anchors.fill: icon
 
-        visible: false
+        visible: selected
 
-        radius: 1.0; samples: 16
+        radius: parent.selected ? 8.0 : 2.0; samples: 16
 
-        source: icon; color: SimPalette.colors.grey[0]
+        source: icon; color: parent.selected ? SimPalette.colors.blue[500] : SimPalette.colors.grey[0]
     }
 
     MouseArea {
@@ -39,8 +49,23 @@ Item {
 
         onClicked: parent.clicked()
 
-        onEntered: glow.visible = true
+        onEntered: {
 
-        onExited: glow.visible = false
+            if (parent.selected) return
+
+            glow.visible = true
+        }
+
+        onExited: {
+
+            if (parent.selected) return
+
+            glow.visible = false
+        }
+    }
+
+    onSelectedChanged: {
+
+        glow.visible = selected
     }
 }

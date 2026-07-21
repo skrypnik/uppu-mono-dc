@@ -20,36 +20,36 @@ SimPropertyView {
             display: "value"
         }
 
-        rows: engine.device.calibratorInfo === null ? [] : [
+        rows: engine.device.calibratorReadings === null ? [] : [
 
             {
                 "title": "Значение высокого напряжения, В",
-                "value": engine.device.calibratorInfo.voltage
+                "value": engine.device.calibratorReadings.voltage
             },
 
             {
                 "title": "Значение тока, А",
-                "value": engine.device.calibratorInfo.current
+                "value": engine.device.calibratorReadings.current
             },
 
             {
                 "title": "Значение мощности, Вт",
-                "value": engine.device.calibratorInfo.power
+                "value": engine.device.calibratorReadings.power
             },
 
             {
                 "title": "Значение энергии, кВт*ч",
-                "value": engine.device.calibratorInfo.energy
+                "value": engine.device.calibratorReadings.energy
             },
 
             {
                 "title": "Значение периода импульсов, сек",
-                "value": engine.device.calibratorInfo.pulsePeriod
+                "value": engine.device.calibratorReadings.pulsePeriod
             },
 
             {
                 "title": "Количество выданных импульсов",
-                "value": engine.device.calibratorInfo.pulseCount
+                "value": engine.device.calibratorReadings.pulseCount
             }
         ]
     }

@@ -26,7 +26,7 @@ SimDialog {
                         bottom: 0; top: 3
                     }
 
-                    about.text: "Значение [0-3]"
+                    about.text: "0 - 3"
                 }
 
                 SimInputBox {
@@ -40,7 +40,7 @@ SimDialog {
                         bottom: 10.0; top: 72.0
                     }
 
-                    about.text: "Значение [10.0-72.0]"
+                    about.text: "10.0 - 72.0"
                 }
             }
 

@@ -10,7 +10,7 @@ namespace Enercom
         , metersInfo_(std::make_shared<MetersInfo>())
         , hiVoltageInfo_(std::make_shared<HiVoltageInfo>())
         , loVoltageInfo_(std::make_shared<LoVoltageInfo>())
-        , calibratorInfo_(std::make_shared<CalibratorInfo>())
+        , calibratorReadings_(std::make_shared<CalibratorReadings>())
     {
 
     }
@@ -45,9 +45,9 @@ namespace Enercom
         return QVariant::fromValue(loVoltageInfo_.get());
     }
 
-    QVariant Device::calibratorInfo() const
+    QVariant Device::calibratorReadings() const
     {
-        return QVariant::fromValue(calibratorInfo_.get());
+        return QVariant::fromValue(calibratorReadings_.get());
     }
 
     void Device::onDeviceInfoChanged(const Enercom::Model::DeviceItem::Ptr& info)
@@ -85,9 +85,9 @@ namespace Enercom
         emit this->changed();
     }
 
-    void Device::onDeviceCalibratorInfoChanged(const Enercom::Network::Packet::Fields::Ptr& packet)
+    void Device::onDeviceCalibratorReadingsChanged(const Enercom::Network::Packet::Fields::Ptr& packet)
     {
-        calibratorInfo_->fromRawData(packet->data()->data());
+        calibratorReadings_->fromRawData(packet->data()->data());
 
         emit this->changed();
     }

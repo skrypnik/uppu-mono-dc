@@ -5,15 +5,15 @@ import SimDS 1.0
 
 GroupBox {
 
-    id: control
+    id: window
 
     signal close()
+
+    leftPadding: SimControl.Padding._14px; topPadding: SimControl.Padding._14px + label.height; rightPadding: SimControl.Padding._14px; bottomPadding: SimControl.Padding._14px
 
     Drag.active: dragArea.drag.active
     Drag.hotSpot.x: 10.0
     Drag.hotSpot.y: 10.0
-
-    leftPadding: SimControl.Padding._14px; topPadding: SimControl.Padding._14px + label.height; rightPadding: SimControl.Padding._14px; bottomPadding: SimControl.Padding._14px
 
     background: Rectangle {
 
@@ -23,6 +23,8 @@ GroupBox {
     }
 
     label: Rectangle {
+
+        id: label
 
         width: parent.width; height: SimControl.Size._40px
 
@@ -34,9 +36,9 @@ GroupBox {
 
             id: dragArea
 
-            anchors { fill: parent }
+            anchors.fill: parent
 
-            drag.target: control
+            drag.target: window
         }
 
         Text {
@@ -47,10 +49,12 @@ GroupBox {
 
             color: SimPalette.colors.grey[0]
 
-            text: control.title
+            text: window.title
         }
 
         SimMiniature {
+
+            width: SimControl.Size._20px; height: SimControl.Size._20px
 
             anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: SimControl.Margin._12px }
 
@@ -58,5 +62,11 @@ GroupBox {
 
             onClicked: close()
         }
+    }
+
+    Component.onCompleted: {
+
+        window.width = contentItem.childrenRect.width + SimControl.Padding._14px * 2.0
+        window.height = label.height + contentItem.childrenRect.height + SimControl.Padding._14px * 2.0
     }
 }

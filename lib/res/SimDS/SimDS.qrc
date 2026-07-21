@@ -18,6 +18,9 @@
         <file>qml/controls/SimLabel.qml</file>
 
         <file>qml/views/SimPropertyView.qml</file>
+        <file>qml/views/SimRowScaleView.qml</file>
+
+        <file>qml/sim/SimRowScale.qml</file>
 
         <file>qml/panels/SimWindow.qml</file>
         <file>qml/panels/SimDialog.qml</file>
@@ -26,14 +29,21 @@
 
         <file>qml/pages/SimPage.qml</file>
 
+        <file>svg/controls/Info.svg</file>
+        <file>svg/controls/Chart.svg</file>
+        <file>svg/controls/Tune.svg</file>
+        <file>svg/controls/Chip.svg</file>
         <file>svg/controls/Edit.svg</file>
         <file>svg/controls/Menu.svg</file>
         <file>svg/controls/Hide.svg</file>
         <file>svg/controls/Show.svg</file>
         <file>svg/controls/Plus.svg</file>
+        <file>svg/controls/Power.svg</file>
         <file>svg/controls/Minus.svg</file>
         <file>svg/controls/Close.svg</file>
         <file>svg/controls/Error.svg</file>
+        <file>svg/controls/Harmony.svg</file>
+        <file>svg/controls/Lightning.svg</file>
         <file>svg/controls/Question.svg</file>
         <file>svg/controls/CheckBoxChecked.svg</file>
         <file>svg/controls/CheckBoxPartiallyChecked.svg</file>

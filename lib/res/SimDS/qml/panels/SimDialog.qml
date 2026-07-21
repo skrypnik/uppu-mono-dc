@@ -51,6 +51,8 @@ GroupBox {
 
         SimMiniature {
 
+            width: SimControl.Size._20px; height: SimControl.Size._20px
+
             anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: SimControl.Margin._12px }
 
             icon: "qrc:/SimDS/svg/controls/Close.svg"

@@ -10,7 +10,7 @@ namespace Enercom
     /**
     * Current device calibrator params
     */
-    class CalibratorInfo final : public QObject
+    class CalibratorReadings final : public QObject
     {
         Q_OBJECT
 
@@ -48,13 +48,13 @@ namespace Enercom
         /**
         * Alias for shared_ptr
         */
-        using Ptr = std::shared_ptr<CalibratorInfo>;
+        using Ptr = std::shared_ptr<CalibratorReadings>;
 
     public:
         /**
          * Constructs current device calibrator params object
          */
-        explicit CalibratorInfo(QObject* parent = nullptr);
+        explicit CalibratorReadings(QObject* parent = nullptr);
 
         /**
          * Creates params from calibrator info response raw data
