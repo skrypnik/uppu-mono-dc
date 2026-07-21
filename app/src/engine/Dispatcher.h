@@ -63,6 +63,12 @@ namespace Enercom
          */
         void deviceCalibratorInfoReceived(const Enercom::Network::Packet::Fields::Ptr& data);
 
+        /**
+         * Emits, when calibrator voltage readings received
+         * @param data packet data
+         */
+        void deviceCalibratorReadingsReceived(const Enercom::Network::Packet::Fields::Ptr& data);
+
     public slots:
         /**
         * Incoming packet handler

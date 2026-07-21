@@ -8,7 +8,7 @@
 namespace Enercom
 {
     /**
-    * Current device calibrator params
+    * Current device calibrator readings
     */
     class CalibratorReadings final : public QObject
     {

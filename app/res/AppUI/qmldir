@@ -11,6 +11,7 @@ MetersInfoView          1.0 qml/pages/views/MetersInfoView.qml
 HiVoltageInfoView       1.0 qml/pages/views/HiVoltageInfoView.qml
 LoVoltageInfoView       1.0 qml/pages/views/LoVoltageInfoView.qml
 ObservedDeviceView      1.0 qml/pages/views/ObservedDeviceView.qml
+CalibratorInfoView      1.0 qml/pages/views/CalibratorInfoView.qml
 CalibratorReadingsView  1.0 qml/pages/views/CalibratorReadingsView.qml
 
 MetersInfoDialog  1.0 qml/pages/dialogs/MetersInfoDialog.qml

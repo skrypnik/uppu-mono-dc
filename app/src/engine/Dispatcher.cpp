@@ -41,6 +41,11 @@ namespace Enercom
         {
             emit this->deviceCalibratorInfoReceived(packet);
         }
+
+        if (packet->data()->type() == static_cast<uint8_t>(Network::Payload::Request::GetCalibratorReadings))
+        {
+            emit this->deviceCalibratorReadingsReceived(packet);
+        }
     }
 
     void Dispatcher::onIncomingBroadcastPacket(const Enercom::Network::Packet::Fields::Ptr& packet)

@@ -37,11 +37,11 @@ namespace Enercom
         QObject::connect(dispatcher_, &Dispatcher::deviceBroadcastInfoReceived, modelModule_->deviceModel(), &Model::DeviceModel::onIncomingDeviceInfo);
 
         /// Dispacher -> device signal connections
-        QObject::connect(dispatcher_, &Dispatcher::deviceStatusInfoReceived,     device_, &Device::onDeviceStatusInfoChanged);
-        QObject::connect(dispatcher_, &Dispatcher::deviceMetersInfoReceived,     device_, &Device::onDeviceMetersInfoChanged);
-        QObject::connect(dispatcher_, &Dispatcher::deviceHiVoltageInfoReceived,  device_, &Device::onDeviceHiVoltageInfoChanged);
-        QObject::connect(dispatcher_, &Dispatcher::deviceLoVoltageInfoReceived,  device_, &Device::onDeviceLoVoltageInfoChanged);
-        QObject::connect(dispatcher_, &Dispatcher::deviceCalibratorInfoReceived, device_, &Device::onDeviceCalibratorReadingsChanged);
+        QObject::connect(dispatcher_, &Dispatcher::deviceStatusInfoReceived,         device_, &Device::onDeviceStatusInfoChanged);
+        QObject::connect(dispatcher_, &Dispatcher::deviceMetersInfoReceived,         device_, &Device::onDeviceMetersInfoChanged);
+        QObject::connect(dispatcher_, &Dispatcher::deviceHiVoltageInfoReceived,      device_, &Device::onDeviceHiVoltageInfoChanged);
+        QObject::connect(dispatcher_, &Dispatcher::deviceLoVoltageInfoReceived,      device_, &Device::onDeviceLoVoltageInfoChanged);
+        QObject::connect(dispatcher_, &Dispatcher::deviceCalibratorReadingsReceived, device_, &Device::onDeviceCalibratorReadingsChanged);
 
         /// Model -> device signal connections
         QObject::connect(modelModule_->deviceModel(), &Model::DeviceModel::deviceInfoChanged, device_, &Device::onDeviceInfoChanged);

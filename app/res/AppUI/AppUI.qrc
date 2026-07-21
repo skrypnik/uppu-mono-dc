@@ -15,6 +15,7 @@
         <file>qml/pages/views/HiVoltageInfoView.qml</file>
         <file>qml/pages/views/LoVoltageInfoView.qml</file>
         <file>qml/pages/views/ObservedDeviceView.qml</file>
+        <file>qml/pages/views/CalibratorInfoView.qml</file>
         <file>qml/pages/views/CalibratorReadingsView.qml</file>
 
         <file>qml/pages/dialogs/MetersInfoDialog.qml</file>

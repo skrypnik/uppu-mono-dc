@@ -8,6 +8,7 @@
 #include "MetersInfo.h"
 #include "HiVoltageInfo.h"
 #include "LoVoltageInfo.h"
+#include "CalibratorInfo.h"
 #include "CalibratorReadings.h"
 
 namespace Enercom
@@ -43,6 +44,11 @@ namespace Enercom
          * Device low voltage info
          */
         Q_PROPERTY( QVariant loVoltageInfo READ loVoltageInfo NOTIFY changed )
+
+        /**
+         * Device calibrator info
+         */
+        Q_PROPERTY( QVariant calibratorInfo READ calibratorInfo NOTIFY changed )
 
         /**
          * Device calibrator readings
@@ -87,6 +93,11 @@ namespace Enercom
         [[nodiscard]] QVariant loVoltageInfo() const;
 
         /**
+         * Device calibrator info metaobject getter
+         */
+        [[nodiscard]] QVariant calibratorInfo() const;
+
+        /**
          * Device calibrator readings metaobject getter
          */
         [[nodiscard]] QVariant calibratorReadings() const;
@@ -129,6 +140,12 @@ namespace Enercom
         void onDeviceLoVoltageInfoChanged(const Enercom::Network::Packet::Fields::Ptr& packet);
 
         /**
+         * Device calibrator info changed handler
+         * @param packet device calibrator info packet
+         */
+        void onDeviceCalibratorInfoChanged(const Enercom::Network::Packet::Fields::Ptr& packet);
+
+        /**
          * Device calibrator readings changed handler
          * @param packet device calibrator info packet
          */
@@ -159,6 +176,11 @@ namespace Enercom
         * Device high voltage info
         */
         LoVoltageInfo::Ptr loVoltageInfo_;
+
+        /**
+         * Device calibrator info
+         */
+        CalibratorInfo::Ptr calibratorInfo_;
 
         /**
          * Device calibrator readings

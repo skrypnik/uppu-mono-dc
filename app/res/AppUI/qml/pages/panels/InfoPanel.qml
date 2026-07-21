@@ -106,7 +106,26 @@ SimFrame {
 
             SimPanel {
 
+                controls: SimPanel.Controls.Edit
+
                 title: "Параметры калибратора"
+
+                Column {
+
+                    CalibratorInfoView {
+
+                    }
+                }
+
+                onEdit: {
+
+                    calibratorInfoDialog.visible = true
+                }
+            }
+
+            SimPanel {
+
+                title: "Показания калибратора"
 
                 Column {
 

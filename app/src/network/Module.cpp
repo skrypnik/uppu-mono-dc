@@ -257,11 +257,12 @@ namespace Enercom::Network
         params_->serialNumber = data->sn();
 
         /// \note WORKAROUND!!! Refactor it, when Alexander fixed his transport
-        QTimer::singleShot(0,   this, [ this ] () { this->sendGetStatusRequest(); });
+        QTimer::singleShot(0,    this, [ this ] () { this->sendGetStatusRequest(); });
         QTimer::singleShot(50,   this, [ this ] () { this->sendGetMetersInfoRequest(); });
         QTimer::singleShot(100,  this, [ this ] () { this->sendGetHiVoltageInfoRequest(); });
-        QTimer::singleShot(150, this, [ this ] () { this->sendGetLoVoltageInfoRequest(); });
-        QTimer::singleShot(200, this, [ this ] () { this->sendGetCalibratorInfoRequest(); });
+        QTimer::singleShot(150,  this, [ this ] () { this->sendGetLoVoltageInfoRequest(); });
+        QTimer::singleShot(200,  this, [ this ] () { this->sendGetCalibratorInfoRequest(); });
+        QTimer::singleShot(250,  this, [ this ] () { this->sendGetCalibratorReadingsRequest(); });
     }
 
     void Module::onConnected()

@@ -89,4 +89,13 @@ SimPage {
 
         visible: false
     }
+
+    CalibratorInfoDialog {
+
+        id: calibratorInfoDialog
+
+        x: (parent.width - width) / 2.0; y: (parent.height - height) / 2.0
+
+        visible: false
+    }
 }
