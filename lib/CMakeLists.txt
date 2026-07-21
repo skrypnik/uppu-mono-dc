@@ -15,8 +15,8 @@ file( GLOB_RECURSE LIBRARY_RCFILES ${LIBRARY_RCFILE_DIR}/*.qrc )
 
 add_library( ${LIBRARY_NAME} STATIC ${LIBRARY_HEADERS} ${LIBRARY_SOURCES} ${LIBRARY_RCFILES} )
 
-find_package( Qt5 COMPONENTS Qml Core Quick REQUIRED )
+find_package( Qt5 COMPONENTS Xml Qml Core Quick PrintSupport REQUIRED )
 
-target_link_libraries( ${LIBRARY_NAME} Qt5::Qml Qt5::Core Qt5::Quick )
+target_link_libraries( ${LIBRARY_NAME} Qt5::Xml Qt5::Qml Qt5::Core Qt5::Quick Qt5::PrintSupport )
 
 target_include_directories( ${LIBRARY_NAME} PUBLIC ${LIBRARY_SOURCE_DIR} )

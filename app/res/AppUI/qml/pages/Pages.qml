@@ -7,6 +7,7 @@ Item {
     enum Index {
 
         StartPage   = 0x00,
-        PrimaryPage = 0x01
+        PrimaryPage = 0x01,
+        ReportPage  = 0x02
     }
 }

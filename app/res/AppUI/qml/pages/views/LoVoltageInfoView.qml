@@ -58,13 +58,13 @@ SimPropertyView {
             },
 
             {
-                "title": "Коэффициент усилителя",
-                "value": engine.device.loVoltageInfo.amplifierRatio
+                "title": "Аттенюатор усилителя",
+                "value": engine.device.loVoltageInfo.attenuator ? "Включен" : "Выключен"
             },
 
             {
-                "title": "Аттенюатор усилителя",
-                "value": engine.device.loVoltageInfo.attenuator ? "Включен" : "Выключен"
+                "title": "Коэффициент усилителя",
+                "value": engine.device.loVoltageInfo.amplifierRatio
             },
 
             {

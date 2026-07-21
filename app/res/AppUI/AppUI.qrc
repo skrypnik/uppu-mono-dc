@@ -7,6 +7,7 @@
 
         <file>qml/pages/Pages.qml</file>
         <file>qml/pages/StartPage.qml</file>
+        <file>qml/pages/ReportPage.qml</file>
         <file>qml/pages/PrimaryPage.qml</file>
 
         <file>qml/pages/views/DeviceInfoView.qml</file>
@@ -21,6 +22,7 @@
         <file>qml/pages/dialogs/MetersInfoDialog.qml</file>
         <file>qml/pages/dialogs/NetworkInfoDialog.qml</file>
         <file>qml/pages/dialogs/VoltageInfoDialog.qml</file>
+        <file>qml/pages/dialogs/CalibratorInfoDialog.qml</file>
 
         <file>qml/pages/panels/TopPanel.qml</file>
         <file>qml/pages/panels/InfoPanel.qml</file>

@@ -15,6 +15,9 @@ namespace Enercom::Network
      */
     class NetworkSettings
     {
+        /**
+         * Make friend for easy usage
+         */
         friend class Module;
 
         /**
@@ -113,13 +116,6 @@ namespace Enercom::Network
                 break;
             }
 
-            // if (params_->serialNumber == 0x00)
-            // {
-            //     params_->serialNumber = Network::Packet::valueFromBytes<uint16_t>(data_, 0x00);
-            //
-            //     qDebug() << Q_FUNC_INFO << "Served device SN:" << params_->serialNumber;
-            // }
-
             const auto data = data_.mid(0x00, static_cast<int>(size));
 
             qDebug() << "[SOCKET] <<<" << data.toHex();
@@ -181,71 +177,99 @@ namespace Enercom::Network
 
     void Module::sendSetGivenMeterRequest(const int index, const int address, const float current, const float voltage, const int constant, const int factor)
     {
+        qDebug() << Q_FUNC_INFO;
+
         this->send(Packet::generateRequest(params_->serialNumber, Payload::setGivenMeterRequest(index, address, current, voltage, constant, factor)));
     }
 
     void Module::sendGetGivenMeterRequest(const int index)
     {
+        qDebug() << Q_FUNC_INFO;
+
         this->send(Packet::generateRequest(params_->serialNumber, Payload::getGivenMeterRequest(index)));
     }
 
     void Module::sendAllowVoltageFlowRequest(const int allow)
     {
+        qDebug() << Q_FUNC_INFO;
+
         this->send(Packet::generateRequest(params_->serialNumber, Payload::allowVoltageFlow(allow)));
     }
 
     void Module::sendGetMeterReadingsRequest(const int index)
     {
+        qDebug() << Q_FUNC_INFO;
+
         this->send(Packet::generateRequest(params_->serialNumber, Payload::getMeterReadingsRequest(index)));
     }
 
     void Module::sendGetCalibratorReadingsRequest(const int reserved)
     {
+        qDebug() << Q_FUNC_INFO;
+
         this->send(Packet::generateRequest(params_->serialNumber, Payload::getCalibratorReadingsRequest(reserved)));
     }
 
     void Module::sendSetCalibratorInfoRequest(const int type, const int constant, const float current, const float voltage)
     {
+        qDebug() << Q_FUNC_INFO;
+
         this->send(Packet::generateRequest(params_->serialNumber, Payload::setCalibratorInfoRequest(type, constant, current, voltage)));
     }
 
     void Module::sendGetCalibratorInfoRequest(const int reserved)
     {
+        qDebug() << Q_FUNC_INFO;
+
         this->send(Packet::generateRequest(params_->serialNumber, Payload::getCalibratorInfoRequest(reserved)));
     }
 
     void Module::sendSetHiVoltageInfoRequest(const int mode, const float volREG, const float volDAC)
     {
+        qDebug() << Q_FUNC_INFO;
+
         this->send(Packet::generateRequest(params_->serialNumber, Payload::setHiVoltageInfoRequest(mode, volREG, volDAC)));
     }
 
     void Module::sendGetHiVoltageInfoRequest(const int reserved)
     {
+        qDebug() << Q_FUNC_INFO;
+
         this->send(Packet::generateRequest(params_->serialNumber, Payload::getHiVoltageInfoRequest(reserved)));
     }
 
     void Module::sendSetLoVoltageInfoRequest(const int mode, const float volREG, const float volDAC)
     {
+        qDebug() << Q_FUNC_INFO;
+
         this->send(Packet::generateRequest(params_->serialNumber, Payload::setLoVoltageInfoRequest(mode, volREG, volDAC)));
     }
 
     void Module::sendGetLoVoltageInfoRequest(const int reserved)
     {
+        qDebug() << Q_FUNC_INFO;
+
         this->send(Packet::generateRequest(params_->serialNumber, Payload::getLoVoltageInfoRequest(reserved)));
     }
 
     void Module::sendGetStatusRequest(const int reserved)
     {
+        qDebug() << Q_FUNC_INFO;
+
         this->send(Packet::generateRequest(params_->serialNumber, Payload::getStatus(reserved)));
     }
 
     void Module::sendAllowVoltageGenerationRequest(const int hiVoltage, const int loVoltage)
     {
+        qDebug() << Q_FUNC_INFO;
+
         this->send(Packet::generateRequest(params_->serialNumber, Payload::allowVoltageGenerationRequest(hiVoltage, loVoltage)));
     }
 
     void Module::sendSetNetworkInfoRequest(const QString& host, const QString& mask, const int port)
     {
+        qDebug() << Q_FUNC_INFO;
+
         const auto nHost = Helper::Data::networkAddressToUInt32(host);
         const auto nMask = Helper::Data::networkAddressToUInt32(mask);
 
@@ -309,4 +333,5 @@ namespace Enercom::Network
     {
         this->sendDeviceInfoRequest();
     }
+
 }

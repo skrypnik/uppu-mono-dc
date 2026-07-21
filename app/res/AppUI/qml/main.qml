@@ -29,6 +29,10 @@ ApplicationWindow
         PrimaryPage {
 
         }
+
+        ReportPage {
+
+        }
     }
 
     Connections {

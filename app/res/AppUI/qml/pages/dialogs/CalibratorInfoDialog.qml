@@ -31,7 +31,7 @@ SimDialog {
 
             input.validator: IntValidator {
 
-                bottom: 1; top: 10000
+                bottom: 1.0; top: 10000.0
             }
 
             about.text: "1 - 10000"
@@ -56,13 +56,20 @@ SimDialog {
 
         /// \todo check acceptable input
 
-        /// \todo send request
+        let fConstant = parseFloat(constant.input.text)
+        let fCurrent = parseFloat(current.input.text)
+        let fVoltage = parseFloat(voltage.input.text)
+
+        /// \note first parameter equals to zero because only one mode are present
+        engine.network.sendSetCalibratorInfoRequest(0x00, fConstant, fCurrent, fVoltage)
     }
 
     onVisibleChanged: {
 
         if (!visible) return
 
-        /// \todo fill input boxes
+        constant.input.text = engine.device.calibratorInfo.constant
+        current.input.text = engine.device.calibratorInfo.current
+        voltage.input.text = engine.device.calibratorInfo.voltage
     }
 }

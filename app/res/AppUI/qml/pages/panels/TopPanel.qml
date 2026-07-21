@@ -7,11 +7,6 @@ SimFrame {
 
     property alias buttonIndex: panelButtons.currentIndex
 
-    /**
-     * Shows voltage info panels
-     */
-    signal showInfoPanel(int panel)
-
     height: SimControl.Size._40px
 
     SimLabel {
@@ -72,7 +67,9 @@ SimFrame {
 
         onClicked: {
 
-                /// \todo
+            engine.network.disconnectFromHost()
+
+            layout.currentIndex = Pages.Index.StartPage
         }
     }
 

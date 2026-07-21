@@ -217,7 +217,7 @@ namespace Enercom
         /**
          * Amplifier ratio
          */
-        float amplifierRatio_ {};
+        uint8_t amplifierRatio_ {};
 
         /**
          * Regulator proportionality coefficient

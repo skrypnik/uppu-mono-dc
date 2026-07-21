@@ -27,6 +27,7 @@ namespace Enercom
         dacVoltageMin_ = Helper::Data::valueFromBytes<float>(data, 0x12);
         dacVoltageMax_ = Helper::Data::valueFromBytes<float>(data, 0x16);
         attenuator_ = Helper::Data::valueFromBytes<uint8_t>(data, 0x1A);
+        amplifierRatio_ = Helper::Data::valueFromBytes<uint8_t>(data, 0x1B);
         accuracy_ = Helper::Data::valueFromBytes<float>(data, 0x1E);
         regulatorRatio_ = Helper::Data::valueFromBytes<float>(data, 0x22);
         calibrationFactor_ = Helper::Data::valueFromBytes<float>(data, 0x26);
@@ -82,7 +83,7 @@ namespace Enercom
 
     QVariant LoVoltageInfo::amplifierRatio() const
     {
-        return Helper::View::normalizedFloat(amplifierRatio_);
+        return amplifierRatio_;
     }
 
     QVariant LoVoltageInfo::regulatorRatio() const
