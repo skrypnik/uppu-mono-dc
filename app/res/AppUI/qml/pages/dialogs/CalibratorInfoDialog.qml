@@ -9,46 +9,40 @@ SimDialog {
 
     SimFrame {
 
-        SimInputBox {
+        Column {
 
-            id: constant
+            SimInputBox {
 
-            title.text: "Постоянная счетчика, имп/кВт*ч"
+                id: constant
 
-            input.validator: IntValidator {
+                title.text: "Постоянная, имп/кВт*ч"
 
-                bottom: 1; top: 10000
+                /// \todo validator
+
+                about.text: "1 - 10000"
             }
 
-            about.text: "1 - 10000"
-        }
+            SimInputBox {
 
-        SimInputBox {
+                id: current
 
-            id: current
+                title.text: "Номинальный ток, А"
 
-            title.text: "Номинальный ток, А"
+                /// \todo validator
 
-            input.validator: IntValidator {
-
-                bottom: 1.0; top: 10000.0
+                about.text: "1 - 10000"
             }
 
-            about.text: "1 - 10000"
-        }
+            SimInputBox {
 
-        SimInputBox {
+                id: voltage
 
-            id: voltage
+                title.text: "Напряжение, В"
 
-            title.text: "Напряжение, В"
+                /// \todo validator
 
-            input.validator: DoubleValidator {
-
-                bottom: 10.0; top: 72.0
+                about.text: "0.0 - 1.0"
             }
-
-            about.text: "0.0 - 1.0"
         }
     }
 

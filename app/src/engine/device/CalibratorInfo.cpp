@@ -1,6 +1,7 @@
 #include "CalibratorInfo.h"
 
 #include <helper/Data.h>
+#include <helper/View.h>
 
 #include <QDebug>
 
@@ -15,24 +16,24 @@ namespace Enercom
         /// \todo check response code
 
         constant_ = Helper::Data::valueFromBytes<uint32_t>(data, 0x02);
-        voltage_ = Helper::Data::valueFromBytes<float>(data, 0x06);
-        current_ = Helper::Data::valueFromBytes<float>(data, 0x0A);
+        current_ = Helper::Data::valueFromBytes<float>(data, 0x06);
+        voltage_ = Helper::Data::valueFromBytes<float>(data, 0x0A);
 
         emit this->changed();
     }
 
     QVariant CalibratorInfo::constant() const
     {
-        return constant_;
+        return QString::number(constant_);
     }
 
     QVariant CalibratorInfo::current() const
     {
-        return current_;
+        return Helper::View::normalizedFloat(current_);
     }
 
     QVariant CalibratorInfo::voltage() const
     {
-        return voltage_;
+        return Helper::View::normalizedFloat(voltage_);
     }
 }

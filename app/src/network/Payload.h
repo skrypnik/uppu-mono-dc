@@ -28,7 +28,7 @@ namespace Enercom::Network
             GetMeterReadings       = 0x90,
             GetCalibratorReadings  = 0x91,
             SetCalibratorInfo      = 0xA0,
-            GetCalibratorInfo      = 0x91,
+            GetCalibratorInfo      = 0xA1,
             SetHiVoltageInfo       = 0xA4,
             GetHiVoltageInfo       = 0xA5,
             SetLoVoltageInfo       = 0xA6,

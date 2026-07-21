@@ -24,7 +24,7 @@ SimPropertyView {
 
             {
                 "title": "Постоянная калибратора, имп/кВт*ч",
-                "value": engine.device.calibratorInfo.voltage
+                "value": engine.device.calibratorInfo.constant
             },
 
             {
