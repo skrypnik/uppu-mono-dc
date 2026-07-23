@@ -276,8 +276,6 @@ namespace Enercom::Network
 
     void Module::sendSetDefaultParamsRequest(const QString& host, const QString& mask, const int port, const int serial, const QString& mac, const int apply, const QString& password)
     {
-        qDebug() << Q_FUNC_INFO << "!!!!!!!!!!!!";
-
         const auto nHost = Helper::Data::networkAddressToUInt32(host);
         const auto nMask = Helper::Data::networkAddressToUInt32(mask);
         const auto nMAC  = Helper::Data::macAddressToBytes(mask);

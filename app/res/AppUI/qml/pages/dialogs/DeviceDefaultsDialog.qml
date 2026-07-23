@@ -73,7 +73,7 @@ SimDialog {
         let nPort = parseInt(port.input.text)
         let nSerial = parseInt(serial.input.text)
 
-        engine.network.sendSetDefaultParamsRequest(host.input.text, mask.input.text, nPort, nSerial, mac.input.text, 0, '9627189653')
+        engine.network.sendSetDefaultParamsRequest(host.input.text, mask.input.text, nPort, nSerial, mac.input.text, 0, "9627189653")
     }
 
     onVisibleChanged: {

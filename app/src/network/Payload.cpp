@@ -200,7 +200,7 @@ namespace Enercom::Network
         value.append(QByteArray::fromRawData(reinterpret_cast<char*>(&apply), sizeof(uint8_t)));
         value.append(password);
 
-        return pack(static_cast<uint8_t>(Request::SetNetworkInfo), value);
+        return pack(static_cast<uint8_t>(Request::SetDefaultParams), value);
     }
 
     QByteArray Payload::getDefaultParamsRequest(uint8_t reserved)
