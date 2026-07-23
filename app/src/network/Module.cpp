@@ -301,27 +301,18 @@ namespace Enercom::Network
     {
         params_->serialNumber = data->sn();
 
-        /// \note WORKAROUND!!! Refactor it, when Alexander fixed his transport
-        QTimer::singleShot(0,    this, [ this ] () { this->sendGetStatusRequest(); });
-        QTimer::singleShot(50,   this, [ this ] () { this->sendGetHiVoltageInfoRequest(); });
-        QTimer::singleShot(100,  this, [ this ] () { this->sendGetLoVoltageInfoRequest(); });
-        QTimer::singleShot(150,  this, [ this ] () { this->sendGetCalibratorInfoRequest(); });
-        QTimer::singleShot(200,  this, [ this ] () { this->sendGetCalibratorReadingsRequest(); });
-        QTimer::singleShot(250,  this, [ this ] () { this->sendGetMetersInfoRequest(); });
-        QTimer::singleShot(300,  this, [ this ] () { this->sendGetDefaultParamsRequest(); });
+        this->sendGetStatusRequest();
+        this->sendGetHiVoltageInfoRequest();
+        this->sendGetLoVoltageInfoRequest();
+        this->sendGetCalibratorInfoRequest();
+        this->sendGetCalibratorReadingsRequest();
+        this->sendGetMetersInfoRequest();
+        this->sendGetDefaultParamsRequest();
     }
 
     void Module::onRequestEachMeterInfo(const int count)
     {
-        // for (int idx=0; idx<count; ++idx)
-        // {
-        //     QTimer::singleShot(300 + 50 * idx,  this, [ & ] () { this->sendGetGivenMeterRequest(idx); });
-        // }
-
-        /// \note WORKAROUND!!! Refactor it, when Alexander fixed his transport
-        if (count > 0x00) QTimer::singleShot(350,  this, [ & ] () { this->sendGetGivenMeterRequest(0x00); });
-        if (count > 0x01) QTimer::singleShot(400,  this, [ & ] () { this->sendGetGivenMeterRequest(0x01); });
-        if (count > 0x02) QTimer::singleShot(450,  this, [ & ] () { this->sendGetGivenMeterRequest(0x02); });
+        for (int idx=0; idx<count; ++idx) this->sendGetGivenMeterRequest(idx);
     }
 
     void Module::onConnected()
