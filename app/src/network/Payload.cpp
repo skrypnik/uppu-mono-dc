@@ -189,6 +189,36 @@ namespace Enercom::Network
         return pack(static_cast<uint8_t>(Request::SetNetworkInfo), value);
     }
 
+    QByteArray Payload::setDefaultParamsRequest(uint32_t host, uint16_t port, uint32_t mask, uint16_t serial, const QByteArray& mac, uint8_t apply, const QByteArray& password)
+    {
+        QByteArray value;
+        value.append(QByteArray::fromRawData(reinterpret_cast<char*>(&host), sizeof(uint32_t)));
+        value.append(QByteArray::fromRawData(reinterpret_cast<char*>(&port), sizeof(uint16_t)));
+        value.append(QByteArray::fromRawData(reinterpret_cast<char*>(&mask), sizeof(uint32_t)));
+        value.append(QByteArray::fromRawData(reinterpret_cast<char*>(&serial), sizeof(uint16_t)));
+        value.append(mac);
+        value.append(QByteArray::fromRawData(reinterpret_cast<char*>(&apply), sizeof(uint8_t)));
+        value.append(password);
+
+        return pack(static_cast<uint8_t>(Request::SetNetworkInfo), value);
+    }
+
+    QByteArray Payload::getDefaultParamsRequest(uint8_t reserved)
+    {
+        QByteArray value;
+        value.append(QByteArray::fromRawData(reinterpret_cast<char*>(&reserved), sizeof(uint8_t)));
+
+        return pack(static_cast<uint8_t>(Request::GetDefaultParams), value);
+    }
+
+    QByteArray Payload::resetDevice(uint8_t reserved)
+    {
+        QByteArray value;
+        value.append(QByteArray::fromRawData(reinterpret_cast<char*>(&reserved), sizeof(uint8_t)));
+
+        return pack(static_cast<uint8_t>(Request::ResetDevice), value);
+    }
+
     /*static*/ QByteArray Payload::pack(const uint8_t type, const QByteArray& value)
     {
         const auto len = static_cast<uint8_t>(value.length());

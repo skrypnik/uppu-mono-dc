@@ -10,6 +10,11 @@ namespace Enercom::Model
     class DeviceModel;
 
     /**
+     * Meter model
+     */
+    class MeterModel;
+
+    /**
      * Model collection
      */
     class Module final : public QObject
@@ -17,9 +22,14 @@ namespace Enercom::Model
         Q_OBJECT
 
         /**
-        * Device model
+        * Device model metaobject property
         */
         Q_PROPERTY( QVariant deviceModel READ devices CONSTANT )
+
+        /**
+        * Meter model metaobject property
+        */
+        Q_PROPERTY( QVariant meterModel READ meters CONSTANT )
 
     public:
         /**
@@ -34,6 +44,12 @@ namespace Enercom::Model
          */
         [[nodiscard]] const DeviceModel* deviceModel() const;
 
+        /**
+         * Meter model getter
+         * @return meter model pointer
+         */
+        [[nodiscard]] const MeterModel* meterModel() const;
+
     private:
         /**
         * Device model metaobject property getter
@@ -41,11 +57,22 @@ namespace Enercom::Model
         */
         [[nodiscard]] QVariant devices() const;
 
+        /**
+        * Meter model metaobject property getter
+        * @return device model pointer
+        */
+        [[nodiscard]] QVariant meters() const;
+
     private:
         /**
          * Device model
          */
         DeviceModel* deviceModel_;
+
+        /**
+        * Meter model
+        */
+        MeterModel* meterModel_;
     };
 
 }

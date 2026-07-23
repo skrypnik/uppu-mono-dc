@@ -21,10 +21,7 @@ SimDialog {
 
                     title.text: "Количество счетчиков"
 
-                    input.validator: IntValidator {
-
-                        bottom: 0; top: 3
-                    }
+                    /// \todo validator
 
                     about.text: "0 - 3"
                 }
@@ -35,10 +32,7 @@ SimDialog {
 
                     title.text: "Напряжение питания, В"
 
-                    input.validator: DoubleValidator {
-
-                        bottom: 10.0; top: 72.0
-                    }
+                    /// \todo validator
 
                     about.text: "10.0 - 72.0"
                 }

@@ -16,7 +16,8 @@ SimFrame {
         VoltageInfo    = 0x00,
         DeviceInfo     = 0x01,
         CalibratorInfo = 0x02,
-        MeterInfo      = 0x03
+        MeterInfo      = 0x03,
+        DeviceDefaults = 0x04
     }
 
     width: 480.0 + SimControl.Padding._14px * 4.0
@@ -154,6 +155,28 @@ SimFrame {
                 onEdit: {
 
                     metersInfoDialog.visible = true
+                }
+            }
+        }
+
+        Column {
+
+            SimPanel {
+
+                controls: SimPanel.Controls.Edit
+
+                title: "Параметры по умолчанию"
+
+                Column {
+
+                    DeviceDefaultsView {
+
+                    }
+                }
+
+                onEdit: {
+
+                    deviceDefaultsDialog.visible = true
                 }
             }
         }

@@ -1,6 +1,7 @@
 #include "DeviceItem.h"
 
 #include <QAbstractListModel>
+#include <QDebug>
 
 #include <network/Packet.h>
 
@@ -116,4 +117,5 @@ namespace Enercom::Model
     {
         return description_;
     }
+
 }

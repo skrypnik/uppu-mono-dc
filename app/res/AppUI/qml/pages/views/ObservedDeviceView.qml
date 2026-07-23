@@ -10,6 +10,8 @@ SimFrame {
 
     signal selectedChanged()
 
+    width: 320.0
+
     ListView {
 
         id: devices
@@ -28,7 +30,7 @@ SimFrame {
 
             scheme: SimControl.Scheme.Secondary
 
-            text: item.address0
+            text: item.description + " " + item.address0 + " " + item.serial
 
             onClicked: {
 

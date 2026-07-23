@@ -24,6 +24,35 @@ namespace Enercom::Helper
         0xBDBDF21C,0xCABAC28A,0x53B39330,0x24B4A3A6,0xBAD03605,0xCDD70693,0x54DE5729,0x23D967BF,0xB3667A2E,0xC4614AB8,0x5D681B02,0x2A6F2B94,0xB40BBE37,0xC30C8EA1,0x5A05DF1B,0x2D02EF8D
     };
 
+    QByteArray Data::macAddressToBytes(const QString& address)
+    {
+        const auto units = address.split(QLatin1Char(':'));
+
+        QByteArray result;
+
+        for(const auto& unit : units)
+        {
+            result.append(static_cast<char>(unit.toInt()));
+        }
+
+        return result;
+    }
+
+    QString Data::macAddressFromBytes(const QByteArray& address)
+    {
+        QString result;
+
+        for(const auto& unit : address)
+        {
+            result.append(QString(QByteArray::fromRawData(&unit, 0x01).toHex()).toUpper());
+            result.append(":");
+        }
+
+        result.remove(result.size() - 0x01, 0x01);
+
+        return result;
+    }
+
     uint32_t Data::networkAddressToUInt32(const QString& address)
     {
         const auto quarters = address.split(QLatin1Char('.'));

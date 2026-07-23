@@ -8,6 +8,7 @@
 #include "MetersInfo.h"
 #include "HiVoltageInfo.h"
 #include "LoVoltageInfo.h"
+#include "DeviceDefaults.h"
 #include "CalibratorInfo.h"
 #include "CalibratorReadings.h"
 
@@ -44,6 +45,11 @@ namespace Enercom
          * Device low voltage info
          */
         Q_PROPERTY( QVariant loVoltageInfo READ loVoltageInfo NOTIFY changed )
+
+        /**
+         * Device defaults
+         */
+        Q_PROPERTY( QVariant defaults READ defaults NOTIFY changed )
 
         /**
          * Device calibrator info
@@ -93,6 +99,11 @@ namespace Enercom
         [[nodiscard]] QVariant loVoltageInfo() const;
 
         /**
+         * Device defaults metaobject getter
+         */
+        [[nodiscard]] QVariant defaults() const;
+
+        /**
          * Device calibrator info metaobject getter
          */
         [[nodiscard]] QVariant calibratorInfo() const;
@@ -101,6 +112,47 @@ namespace Enercom
          * Device calibrator readings metaobject getter
          */
         [[nodiscard]] QVariant calibratorReadings() const;
+
+    public:
+        /**
+         * Device info getter
+         */
+        [[nodiscard]] const Model::DeviceItem::Ptr& infoPtr() const;
+
+        /**
+         * Device status info getter
+         */
+        [[nodiscard]] const StatusInfo::Ptr& statusInfoPtr() const;
+
+        /**
+         * Meters info getter
+         */
+        [[nodiscard]] const MetersInfo::Ptr& metersInfoPtr() const;
+
+        /**
+        * Device high voltage info getter
+        */
+        [[nodiscard]] const HiVoltageInfo::Ptr& hiVoltageInfoPtr() const;
+
+        /**
+        * Device high voltage info getter
+        */
+        [[nodiscard]] const LoVoltageInfo::Ptr& loVoltageInfoPtr() const;
+
+        /**
+         * Device defaults info getter
+         */
+        [[nodiscard]] const DeviceDefaults::Ptr& defaultsPtr() const;
+
+        /**
+         * Device calibrator info getter
+         */
+        [[nodiscard]] const CalibratorInfo::Ptr& calibratorInfoPtr() const;
+
+        /**
+         * Device calibrator readings getter
+         */
+        [[nodiscard]] const CalibratorReadings::Ptr& calibratorReadingsPtr() const;
 
     signals:
         /**
@@ -140,6 +192,12 @@ namespace Enercom
         void onDeviceLoVoltageInfoChanged(const Enercom::Network::Packet::Fields::Ptr& packet);
 
         /**
+         * Device defaults changed handler
+         * @param packet device low voltage info packet
+         */
+        void onDeviceDefaultsChanged(const Enercom::Network::Packet::Fields::Ptr& packet);
+
+        /**
          * Device calibrator info changed handler
          * @param packet device calibrator info packet
          */
@@ -176,6 +234,11 @@ namespace Enercom
         * Device high voltage info
         */
         LoVoltageInfo::Ptr loVoltageInfo_;
+
+        /**
+         * Device defaults
+         */
+        DeviceDefaults::Ptr defaults_;
 
         /**
          * Device calibrator info

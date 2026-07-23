@@ -12,6 +12,7 @@
 
 #include "Dispatcher.h"
 #include "device/Device.h"
+#include "model/MeterModel.h"
 
 namespace Enercom
 {
@@ -35,8 +36,10 @@ namespace Enercom
         /// Dispacher -> model signal connections
         QObject::connect(dispatcher_, &Dispatcher::deviceInfoReceived,          modelModule_->deviceModel(), &Model::DeviceModel::onDeviceInfoChanged);
         QObject::connect(dispatcher_, &Dispatcher::deviceBroadcastInfoReceived, modelModule_->deviceModel(), &Model::DeviceModel::onIncomingDeviceInfo);
+        QObject::connect(dispatcher_, &Dispatcher::deviceMeterInfoReceived,     modelModule_->meterModel(), &Model::MeterModel::onMeterInfoChanged);
 
         /// Dispacher -> device signal connections
+        QObject::connect(dispatcher_, &Dispatcher::deviceDefaultsReceived,           device_, &Device::onDeviceDefaultsChanged);
         QObject::connect(dispatcher_, &Dispatcher::deviceStatusInfoReceived,         device_, &Device::onDeviceStatusInfoChanged);
         QObject::connect(dispatcher_, &Dispatcher::deviceMetersInfoReceived,         device_, &Device::onDeviceMetersInfoChanged);
         QObject::connect(dispatcher_, &Dispatcher::deviceHiVoltageInfoReceived,      device_, &Device::onDeviceHiVoltageInfoChanged);
@@ -46,6 +49,12 @@ namespace Enercom
 
         /// Model -> device signal connections
         QObject::connect(modelModule_->deviceModel(), &Model::DeviceModel::deviceInfoChanged, device_, &Device::onDeviceInfoChanged);
+
+        /// Device -> network signal connections
+        QObject::connect(device_->metersInfoPtr().get(), &MetersInfo::requestEachMeterInfo, networkModule_, &Network::Module::onRequestEachMeterInfo);
+
+        /// Device -> model signal connections
+        QObject::connect(device_->metersInfoPtr().get(), &MetersInfo::clearMeterModel, modelModule_->meterModel(), &Model::MeterModel::onClearModel);
     }
 
     void ApplicationEngine::initializeEngine()

@@ -175,11 +175,9 @@ namespace Enercom::Network
         this->send(Packet::generateRequest(params_->serialNumber, Payload::getMetersInfoRequest()));
     }
 
-    void Module::sendSetGivenMeterRequest(const int index, const int address, const float current, const float voltage, const int constant, const int factor)
+    void Module::sendSetGivenMeterRequest(const int index, const int address, const float current, const float voltage, const int constant, const int pulse)
     {
-        qDebug() << Q_FUNC_INFO;
-
-        this->send(Packet::generateRequest(params_->serialNumber, Payload::setGivenMeterRequest(index, address, current, voltage, constant, factor)));
+        this->send(Packet::generateRequest(params_->serialNumber, Payload::setGivenMeterRequest(index, address, current, voltage, constant, pulse)));
     }
 
     void Module::sendGetGivenMeterRequest(const int index)
@@ -276,17 +274,56 @@ namespace Enercom::Network
         this->send(Packet::generateRequest(params_->serialNumber, Payload::setNetworkInfoRequest(nHost, port, nMask)));
     }
 
+    void Module::sendSetDefaultParamsRequest(const QString& host, const QString& mask, const int port, const int serial, const QString& mac, const int apply, const QString& password)
+    {
+        qDebug() << Q_FUNC_INFO << "!!!!!!!!!!!!";
+
+        const auto nHost = Helper::Data::networkAddressToUInt32(host);
+        const auto nMask = Helper::Data::networkAddressToUInt32(mask);
+        const auto nMAC  = Helper::Data::macAddressToBytes(mask);
+
+        this->send(Packet::generateRequest(params_->serialNumber, Payload::setDefaultParamsRequest(nHost, nMask, port, serial, nMAC, apply, password.toLocal8Bit())));
+    }
+
+    void Module::sendGetDefaultParamsRequest(const int reserved)
+    {
+        qDebug() << Q_FUNC_INFO;
+
+        this->send(Packet::generateRequest(params_->serialNumber, Payload::getDefaultParamsRequest(reserved)));
+    }
+
+    void Module::sendResetDevice(uint8_t reserved)
+    {
+        qDebug() << Q_FUNC_INFO;
+
+        this->send(Packet::generateRequest(params_->serialNumber, Payload::resetDevice(reserved)));
+    }
+
     void Module::onDeviceInfoReceived(const Enercom::Network::Packet::Fields::Ptr& data)
     {
         params_->serialNumber = data->sn();
 
         /// \note WORKAROUND!!! Refactor it, when Alexander fixed his transport
         QTimer::singleShot(0,    this, [ this ] () { this->sendGetStatusRequest(); });
-        QTimer::singleShot(50,   this, [ this ] () { this->sendGetMetersInfoRequest(); });
-        QTimer::singleShot(100,  this, [ this ] () { this->sendGetHiVoltageInfoRequest(); });
-        QTimer::singleShot(150,  this, [ this ] () { this->sendGetLoVoltageInfoRequest(); });
-        QTimer::singleShot(200,  this, [ this ] () { this->sendGetCalibratorInfoRequest(); });
-        QTimer::singleShot(250,  this, [ this ] () { this->sendGetCalibratorReadingsRequest(); });
+        QTimer::singleShot(50,   this, [ this ] () { this->sendGetHiVoltageInfoRequest(); });
+        QTimer::singleShot(100,  this, [ this ] () { this->sendGetLoVoltageInfoRequest(); });
+        QTimer::singleShot(150,  this, [ this ] () { this->sendGetCalibratorInfoRequest(); });
+        QTimer::singleShot(200,  this, [ this ] () { this->sendGetCalibratorReadingsRequest(); });
+        QTimer::singleShot(250,  this, [ this ] () { this->sendGetMetersInfoRequest(); });
+        QTimer::singleShot(300,  this, [ this ] () { this->sendGetDefaultParamsRequest(); });
+    }
+
+    void Module::onRequestEachMeterInfo(const int count)
+    {
+        // for (int idx=0; idx<count; ++idx)
+        // {
+        //     QTimer::singleShot(300 + 50 * idx,  this, [ & ] () { this->sendGetGivenMeterRequest(idx); });
+        // }
+
+        /// \note WORKAROUND!!! Refactor it, when Alexander fixed his transport
+        if (count > 0x00) QTimer::singleShot(350,  this, [ & ] () { this->sendGetGivenMeterRequest(0x00); });
+        if (count > 0x01) QTimer::singleShot(400,  this, [ & ] () { this->sendGetGivenMeterRequest(0x01); });
+        if (count > 0x02) QTimer::singleShot(450,  this, [ & ] () { this->sendGetGivenMeterRequest(0x02); });
     }
 
     void Module::onConnected()

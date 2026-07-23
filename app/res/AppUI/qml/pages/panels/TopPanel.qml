@@ -38,6 +38,7 @@ SimFrame {
             ListElement { buttonIndex: InfoPanel.Index.DeviceInfo;     buttonIcon: "qrc:/SimDS/svg/controls/Lightning.svg" }
             ListElement { buttonIndex: InfoPanel.Index.CalibratorInfo; buttonIcon: "qrc:/SimDS/svg/controls/Harmony.svg" }
             ListElement { buttonIndex: InfoPanel.Index.MeterInfo;      buttonIcon: "qrc:/SimDS/svg/controls/Chart.svg" }
+            ListElement { buttonIndex: InfoPanel.Index.DeviceDefaults; buttonIcon: "qrc:/SimDS/svg/controls/Refresh.svg" }
         }
 
         delegate: SimMiniature {

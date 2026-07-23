@@ -16,16 +16,20 @@
         <file>qml/pages/views/HiVoltageInfoView.qml</file>
         <file>qml/pages/views/LoVoltageInfoView.qml</file>
         <file>qml/pages/views/ObservedDeviceView.qml</file>
+        <file>qml/pages/views/DeviceDefaultsView.qml</file>
         <file>qml/pages/views/CalibratorInfoView.qml</file>
         <file>qml/pages/views/CalibratorReadingsView.qml</file>
 
         <file>qml/pages/dialogs/MetersInfoDialog.qml</file>
         <file>qml/pages/dialogs/NetworkInfoDialog.qml</file>
         <file>qml/pages/dialogs/VoltageInfoDialog.qml</file>
+        <file>qml/pages/dialogs/DeviceDefaultsDialog.qml</file>
         <file>qml/pages/dialogs/CalibratorInfoDialog.qml</file>
+        <file>qml/pages/dialogs/SingleMeterInfoDialog.qml</file>
 
         <file>qml/pages/panels/TopPanel.qml</file>
         <file>qml/pages/panels/InfoPanel.qml</file>
+        <file>qml/pages/panels/MetersPanel.qml</file>
 
     </qresource>
 </RCC>

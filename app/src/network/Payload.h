@@ -35,7 +35,10 @@ namespace Enercom::Network
             GetLoVoltageInfo       = 0xA7,
             GetStatusInfo          = 0xA8,
             AllowVoltageGeneration = 0xA9,
-            SetNetworkInfo         = 0xB0
+            SetNetworkInfo         = 0xB0,
+            SetDefaultParams       = 0xB2,
+            GetDefaultParams       = 0xB3,
+            ResetDevice            = 0xFE
         };
 
     public:
@@ -243,9 +246,36 @@ namespace Enercom::Network
          * @param host network address
          * @param port network port
          * @param mask network mask
-         * @return
+         * @return TLV formated request
          */
         static QByteArray setNetworkInfoRequest(uint32_t host, uint16_t port, uint32_t mask);
+
+        /**
+         * Sets device default params
+         * @param host network address
+         * @param port network port
+         * @param mask network mask
+         * @param serial serial number
+         * @param mac MAC address
+         * @param apply apply changes flag
+         * @param password device password
+         * @return TLV formated request
+         */
+        static QByteArray setDefaultParamsRequest(uint32_t host, uint16_t port, uint32_t mask, uint16_t serial, const QByteArray& mac, uint8_t apply, const QByteArray& password);
+
+        /**
+         * Get device default params
+         * @param reserved reserved param
+         * @return TLV formated request
+         */
+        static QByteArray getDefaultParamsRequest(uint8_t reserved = 0x00);
+
+        /**
+         * Resets device
+         * @param reserved reserved param
+         * @return TLV formated request
+         */
+        static QByteArray resetDevice(uint8_t reserved = 0x00);
 
     public:
         /**

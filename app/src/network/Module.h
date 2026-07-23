@@ -88,9 +88,9 @@ namespace Enercom::Network
         * @param current meter current
         * @param voltage meter voltage
         * @param constant meter constant coefficient
-        * @param factor meter impulse factor
+        * @param pulse meter impulse factor
         */
-        Q_INVOKABLE void sendSetGivenMeterRequest(int index, int address, float current, float voltage, int constant, int factor);
+        Q_INVOKABLE void sendSetGivenMeterRequest(int index, int address, float current, float voltage, int constant, int pulse);
 
         /**
          * Get meter params request
@@ -107,14 +107,12 @@ namespace Enercom::Network
         /**
          * Sends get meter readings request
          * @param index meter index
-         * @return TLV formated request
          */
         Q_INVOKABLE void sendGetMeterReadingsRequest(int index);
 
         /**
          * Sends get calibrator readings request
          * @param reserved reserved param
-         * @return TLV formated request
          */
         Q_INVOKABLE void sendGetCalibratorReadingsRequest(int reserved = 0x00);
 
@@ -124,14 +122,12 @@ namespace Enercom::Network
          * @param constant meter constant coefficient
          * @param current meter current
          * @param voltage meter voltage
-         * @return TLV formated request
          */
         Q_INVOKABLE void sendSetCalibratorInfoRequest(int type, int constant, float current, float voltage);
 
         /**
          * Sends get calibrator info request
          * @param reserved reserved param
-         * @return TLV formated request
          */
         Q_INVOKABLE void sendGetCalibratorInfoRequest(int reserved = 0x00);
 
@@ -140,14 +136,12 @@ namespace Enercom::Network
          * @param mode operating mode
          * @param volREG regulator voltage
          * @param volDAC DAC voltage
-         * @return TLV formated request
          */
         Q_INVOKABLE void sendSetHiVoltageInfoRequest(int mode, float volREG, float volDAC);
 
         /**
          * Sends get high voltage info request
          * @param reserved reserved param
-         * @return TLV formated request
          */
         Q_INVOKABLE void sendGetHiVoltageInfoRequest(int reserved = 0x00);
 
@@ -156,21 +150,18 @@ namespace Enercom::Network
          * @param mode operating mode
          * @param volREG regulator voltage
          * @param volDAC DAC voltage
-         * @return TLV formated request
          */
         Q_INVOKABLE void sendSetLoVoltageInfoRequest(int mode, float volREG, float volDAC);
 
         /**
          * Sends get low voltage info request
          * @param reserved reserved param
-         * @return TLV formated request
          */
         Q_INVOKABLE void sendGetLoVoltageInfoRequest(int reserved = 0x00);
 
         /**
          * Sends get status request
          * @param reserved reserved param
-         * @return TLV formated request
          */
         Q_INVOKABLE void sendGetStatusRequest(int reserved = 0x00);
 
@@ -178,7 +169,6 @@ namespace Enercom::Network
          * Sends allow voltage generation request
          * @param hiVoltage hi voltage
          * @param loVoltage lo voltage
-         * @return TLV formated request
          */
         Q_INVOKABLE void sendAllowVoltageGenerationRequest(int hiVoltage, int loVoltage);
 
@@ -187,9 +177,32 @@ namespace Enercom::Network
          * @param host network address
          * @param mask network mask
          * @param port network port
-         * @return TLV formated request
          */
         Q_INVOKABLE void sendSetNetworkInfoRequest(const QString& host, const QString& mask, int port);
+
+        /**
+         * Sends set device default params
+         * @param host network address
+         * @param mask network mask
+         * @param port network port
+         * @param serial serial number
+         * @param mac MAC address
+         * @param apply apply changes flag
+         * @param password device password
+         */
+        Q_INVOKABLE void sendSetDefaultParamsRequest(const QString& host, const QString& mask, int port, int serial, const QString& mac, int apply, const QString& password);
+
+        /**
+         * Sends get device default params
+         * @param reserved reserved param
+         */
+        Q_INVOKABLE void sendGetDefaultParamsRequest(int reserved = 0x00);
+
+        /**
+         * Sends reset device
+         * @param reserved reserved param
+         */
+        Q_INVOKABLE void sendResetDevice(uint8_t reserved = 0x00);
 
     private:
         /**
@@ -250,6 +263,12 @@ namespace Enercom::Network
          * @param data packet data
          */
         void onDeviceInfoReceived(const Enercom::Network::Packet::Fields::Ptr& data);
+
+        /**
+         * Each meter info request handler
+         * @param count meters count
+         */
+        void onRequestEachMeterInfo(int count);
 
     private slots:
         /**

@@ -18,11 +18,17 @@ namespace Enercom
     {
         /// \todo check response code
 
-        count_ = Helper::Data::valueFromBytes<uint8_t>(data, 0x01);
+        const auto count = Helper::Data::valueFromBytes<uint8_t>(data, 0x01);
+
+        if (count_ != count) emit clearMeterModel();
+
+        count_ = count;
         baudRate_ = Helper::Data::valueFromBytes<uint32_t>(data, 0x02);
         inputKind_ = Helper::Data::valueFromBytes<uint8_t>(data, 0x06);
         inputVoltage_ = Helper::Data::valueFromBytes<float>(data, 0x07);
         outputVoltage_ = Helper::Data::valueFromBytes<float>(data, 0x0B);
+
+        emit this->requestEachMeterInfo(count);
 
         emit this->changed();
     }

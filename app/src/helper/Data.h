@@ -18,6 +18,20 @@ namespace Enercom::Helper
 
     public:
         /**
+         * Converts MAC address to byte array representation
+         * @param address MAC address
+         * @return MAC address to byte array representation
+         */
+        static QByteArray macAddressToBytes(const QString& address);
+
+        /**
+         * Converts MAC address to byte array representation
+         * @param address MAC address
+         * @return MAC address to byte array representation
+         */
+        static QString macAddressFromBytes(const QByteArray& address);
+
+        /**
          * Converts network address to uint32_t representation
          * @param address network address
          * @return network address to uint32_t representation

@@ -67,13 +67,13 @@ SimPage {
 
                     id: devices
 
+                    height: network.height
+
                     onSelectedChanged: {
 
                         host.input.text = item.address0
                         port.input.text = item.port0
                     }
-
-                    width: 228.0; height: network.height
                 }
             }
 

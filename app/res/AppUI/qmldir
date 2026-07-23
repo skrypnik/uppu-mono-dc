@@ -12,13 +12,17 @@ MetersInfoView          1.0 qml/pages/views/MetersInfoView.qml
 HiVoltageInfoView       1.0 qml/pages/views/HiVoltageInfoView.qml
 LoVoltageInfoView       1.0 qml/pages/views/LoVoltageInfoView.qml
 ObservedDeviceView      1.0 qml/pages/views/ObservedDeviceView.qml
+DeviceDefaultsView      1.0 qml/pages/views/DeviceDefaultsView.qml
 CalibratorInfoView      1.0 qml/pages/views/CalibratorInfoView.qml
 CalibratorReadingsView  1.0 qml/pages/views/CalibratorReadingsView.qml
 
-MetersInfoDialog     1.0 qml/pages/dialogs/MetersInfoDialog.qml
-NetworkInfoDialog    1.0 qml/pages/dialogs/NetworkInfoDialog.qml
-VoltageInfoDialog    1.0 qml/pages/dialogs/VoltageInfoDialog.qml
-CalibratorInfoDialog 1.0 qml/pages/dialogs/CalibratorInfoDialog.qml
+MetersInfoDialog      1.0 qml/pages/dialogs/MetersInfoDialog.qml
+NetworkInfoDialog     1.0 qml/pages/dialogs/NetworkInfoDialog.qml
+VoltageInfoDialog     1.0 qml/pages/dialogs/VoltageInfoDialog.qml
+DeviceDefaultsDialog  1.0 qml/pages/dialogs/DeviceDefaultsDialog.qml
+CalibratorInfoDialog  1.0 qml/pages/dialogs/CalibratorInfoDialog.qml
+SingleMeterInfoDialog 1.0 qml/pages/dialogs/SingleMeterInfoDialog.qml
 
-TopPanel  1.0 qml/pages/panels/TopPanel.qml
-InfoPanel 1.0 qml/pages/panels/InfoPanel.qml
+TopPanel    1.0 qml/pages/panels/TopPanel.qml
+InfoPanel   1.0 qml/pages/panels/InfoPanel.qml
+MetersPanel 1.0 qml/pages/panels/MetersPanel.qml

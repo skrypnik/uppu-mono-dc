@@ -27,7 +27,7 @@ Item {
      */
     readonly property int valueIndex: scale.count * (value - min) / (max - min)
 
-    implicitWidth: 320.0; implicitHeight: SimControl.Size._32px
+    implicitWidth: 386.0; implicitHeight: SimControl.Size._32px
 
     Repeater {
 

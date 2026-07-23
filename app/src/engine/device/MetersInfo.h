@@ -114,6 +114,17 @@ namespace Enercom
          */
         void changed();
 
+        /**
+         * Emits, when meters count are changed
+         */
+        void clearMeterModel();
+
+        /**
+         * Emits when each meter request neaded
+         * @param count meters count
+         */
+        void requestEachMeterInfo(int count);
+
     private:
         /**
          * Meters count

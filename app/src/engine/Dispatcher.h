@@ -40,6 +40,12 @@ namespace Enercom
         void deviceMetersInfoReceived(const Enercom::Network::Packet::Fields::Ptr& data);
 
         /**
+         * Emits, when given meter info received
+         * @param data packet data
+         */
+        void deviceMeterInfoReceived(const Enercom::Network::Packet::Fields::Ptr& data);
+
+        /**
          * Emits, when device info received
          * @param data packet data
          */
@@ -56,6 +62,12 @@ namespace Enercom
          * @param data packet data
          */
         void deviceLoVoltageInfoReceived(const Enercom::Network::Packet::Fields::Ptr& data);
+
+        /**
+         * Emits, when device defaults received
+         * @param data packet data
+         */
+        void deviceDefaultsReceived(const Enercom::Network::Packet::Fields::Ptr& data);
 
         /**
          * Emits, when calibrator voltage info received
